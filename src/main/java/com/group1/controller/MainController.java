@@ -16,4 +16,8 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public String show() {
+		return "show";
+	}
 }
