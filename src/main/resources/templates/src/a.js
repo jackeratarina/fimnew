@@ -1,0 +1,1 @@
+export var xxx = 1;

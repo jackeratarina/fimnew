@@ -1,3 +1,4 @@
+import {xxx} from './a.js';
 export default window.myfunc = () => {
-    console.log("hehe");
+    console.log(xxx);
 }
