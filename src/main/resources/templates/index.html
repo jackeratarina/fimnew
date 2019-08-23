@@ -4,41 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FILM</title>
-<style>
-.error {
-	color: red
-}
-
-ul.last-film-box>li {
-	display: inline-block !important;
-	margin-right: 1%;
-	margin-bottom: 10px !important;
-	width: 24%;
-}
-
-.movie-meta {
-	margin: 5px 5px;
-}
-
-.movie-meta .movie-title-1 {
-	display: block;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 100%;
-	color: #44e2ff;
-	text-transform: uppercase;
-	font-size: 12px;
-	font-weight: 700;
-	text-decoration: none;
-}
-
-.movie-meta .movie-title-chap {
-	font-size: 12px;
-	color: #777;
-	line-height: normal;
-}
-</style>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -47,158 +13,188 @@ ul.last-film-box>li {
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
-<body>
+<body>	
+<div th:include ="~{/header.html :: header}"></div>
+<br>
 
+<div class="accordian">
+    <ul>
+		<li>
+			<div class="image_title">
+				<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">KungFu Panda</a>
+			</div> 
+			<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
+				<img src="http://thecodeplayer.com/uploads/media/3yiC6Yq.jpg"/>
+			</a>
+		</li>
+		<li>
+			<div class="image_title">
+				<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">Toy Story 2</a>
+			</div>
+			<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
+				<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"/>
+			</a>
+		</li>
+		<li>
+			<div class="image_title">
+				<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">Wall-E</a>
+			</div>
+			<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
+				<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"/>
+			</a>
+		</li>
+		<li>
+			<div class="image_title">
+				<a href="#">Up</a>
+			</div>
+			<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
+				<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"/>
+			</a>
+		</li>
+		<li>
+			<div class="image_title">
+				<a href="#">Cars 2</a>
+			</div>
+			<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
+				<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"/>
+			</a>
+		</li>
+		<li>
+			<div class="image_title">
+				<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">KungFu Panda</a>
+			</div> 
+			<a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
+				<img src="http://thecodeplayer.com/uploads/media/3yiC6Yq.jpg"/>
+			</a>
+		</li>
+	</ul>
+</div>
+<br>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav " id="top">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Dropdown </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a> <a
-							class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div></li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
-	<br>
+<div>
 	<div>
-		<div>
-			<div class="float-left">
-				<h2>PHIM MỚI CẬP NHẬT</h2>
-			</div>
-			<div class="float-right">
-				<a href="show">xem thêm</a>
-			</div>
-
+		<div class="float-left">
+			<h2>PHIM MỚI CẬP NHẬT</h2>
+		</div>
+		<div class="float-right">
+			<a href="show">xem thêm</a>
 		</div>
 
-		<div class="row col-md-12">
+	</div>
 
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
+	<div class="row col-md-12">
 
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
+		</div>
 
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
+		</div>
+
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
 		</div>
 	</div>
-	<br>
+</div>
+<br>
+<div>
 	<div>
-		<div>
-			<div class="float-left">
-				<h2>PHIM CHIẾU RẠP</h2>
-			</div>
-			<div class="float-right">
-				<a href="facebook.com">xem thêm</a>
-			</div>
-
+		<div class="float-left">
+			<h2>PHIM CHIẾU RẠP</h2>
+		</div>
+		<div class="float-right">
+			<a href="facebook.com">xem thêm</a>
 		</div>
 
-		<div class="row col-md-12">
+	</div>
 
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
+	<div class="row col-md-12">
 
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
+		</div>
 
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
-			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
-					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
-					<div class="movie-meta">
-						<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
-						<span class="movie-title-chap">131 phút </span>
-						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
-					</div>
-				</a>
-			</div>
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
+		</div>
+
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="facebook.com" style="width: 100% !important;"> <img
+				class="img-thumbnail" width="200px" height="260px"
+				src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
+				<div class="movie-meta">
+					<div class="movie-title-1">Chúa Tể Godzilla: Đế Vương Bất Tử</div>
+					<span class="movie-title-chap">131 phút </span>
+					<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
+				</div>
+			</a>
 		</div>
 	</div>
+</div>
+<div th:include ="~{/footer.html :: footer}"></div>
 </body>
+
 </html>
