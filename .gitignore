@@ -31,4 +31,3 @@ build/
 .vscode/
 ### node_modules ###
 src/main/resources/templates/node_modules/
-src/main/resources/templates/src/
