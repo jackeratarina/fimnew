@@ -1,0 +1,59 @@
+/*Main*/
+#main {
+	margin-top: 10px;
+}
+
+/*poster movie*/
+#movie-1-img {
+	width: 300px;
+	height: 400px
+}
+
+/*title moive*/
+#title-1-movie {
+	text-decoration: none;
+	color: black
+}
+
+#title-2-movie {
+	font-size: 12px
+}
+/*movie info*/
+.scroll {
+	display: block;
+	border: 1px solid gray;
+	padding: 5px;
+	margin-top: 5px;
+	width: 100%;
+	height: 350px;
+	overflow: auto;
+	color: #bbb;
+	background: #222;
+}
+
+.movie-dt {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.movie-dd {
+	font-size: 12px;
+}
+/*movie content*/
+.movie-content {
+	border: 0.5px solid gray;
+	margin-top: 40px;
+	padding: 5px;
+	color: #bbb;
+	background: #222;
+}
+
+.title-content {
+	font-size: 18px;
+	font-weight: bold;
+	color: #dacb46;;
+}
+
+.content {
+	font-size: 12px;
+}

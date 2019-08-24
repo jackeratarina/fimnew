@@ -20,4 +20,8 @@ public class MainController {
 	public String show() {
 		return "show";
 	}
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail() {
+		return "detail";
+	}
 }

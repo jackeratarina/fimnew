@@ -5,13 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FILM</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -27,7 +30,7 @@
 		<div class="row col-md-12">
 
 			<div class="col-md-3 text-center">
-				<a href="facebook.com" style="width: 100% !important;"> <img
+				<a href="/detail" style="width: 100% !important;"> <img
 					class="img-thumbnail" width="200px" height="260px"
 					src="http://image.phimmoi.net/film/7138/poster.thumb.jpg">
 					<div class="movie-meta">
@@ -128,5 +131,6 @@
 			</ul>
 		</nav>
 	</div>
+	<div th:include ="~{/footer.html :: footer}"></div>
 </body>
 </html>

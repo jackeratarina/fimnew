@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/style1.css}" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+
+	<div th:include="~{/header.html :: header}"></div>
+
+	<div class="container" id="main">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-6">
+						<div id="movie-1-img">
+							<img class="img-thumbnail"
+								src="http://image.phimmoi.net/film/8161/poster.medium.jpg">
+							<ul style="padding-top: 5px; padding-left: 10px">
+								<li class="btn btn-success">Download</li>
+								<li class="btn btn-primary">Tralier</li>
+								<li class="btn btn-danger">Xem phim</li>
+							</ul>
+						</div>
+						
+					</div>
+					<div class="col-sm-6">
+						<h5>
+							<span><a href="" id="title-1-movie">ALADDIN VÀ CÂY ĐÈN
+									THẦN</a></span>
+						</h5>
+						<span id="title-2-movie">Aladdin (Live-action) (2019)</span>
+						<div class="scroll">
+							<span class="movie-dt">Trạng thái:</span> <span class="movie-dd"
+								style="color: red">Hoàn tất </span> <br> <span
+								class="movie-dt">Điểm IMDb:</span> <span class="movie-dd"
+								style="color: #000; padding: 3px; font-size: 12px; font-weight: bold; background: #E3B71E;
+	/* -webkit-border-radius: 3px; */ -moz-border-radius: 3px; border-radius: 3px;">7.4</span>
+							<br> <span class="movie-dt">Số người đánh giá:</span> <span
+								class="movie-dd">(35,166 votes)</span> <br> <span
+								class="movie-dt" style="color: #46E1FF;">Đạo diễn:</span> <span class="movie-dd" style="color: #46E1FF;">Guy
+								Ritchie</span> <br> <span class="movie-dt" style="color: #46E1FF;">Quốc gia:</span> <span
+								class="movie-dd" style="color: #46E1FF;">Mỹ</span> <br> <span class="movie-dt" style="color: #46E1FF;">Năm:</span>
+							<span class="movie-dd"><span style="color: #46E1FF;">2019</span></span> <br> <span
+								class="movie-dt">Ngày ra rạp:</span> <span class="movie-dd">22/5/2019</span>
+							<br> <span class="movie-dt">Thời lượng:</span> <span
+								class="movie-dd">128 phút</span> <br> <span
+								class="movie-dt">Chất lượng:</span> <span class="movie-dd">Bản
+								đẹp</span> <br> <span class="movie-dt">Độ phân giải:</span> <span
+								class="movie-dd">HD 720p</span> <br> <span class="movie-dt">Ngôn
+								ngữ:</span> <span class="movie-dd">Phụ đề việt + Thuyết minh</span> <br>
+							<span class="movie-dt" style="color: #46E1FF;">Thể loại:</span> <span class="movie-dd">
+								<span>Phim viễn tưởng</span>, <span>Phim phiêu lưu</span>, <span>Phim
+									hài hước</span>
+							</span> <br> <span class="movie-dt">Công ty SX:</span> <span
+								class="movie-dd">Walt Disney Pictures, Lin Pictures,
+								Rideback</span>
+						</div>
+					</div>
+				</div>
+				<div class="movie-content">
+					<span class="title-content">NỘI DUNG PHIM</span><br> <span
+						class="content">Aladdin 2019 là một phiên bản live action
+						đầy màu sắc sống động và không kém phần hồi hộp, được chuyển thể
+						từ bộ phim hoạt hình kinh điển cả hãng phim Disney. Câu chuyện
+						xoay quanh chàng hoàng tử khu ổ chuột Aladdin – một thanh niên trẻ
+						tuổi dũng cảm và nàng công chúa Jasmine mạnh mẽ, đương nhiên phải
+						kể đến thần đèn Genie – người nắm giữ chìa khóa thay đổi tương lại
+						sau này của họ.</span>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<h2>Phim đã đánh dấu</h2>
+				<h5>Title description, Dec 7, 2017</h5>
+				<div class="fakeimg">Fake Image</div>
+				<p>Some text..</p>
+				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
+					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco.</p>
+				<br>
+				<h2>TITLE HEADING</h2>
+				<h5>Title description, Sep 2, 2017</h5>
+				<div class="fakeimg">Fake Image</div>
+				<p>Some text..</p>
+				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
+					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco.</p>
+			</div>
+		</div>
+	</div>
+
+	<div th:include="~{/footer.html :: footer}"></div>
+
+</body>
+</html>
+
+</body>
+</html>
