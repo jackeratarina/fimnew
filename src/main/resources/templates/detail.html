@@ -33,27 +33,23 @@
 							<img class="img-thumbnail"
 								src="http://image.phimmoi.net/film/8161/poster.medium.jpg">
 							<ul style="padding-top: 5px; padding-left: 10px">
-								<li class="btn btn-success">Download</li>
-								<li class="btn btn-primary">Tralier</li>
-								<li class="btn btn-danger">Xem phim</li>
+								<a class="btn btn-success">Download</a>
+								<a class="btn btn-primary">Tralier</a>
+								<a class="btn btn-danger">Xem phim</a>
 							</ul>
 						</div>
 						
 					</div>
 					<div class="col-sm-6">
 						<h5>
-							<span><a href="" id="title-1-movie">ALADDIN VÀ CÂY ĐÈN
-									THẦN</a></span>
+							<span><a href="" id="title-1-movie" th:text="${film.getName()}"></a></span>
 						</h5>
-						<span id="title-2-movie">Aladdin (Live-action) (2019)</span>
+						<span id="title-2-movie" th:text="${film.getName2()}"></span>
 						<div class="scroll">
-							<span class="movie-dt">Trạng thái:</span> <span class="movie-dd"
-								style="color: red">Hoàn tất </span> <br> <span
-								class="movie-dt">Điểm IMDb:</span> <span class="movie-dd"
-								style="color: #000; padding: 3px; font-size: 12px; font-weight: bold; background: #E3B71E;
-	/* -webkit-border-radius: 3px; */ -moz-border-radius: 3px; border-radius: 3px;">7.4</span>
-							<br> <span class="movie-dt">Số người đánh giá:</span> <span
-								class="movie-dd">(35,166 votes)</span> <br> <span
+							<span class="movie-dt">Trạng thái:</span> <span class="movie-dd" style="color: red">Hoàn tất </span> <br> <span
+								class="movie-dt">Điểm IMDb:</span> <span class="movie-dd" style="color: #000; padding: 3px; font-size: 12px; font-weight: bold; background: #E3B71E;
+	/* -webkit-border-radius: 3px; */ -moz-border-radius: 3px; border-radius: 3px;" th:text="${film.getIMDB()}"></span>
+							<br> <span
 								class="movie-dt" style="color: #46E1FF;">Đạo diễn:</span> <span class="movie-dd" style="color: #46E1FF;">Guy
 								Ritchie</span> <br> <span class="movie-dt" style="color: #46E1FF;">Quốc gia:</span> <span
 								class="movie-dd" style="color: #46E1FF;">Mỹ</span> <br> <span class="movie-dt" style="color: #46E1FF;">Năm:</span>

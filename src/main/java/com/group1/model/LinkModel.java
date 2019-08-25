@@ -2,6 +2,7 @@ package com.group1.model;
 
 public class LinkModel {
 	
+		private String id;
 		private String describe;
 		private String id_film;
 		private int num;
@@ -11,15 +12,20 @@ public class LinkModel {
 
 	}
 
-	public LinkModel(String describe,String id_film,int num,String url) {
+	public LinkModel(String id,String describe,String id_film,int num,String url) {
 		super();
 		
+		this.id = id;
 		this.describe = describe;
 		this.id_film = id_film;
 		this.num = num;
 		this.url = url;
 	}
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getDescribe() {
 		return describe;
 	}
@@ -37,6 +43,10 @@ public class LinkModel {
 	}
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setDescribe(String describe) {
 		this.describe = describe;
 	}
@@ -53,4 +63,7 @@ public class LinkModel {
 		this.url = url;
 	}
 
+	public static String getAllVar() {
+		return "id,describe,id_film,num,url";
+	}
 }

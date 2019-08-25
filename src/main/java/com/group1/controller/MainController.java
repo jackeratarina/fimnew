@@ -23,16 +23,25 @@ public class MainController {
 	private FILMDAO fimdao;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
+	public String index(Model model) {
+		List<FILMModel> list = fimdao.listFILMInfo();
+		model.addAttribute("film",list);
 		return "index";
 	}
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public String ss() {
+	public String show() {
 		return "show";
 	}
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String a() {
-		
+	public String detail(Model model,String id) {
+		System.out.println(id);
+	if(id == null || id == "") {
+		return "redirect:";
+	}
+	FILMModel film = fimdao.findById(id);
+	model.addAttribute("film", film);
+	model.addAttribute("countries", fimdao.getFilmCountry(id));
+	
 		return "detail";
 	}
 }

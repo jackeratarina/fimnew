@@ -9,7 +9,10 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.group1.entity.CountriesOfFilm;
+import com.group1.entity.Country;
 import com.group1.entity.FILM;
+import com.group1.model.CountryModel;
 import com.group1.model.FILMModel;
 
 @Repository
@@ -21,13 +24,19 @@ public class FILMDAO {
 
 	}
 	
-	public FILM findById(Long id) {
-		return this.entityManager.find(FILM.class, id);
+	public FILMModel findById(String id) {
+		String sql = "select new "+FILMModel.class.getName()+"("+FILMModel.getAllVar()+") from "+FILM.class.getName()+" t where t.id='"+id+"'";
+		TypedQuery<FILMModel> q = entityManager.createQuery(sql, FILMModel.class);
+		return q.getSingleResult();
 	}
-	
+	public List<CountryModel> getFilmCountry(String id){
+		String sql = "select new " +CountryModel.class.getName()+"(" +CountryModel.getAllVar()+") from " + Country.class.getName() + " t where where t.id in (select a from "+CountriesOfFilm.class.getClass()+" a where a.id = t.id and a.id_film = '"+id+"')";
+		TypedQuery<CountryModel> data = entityManager.createQuery(sql, CountryModel.class);
+		return data.getResultList();
+	}
 	public List<FILMModel> listFILMInfo() {
-		String sql = "select top 100 * from FILM";
-		Query q = entityManager.createNativeQuery(sql);
+		String sql = "select new "+FILMModel.class.getName()+"("+FILMModel.getAllVar()+") from "+FILM.class.getName()+"";
+		TypedQuery<FILMModel> q = entityManager.createQuery(sql, FILMModel.class);
 		List<FILMModel> film = q.getResultList();
 		return film;
 	}

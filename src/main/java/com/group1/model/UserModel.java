@@ -2,6 +2,7 @@ package com.group1.model;
 
 public class UserModel {
 	
+		private String id;
 		private String email;
 		private String password;
 		private String role;
@@ -11,15 +12,20 @@ public class UserModel {
 
 	}
 
-	public UserModel(String email,String password,String role,String username) {
+	public UserModel(String id,String email,String password,String role,String username) {
 		super();
 		
+		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.role = role;
 		this.username = username;
 	}
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -37,6 +43,10 @@ public class UserModel {
 	}
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -53,4 +63,7 @@ public class UserModel {
 		this.username = username;
 	}
 
+	public static String getAllVar() {
+		return "id,email,password,role,username";
+	}
 }

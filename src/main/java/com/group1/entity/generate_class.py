@@ -105,6 +105,9 @@ public class {table_name}Model {
 	}
 	{get_generator}
 	{set_generator}
+	public static String getAllVar() {
+		return "{all_var}";
+	}
 }
 """
 for table in tables:
@@ -131,11 +134,12 @@ for table in tables:
 		tmp_column += column.replace('{column_name}',i).replace('{type}',type)
 		getter_column += getter.replace('{column_name}',i).replace('{type}',type).replace('{column_name_}',i[0].upper()+i[1:])
 		setter_column += setter.replace('{column_name}',i).replace('{type}',type).replace('{column_name_}',i[0].upper()+i[1:])
-	mytemp_model = mytemp_model.replace('{list_declare}', tmp_declare)
-	mytemp_model = mytemp_model.replace('{get_generator}',getter_column)
-	mytemp_model = mytemp_model.replace('{set_generator}',setter_column)
-	mytemp_model = mytemp_model.replace('{list_construct}',tmp_constrct)
-	mytemp_model = mytemp_model.replace('{list_param}',tmp_listparam[:-1])
+	mytemp_model = mytemp_model.replace('{list_declare}', temp_declare.replace('{column_name}',"id").replace('{type}',"String")+tmp_declare)
+	mytemp_model = mytemp_model.replace('{get_generator}',getter.replace('{column_name_}','Id').replace('{column_name}',"id").replace('{type}',"String")+getter_column)
+	mytemp_model = mytemp_model.replace('{set_generator}',setter.replace('{column_name_}','Id').replace('{column_name}',"id").replace('{type}',"String")+setter_column)
+	mytemp_model = mytemp_model.replace('{list_construct}',temp_contr.replace('{column_name}',"id").replace('{type}',"String")+tmp_constrct)
+	mytemp_model = mytemp_model.replace('{list_param}','String id,'+tmp_listparam[:-1])
+	mytemp_model = mytemp_model.replace('{all_var}', 'id,'+','.join(col))
 	
 	mytemp = mytemp.replace('{column_generator}',tmp_column)
 	mytemp = mytemp.replace('{get_generator}',getter_column)

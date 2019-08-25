@@ -2,6 +2,7 @@ package com.group1.model;
 
 public class FILMModel {
 	
+		private String id;
 		private String date;
 		private String describe;
 		private float duration;
@@ -17,9 +18,10 @@ public class FILMModel {
 
 	}
 
-	public FILMModel(String date,String describe,float duration,String image,String IMDB,String info,String name,String name2,String resolution,String status) {
+	public FILMModel(String id,String date,String describe,float duration,String image,String IMDB,String info,String name,String name2,String resolution,String status) {
 		super();
 		
+		this.id = id;
 		this.date = date;
 		this.describe = describe;
 		this.duration = duration;
@@ -32,6 +34,10 @@ public class FILMModel {
 		this.status = status;
 	}
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -73,6 +79,10 @@ public class FILMModel {
 	}
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setDate(String date) {
 		this.date = date;
 	}
@@ -113,4 +123,7 @@ public class FILMModel {
 		this.status = status;
 	}
 
+	public static String getAllVar() {
+		return "id,date,describe,duration,image,IMDB,info,name,name2,resolution,status";
+	}
 }
