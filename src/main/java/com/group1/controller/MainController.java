@@ -24,20 +24,8 @@ public class MainController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
-<<<<<<< HEAD
-		return "index";
-	}
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public String show() {
-		return "show";
-	}
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail() {
-		return "detail";
-=======
 		List<FILMModel> d = fimdao.listFILMInfo();
 		System.out.print((FILMModel)d.get(0));
 		return "asd";
->>>>>>> origin/master
 	}
 }
