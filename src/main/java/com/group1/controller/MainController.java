@@ -25,14 +25,65 @@ public class MainController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
-		List<FILMModel> list = fimdao.listFILMInfo();
+		List<FILM> list = fimdao.listFILMInfoPage(16, 0);
 		model.addAttribute("film",list);
         List<CategoryModel> cate = fimdao.listCategory();
         model.addAttribute("cate",cate);
 		return "index";
 	}
+	@RequestMapping(value = "/sort", method = RequestMethod.GET)
+	public String sort(Model model,String page, String country,String cate,String year, String actor) {
+		String param = "";
+		if(page == null || page == "") {
+			page = "0";
+		}
+		if(country == null || country == "") {
+			country = "%";
+		}else {
+			param += "&country="+country;
+		}
+		if(cate == null || cate == "") {
+			cate = "%";
+		}else {
+			param += "&cate="+cate;
+		}
+		if(year == null || year == "") {
+			year = "%";
+		}else {
+			param += "&year="+year;
+		}
+		if(actor == null || actor == "") {
+			actor = "%";
+		}else {
+			param += "&actor="+year;
+		}
+		
+		int mypage = Integer.parseInt(page);
+		if(mypage < 0) {
+			return "redirect:";
+		}
+		List<FILM> film = fimdao.listFILMInfoPageWithInfo(16, mypage, country, cate, year,actor);
+		model.addAttribute("film", film);
+		model.addAttribute("page", mypage);
+		model.addAttribute("next_page", "/sort?"+param+"&page="+(mypage+1));
+		model.addAttribute("pre_page", "/sort?"+param+"&page="+(mypage-1));
+		return "show";
+	}
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public String show() {
+	public String show(Model model,String page, String country,String cate,String year) {
+		if(page == null || page == "") {
+			page = "0";
+		}
+		
+		int mypage = Integer.parseInt(page);
+		if(mypage < 0) {
+			return "redirect:";
+		}
+		List<FILM> film = fimdao.listFILMInfoPage(16, mypage);
+		model.addAttribute("film", film);
+		model.addAttribute("page", mypage);
+		model.addAttribute("next_page", "/show?page="+(mypage+1));
+		model.addAttribute("pre_page", "/show?page="+(mypage-1));
 		return "show";
 	}
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)

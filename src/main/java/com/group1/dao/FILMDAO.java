@@ -16,6 +16,7 @@ import com.group1.entity.Category;
 import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
+import com.group1.model.CategoryModel;
 import com.group1.model.CountryModel;
 import com.group1.model.FILMModel;
 
@@ -51,10 +52,32 @@ public class FILMDAO {
 	}
 	
 	
-	public List<FILMModel> listFILMInfo() {
-		String sql = "select new "+FILMModel.class.getName()+"("+FILMModel.getAllVar()+") from "+FILM.class.getName()+"";
-		TypedQuery<FILMModel> q = entityManager.createQuery(sql, FILMModel.class);
-		List<FILMModel> film = q.getResultList();
+	public List<FILM> listFILMInfo(int mount, int from) {
+		String sql = "select top (?) * from FILM where id not in (select top (?) from FILM)";
+		Query q = entityManager.createNativeQuery(sql, FILM.class);
+		q.setParameter(1, mount);
+		q.setParameter(2, from+from);
+		List<FILM> film = q.getResultList();
+		return film;
+	}
+	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor) {
+		String sql = "select top (:mount) * from FILM where id not in (select top (:top) id from FILM) and id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year";
+		Query q = entityManager.createNativeQuery(sql, FILM.class);
+		q.setParameter("mount", mount);
+		q.setParameter("top", mount*page);
+		q.setParameter("cate", cate);
+		q.setParameter("country", country);
+		q.setParameter("year", "%"+year);
+		q.setParameter("actor", actor);
+		List<FILM> film = q.getResultList();
+		return film;
+	}
+	public List<FILM> listFILMInfoPage(int mount, int page) {
+		String sql = "select top (?) * from FILM where id not in (select top (?) id from FILM)";
+		Query q = entityManager.createNativeQuery(sql, FILM.class);
+		q.setParameter(1, mount);
+		q.setParameter(2, mount*page);
+		List<FILM> film = q.getResultList();
 		return film;
 	}
     public List<CategoryModel> listCategory() {
