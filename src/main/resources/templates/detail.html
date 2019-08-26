@@ -34,9 +34,7 @@
 							<img class="img-thumbnail"
 								th:src="${film.getImage()}">
 							<ul style="padding-top: 5px; padding-left: 10px">
-								<a class="btn btn-success">Download</a>
-								<a class="btn btn-primary">Tralier</a>
-								<a class="btn btn-danger">Xem phim</a>
+								<a class="btn btn-lg btn-danger" style="width: 100%" th:href="${'watch?id='+id}">Xem phim</a>
 							</ul>
 						</div>
 						

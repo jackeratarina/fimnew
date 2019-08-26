@@ -32,64 +32,64 @@
 						<label>Thể loại</label> <select
 							id="filter-category" name="cate" class="form-control">
 							<option value="">Tất cả</option>
-							<option value="phim-bi-an-sieu-nhien">Phim Bí ẩn-Siêu nhiên</option>
-							<option value="phim-bo">Phim bộ</option>
-							<option value="phim-chien-tranh">Phim chiến tranh</option>
-							<option value="phim-chieu-rap">Phim chiếu rạp</option>
-							<option value="phim-chinh-kich-drama">Phim chính kịch - Drama</option>
-							<option value="phim-co-trang">Phim cổ trang</option>
-							<option value="phim-gia-dinh">Phim gia đình</option>
-							<option value="phim-hai-huoc">Phim hài hước</option>
-							<option value="phim-hanh-dong">Phim hành động</option>
-							<option value="phim-hinh-su">Phim hình sự</option>
-							<option value="phim-hoat-hinh">Phim hoạt hình</option>
-							<option value="phim-hoi-hop-gay-can">Phim hồi hộp-Gây cấn</option>
-							<option value="phim-kinh-di">Phim kinh dị</option>
-							<option value="phim-le">Phim lẻ</option>
-							<option value="phim-phieu-luu">Phim phiêu lưu</option>
-							<option value="phim-tai-lieu">Phim tài liệu</option>
-							<option value="phim-tam-ly">Phim tâm lý</option>
-							<option value="phim-than-thoai">Phim thần thoại</option>
-							<option value="phim-the-thao-am-nhac">Phim Thể thao-Âm nhạc</option>
-							<option value="phim-thuyet-minh">Phim thuyết minh</option>
-							<option value="phim-tinh-cam-lang-man">Phim tình cảm-Lãng mạn</option>
-							<option value="phim-vien-tuong">Phim viễn tưởng</option>
-							<option value="phim-vo-thuat">Phim võ thuật</option>
+							<option th:attrappend="selected=${cate == 'phim-bi-an-sieu-nhien'}?selected"  value="phim-bi-an-sieu-nhien">Phim Bí ẩn-Siêu nhiên</option>
+							<option th:attrappend="selected=${cate == 'phim-bo'}?selected"  value="phim-bo">Phim bộ</option>
+							<option th:attrappend="selected=${cate == 'phim-chien-tranh'}?selected"  value="phim-chien-tranh">Phim chiến tranh</option>
+							<option th:attrappend="selected=${cate == 'phim-chieu-rap'}?selected"  value="phim-chieu-rap">Phim chiếu rạp</option>
+							<option th:attrappend="selected=${cate == 'phim-chinh-kich-drama'}?selected"  value="phim-chinh-kich-drama">Phim chính kịch - Drama</option>
+							<option th:attrappend="selected=${cate == 'phim-co-trang'}?selected"  value="phim-co-trang">Phim cổ trang</option>
+							<option th:attrappend="selected=${cate == 'phim-gia-dinh'}?selected"  value="phim-gia-dinh">Phim gia đình</option>
+							<option th:attrappend="selected=${cate == 'phim-hai-huoc'}?selected"  value="phim-hai-huoc">Phim hài hước</option>
+							<option th:attrappend="selected=${cate == 'phim-hanh-dong'}?selected"  value="phim-hanh-dong">Phim hành động</option>
+							<option th:attrappend="selected=${cate == 'phim-hinh-su'}?selected"  value="phim-hinh-su">Phim hình sự</option>
+							<option th:attrappend="selected=${cate == 'phim-hoat-hinh'}?selected"  value="phim-hoat-hinh">Phim hoạt hình</option>
+							<option th:attrappend="selected=${cate == 'phim-hoi-hop-gay-can'}?selected"  value="phim-hoi-hop-gay-can">Phim hồi hộp-Gây cấn</option>
+							<option th:attrappend="selected=${cate == 'phim-kinh-di'}?selected"  value="phim-kinh-di">Phim kinh dị</option>
+							<option th:attrappend="selected=${cate == 'phim-le'}?selected"  value="phim-le">Phim lẻ</option>
+							<option th:attrappend="selected=${cate == 'phim-phieu-luu'}?selected"  value="phim-phieu-luu">Phim phiêu lưu</option>
+							<option th:attrappend="selected=${cate == 'phim-tai-lieu'}?selected"  value="phim-tai-lieu">Phim tài liệu</option>
+							<option th:attrappend="selected=${cate == 'phim-tam-ly'}?selected"  value="phim-tam-ly">Phim tâm lý</option>
+							<option th:attrappend="selected=${cate == 'phim-than-thoai'}?selected"  value="phim-than-thoai">Phim thần thoại</option>
+							<option th:attrappend="selected=${cate == 'phim-the-thao-am-nhac'}?selected"  value="phim-the-thao-am-nhac">Phim Thể thao-Âm nhạc</option>
+							<option th:attrappend="selected=${cate == 'phim-thuyet-minh'}?selected"  value="phim-thuyet-minh">Phim thuyết minh</option>
+							<option th:attrappend="selected=${cate == 'phim-tinh-cam-lang-man'}?selected"  value="phim-tinh-cam-lang-man">Phim tình cảm-Lãng mạn</option>
+							<option th:attrappend="selected=${cate == 'phim-vien-tuong'}?selected"  value="phim-vien-tuong">Phim viễn tưởng</option>
+							<option th:attrappend="selected=${cate == 'phim-vo-thuat'}?selected"  value="phim-vo-thuat">Phim võ thuật</option>
 							
 						</select>
 					</div>
 					<div class="list-movie-filter-item" style="width:200px">
 						<label>Quốc gia</label> <select class="form-control" name="country">
 							<option value="">Tất cả</option>
-							<option value="vn">Việt Nam</option>
-							<option value="cn">Trung Quốc</option>
-							<option value="us">Mỹ</option>
-							<option value="kr">Hàn Quốc</option>
-							<option value="jp">Nhật Bản</option>
-							<option value="hk">Hồng Kông</option>
-							<option value="in">Ấn Độ</option>
-							<option value="th">Thái Lan</option>
-							<option value="fr">Pháp</option>
-							<option value="tw">Đài Loan</option>
-							<option value="au">Úc</option>
-							<option value="uk">Anh</option>
-							<option value="ca">Canada</option>
+							<option th:attrappend="selected=${country=='VN'}?selected" value="VN">Việt Nam</option>
+							<option th:attrappend="selected=${country=='CN'}?selected" value="CN">Trung Quốc</option>
+							<option th:attrappend="selected=${country=='US'}?selected" value="US">Mỹ</option>
+							<option th:attrappend="selected=${country=='KR'}?selected" value="KR">Hàn Quốc</option>
+							<option th:attrappend="selected=${country=='JP'}?selected" value="JP">Nhật Bản</option>
+							<option th:attrappend="selected=${country=='HK'}?selected" value="HK">Hồng Kông</option>
+							<option th:attrappend="selected=${country=='IN'}?selected" value="IN">Ấn Độ</option>
+							<option th:attrappend="selected=${country=='TH'}?selected" value="TH">Thái Lan</option>
+							<option th:attrappend="selected=${country=='FR'}?selected" value="FR">Pháp</option>
+							<option th:attrappend="selected=${country=='TW'}?selected" value="TW">Đài Loan</option>
+							<option th:attrappend="selected=${country=='AU'}?selected" value="AU">Úc</option>
+							<option th:attrappend="selected=${country=='UK'}?selected" value="UK">Anh</option>
+							<option th:attrappend="selected=${country=='CA'}?selected" value="CA">Canada</option>
 						</select>
 					</div>
 					<div class="list-movie-filter-item" style="width:200px">
 						<label for="filter-year">Năm phát hành</label> <select
 							id="filter-year" name="year" class="form-control">
 							<option value="">Tất cả</option>
-							<option value="2019">2019</option>
-							<option value="2018">2018</option>
-							<option value="2017">2017</option>
-							<option value="2016">2016</option>
-							<option value="2015">2015</option>
-							<option value="2014">2014</option>
-							<option value="2013">2013</option>
-							<option value="2012">2012</option>
-							<option value="2011">2011</option>
-							<option value="2010">2010</option>
+							<option th:attrappend="selected=${year=='2019'}?selected" value="2019">2019</option>
+							<option th:attrappend="selected=${year=='2018'}?selected" value="2018">2018</option>
+							<option th:attrappend="selected=${year=='2017'}?selected" value="2017">2017</option>
+							<option th:attrappend="selected=${year=='2016'}?selected" value="2016">2016</option>
+							<option th:attrappend="selected=${year=='2015'}?selected" value="2015">2015</option>
+							<option th:attrappend="selected=${year=='2014'}?selected" value="2014">2014</option>
+							<option th:attrappend="selected=${year=='2013'}?selected" value="2013">2013</option>
+							<option th:attrappend="selected=${year=='2012'}?selected" value="2012">2012</option>
+							<option th:attrappend="selected=${year=='2011'}?selected" value="2011">2011</option>
+							<option th:attrappend="selected=${year=='2010'}?selected" value="2010">2010</option>
 						</select>
 					</div>
 					<button type="submit" id="btn-movie-filter" class="btn"
@@ -103,7 +103,11 @@
 
 		<div>
 			<div class="float-left">
-				<h2>PHIM CHIẾU RẠP</h2>
+			<h2>Kết quả: </h2>
+			<h4 th:if="${actor != '%'}" th:text="${'Phim của : '+actor}"></h4>
+			<h5 th:if="${search != '%'}" th:text="${'Tìm kiếm : '+search}"></h5>
+			
+			
 			</div>
 		</div>
 		<div class="row col-md-12">

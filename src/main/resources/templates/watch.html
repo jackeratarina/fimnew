@@ -36,77 +36,75 @@
     <div class="col-xl-8">
       <div class="row">
       <div class="col-sm-3 col-md-6 col-lg-4 col-xl-2">
-      <img src="http://image.phimmoi.net/film/8161/poster.medium.jpg" class="avatar-movie" style="margin-top: 16px;">
+      <img th:src="${film.getImage()}" class="avatar-movie" style="margin-top: 16px;">
       </div>
       
       <div class="col-sm-9 col-md-6 col-lg-8 col-xl-10">
       <div class="scrollbar1 square scrollbar-rare-wind thin">
-      	  <h5><span id="title-1-movie">XEM PHIM ALADDIN VÀ CÂY ĐÈN THẦN</span></h5>
-	      <span id="title-2-movie">Aladdin (Live-action) (2019)</span><br>
-	      <span class="content">Aladdin 2019 là một phiên bản live action đầy màu sắc sống động và không kém phần hồi hộp, 
-	      được chuyển thể từ bộ phim hoạt hình kinh điển cả hãng phim Disney. Câu chuyện xoay quanh chàng hoàng tử khu ổ 
-	      chuột Aladdin – một thanh niên trẻ tuổi dũng cảm và nàng công chúa Jasmine mạnh mẽ, đương nhiên phải kể đến 
-	      thần đèn Genie – người nắm giữ chìa khóa thay đổi tương lại sau này của họ.</span>
+      	  <h5><span id="title-1-movie" th:text="${'Xem phim: ' + film.getName() }"></span></h5>
+	      <span id="title-2-movie" th:text="${film.getName2()}" style="font-size: 18px;"></span><br>
+	      <span class="content" >
+	      <details>
+			  <summary>Xem thêm</summary>
+			  <p th:text="${film.getDescribe()}"></p>
+			</details>
+	      </span>
       </div>
 	      
       </div>
     </div>
+    <div class="container">
      <div class="row">
      	<!-- <video  width="100%" controls>
   		<source src="https://www.youtube.com/embed/omDPaS_HaBM" type="video/mp4">
   		Trình duyệt của bạn không hỗ trợ HTML5.
 		</video>*/ -->
 		
-		<iframe width="100%" height="415" src="https://www.youtube.com/embed/omDPaS_HaBM" 
+		<iframe style="margin-bot: 30px;" width="100%" height="415" th:src="${links.get(ep-1).getUrl()}" 
 		frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 		allowfullscreen></iframe>
+		<div class="row">
+			<h5>Tập phim :</h5>
+		</div>
+		<div class="row">
+		<form method="GET">
+			<input type="hidden" th:value="${id}" name="id"/>
+			<input type="submit" class="btn btn-outline-info" name="ep" th:each="link,i: ${links}" th:value="${i.index+1}"></input>
+		</form>
+		</div>
      </div>
     </div>
-    <div class="col-xl-4">
-      <h4 style="font-weight: bold; color: #DAD74F;">PHIM ĐÃ ĐÁNH DẤU</h4>
-      		<ul class="movie-choice scrollbar1 square scrollbar-rare-wind thin" style="list-style-type: none;">
-      			<li class="element-movie">
-	      			<a href="ho-so/naomi-scott-22304/" title="Naomi Scott trong vai Jasmine">
-	      				<div style="background-image: url('http://image.phimmoi.net/film/7138/poster.small.jpg'); float: left; margin-right: 10px;" class="avatar-movie"></div>
-		      			<div>
-		      			<span class="list-movie-item-vn">Chúa Tể Godzilla: Đế Vương Bất Tử</span><br>
-		      			<span class="list-movie-item-en">Godzilla: King of Monsters</span>
-		      			<span class="list-top-movie-view">Lượt xem: 328,058</span>
-	      				</div>
-	      			</a>
-      			</li>
-      			
-      			<li class="element-movie">
-	      			<a href="ho-so/naomi-scott-22304/" title="Naomi Scott trong vai Jasmine">
-	      				<div style="background-image: url('http://image.phimmoi.net/film/7138/poster.small.jpg'); float: left; margin-right: 10px;" class="avatar-movie"></div>
-		      			<div>
-		      			<span class="list-movie-item-vn">Chúa Tể Godzilla: Đế Vương Bất Tử</span><br>
-		      			<span class="list-movie-item-en">Godzilla: King of Monsters</span>
-		      			<span class="list-top-movie-view">Lượt xem: 328,058</span>
-	      				</div>
-	      			</a>
-      			</li>
-      			
-      			<li class="element-movie">
-	      			<a href="ho-so/naomi-scott-22304/" title="Naomi Scott trong vai Jasmine">
-	      				<div style="background-image: url('http://image.phimmoi.net/film/7138/poster.small.jpg'); float: left; margin-right: 10px;" class="avatar-movie"></div>
-		      			<div>
-		      			<span class="list-movie-item-vn">Chúa Tể Godzilla: Đế Vương Bất Tử</span><br>
-		      			<span class="list-movie-item-en">Godzilla: King of Monsters</span>
-		      			<span class="list-top-movie-view">Lượt xem: 328,058</span>
-	      				</div>
-	      			</a>
-      			</li>
-      		</ul>
-      
     </div>
+    <style>
+			.img-actor {
+				padding:5px;
+				margin: 10px
+				}
+				.img-actor img{
+				width:100%;
+					
+				}
+				.img-actor h5{
+				}
+				body {
+				background-color : grey;
+					color : white;
+				}
+				iframe {
+				color:white !important}
+			</style>
+			<div class="col-sm-4">
+			<h3>Diễn viên</h3>
+				<div class="container border border-dark" style="height: 1000px;overflow: scroll; background-color: #222">
+					<a th:href="${'/sort?actor='+ac.getId()}" class="row img-actor border border-dark" th:each="ac : ${actors}">
+					<div class="col-md-6" ><img onerror="this.src='/images/thumb.jpg';" th:src="${'http://image.phimmoi.net/profile/'+#strings.substringAfter(#strings.substringAfter(ac.getId(),'-'),'-')}+'/medium.jpg'"/></div>
+						<div class="col-md-6" ><h5 th:text="${ac.getName()}"></h5></div>
+					</a>
+				</div>
+			</div>
   
 </div>
 </div>
-<div class="jumbotron text-center" style="margin-bottom:0;">
-  <p>Footer</p>
-</div>
-
 
 
 </body>

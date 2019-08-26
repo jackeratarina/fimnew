@@ -31,8 +31,27 @@ public class MainController {
         model.addAttribute("cate",cate);
 		return "index";
 	}
+	@RequestMapping(value = "/watch", method = RequestMethod.GET)
+	public String watch(Model model, String id, String ep) {
+		if(id == null || id == "") {
+			return "redirect:";
+		}
+		if(ep == null || ep == "") {
+			ep="0";
+		}
+		FILMModel film = fimdao.findById(id);
+		model.addAttribute("film", film);
+		model.addAttribute("countries", fimdao.getFilmCountry(id));
+		model.addAttribute("categories",fimdao.getFilmCategories(id));
+		model.addAttribute("actors",fimdao.getFilmActors(id));
+		model.addAttribute("links",fimdao.getLinkOfFilm(id));
+		model.addAttribute("id",id);
+		model.addAttribute("ep",ep);
+		
+		return "watch";
+	}
 	@RequestMapping(value = "/sort", method = RequestMethod.GET)
-	public String sort(Model model,String page, String country,String cate,String year, String actor) {
+	public String sort(Model model,String page, String country,String cate,String year, String actor, String search) {
 		String param = "";
 		if(page == null || page == "") {
 			page = "0";
@@ -55,20 +74,25 @@ public class MainController {
 		if(actor == null || actor == "") {
 			actor = "%";
 		}else {
-			param += "&actor="+year;
+			param += "&actor="+actor;
+		}
+		if(search == null || search == "") {
+			search = "%";
+		}else {
+			param += "&search="+search;
 		}
 		
 		int mypage = Integer.parseInt(page);
 		if(mypage < 0) {
 			return "redirect:";
 		}
-		List<FILM> film = fimdao.listFILMInfoPageWithInfo(16, mypage, country, cate, year,actor);
+		List<FILM> film = fimdao.listFILMInfoPageWithInfo(16, mypage, country, cate, year,actor,search);
 		model.addAttribute("film", film);
 		model.addAttribute("page", mypage);
 		model.addAttribute("country", country);
 		model.addAttribute("cate", cate);
 		model.addAttribute("year", year);
-		
+		model.addAttribute("search", search);
 		model.addAttribute("next_page", "/sort?"+param+"&page="+(mypage+1));
 		model.addAttribute("pre_page", "/sort?"+param+"&page="+(mypage-1));
 		return "show";
@@ -101,7 +125,7 @@ public class MainController {
 	model.addAttribute("countries", fimdao.getFilmCountry(id));
 	model.addAttribute("categories",fimdao.getFilmCategories(id));
 	model.addAttribute("actors",fimdao.getFilmActors(id));
-	
+	model.addAttribute("id",id);
 		return "detail";
 	}
 }

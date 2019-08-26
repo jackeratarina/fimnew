@@ -16,6 +16,7 @@ import com.group1.entity.Category;
 import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
+import com.group1.entity.Link;
 import com.group1.model.CategoryModel;
 import com.group1.model.CountryModel;
 import com.group1.model.FILMModel;
@@ -50,7 +51,12 @@ public class FILMDAO {
 		List<Actor> data = entityManager.createNativeQuery(sql, Actor.class).setParameter(1, id).getResultList();
 		return data;
 	}
-	
+	public List<Link> getLinkOfFilm(String id){
+		String sql="select * from Link where id_film = ?1";
+		Query q = entityManager.createNativeQuery(sql, Link.class);
+		q.setParameter(1, id);
+		return q.getResultList();
+	}
 	
 	public List<FILM> listFILMInfo(int mount, int from) {
 		String sql = "select top (?) * from FILM where id not in (select top (?) from FILM)";
@@ -60,8 +66,8 @@ public class FILMDAO {
 		List<FILM> film = q.getResultList();
 		return film;
 	}
-	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor) {
-		String sql = "select top (:mount) * from FILM where id not in (select top (:top) id from FILM) and id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year";
+	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor, String search) {
+		String sql = "select top (:mount) * from FILM where id not in (select top (:top) id from FILM) and id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search)";
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter("mount", mount);
 		q.setParameter("top", mount*page);
@@ -69,6 +75,8 @@ public class FILMDAO {
 		q.setParameter("country", country);
 		q.setParameter("year", "%"+year);
 		q.setParameter("actor", actor);
+		q.setParameter("search", "%"+search.replace(" ", "%")+"%");
+		
 		List<FILM> film = q.getResultList();
 		return film;
 	}
