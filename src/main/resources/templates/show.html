@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FILM</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/filter.css}" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -21,7 +22,54 @@
 
 	<div th:include="~{/header.html :: header}"></div>
 	<br>
-	<div>
+	<div class="container">
+
+		<div class="list-movie-filter" style="margin-bottom: 10px;">
+			<div class="list-movie-filter-main">
+				<form id="form-filter" class="form-inline" method="GET"
+					action="filter/">
+
+					<div class="list-movie-filter-item" style="width:200px">
+						<label>Hình thức</label> <select
+							class="form-control" id="filter-eptype" name="eptype">
+							<option value="">Tất cả</option>
+							<option value="single">Phim lẻ</option>
+						</select>
+					</div>
+
+					<div class="list-movie-filter-item" style="width:270px">
+						<label>Thể loại</label> <select
+							id="filter-category" name="category" class="form-control">
+							<option value="">Tất cả</option>
+							<option data-slug="phim-hanh-dong" value="1">Phim hành
+								động</option>
+							<option data-slug="phim-vien-tuong" value="7">Phim viễn
+								tưởng</option>
+						</select>
+					</div>
+					<div class="list-movie-filter-item" style="width:200px">
+						<label>Quốc gia</label> <select
+							class="form-control" id="filter-country" name="country">
+							<option value="">Tất cả</option>
+							<option value="">Vn</option>
+						</select>
+					</div>
+					<div class="list-movie-filter-item" style="width:200px">
+						<label for="filter-year">Năm phát hành</label> <select
+							id="filter-year" name="year" class="form-control">
+							<option value="">Tất cả</option>
+							<option value="2019">2019</option>
+						</select>
+					</div>
+					<button type="submit" id="btn-movie-filter" class="btn"
+						style="background-color: red; color: white; margin-top: 22px">
+						<span>Duyệt phim</span>
+					</button>
+					<div class="clear"></div>
+				</form>
+			</div>
+		</div>
+
 		<div>
 			<div class="float-left">
 				<h2>PHIM CHIẾU RẠP</h2>
@@ -131,6 +179,6 @@
 			</ul>
 		</nav>
 	</div>
-	<div th:include ="~{/footer.html :: footer}"></div>
+	<div th:include="~{/footer.html :: footer}"></div>
 </body>
 </html>
