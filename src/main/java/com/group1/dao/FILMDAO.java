@@ -11,10 +11,12 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.group1.entity.Category;
 import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
-import com.group1.extending.Converter;
+
+import com.group1.model.CategoryModel;
 import com.group1.model.CountryModel;
 import com.group1.model.FILMModel;
 
@@ -44,4 +46,11 @@ public class FILMDAO {
 		List<FILMModel> film = q.getResultList();
 		return film;
 	}
+    public List<CategoryModel> listCategory() {
+        String sql = "select new "+CategoryModel.class.getName()+"("+CategoryModel.getAllVar()+") from "+Category.class.getName()+"";
+        TypedQuery<CategoryModel> q = entityManager.createQuery(sql, CategoryModel.class);
+        List<CategoryModel> cate = q.getResultList();
+        return cate;
+    }
+
 }
