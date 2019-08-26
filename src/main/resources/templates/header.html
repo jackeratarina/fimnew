@@ -11,9 +11,32 @@
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> THỂ LOẠI </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item"
-							th:href="'filmByCategory?id='+${cate.getId()}"
-							th:each="cate,i: ${cate}" th:text="${cate.getName()}"></a>
+
+						<a class="dropdown-item" href="/sort?=phim-chien-tranh">Phim
+							chiến tranh</a> <a class="dropdown-item" href="/sort?=phim-chieu-rap">Phim
+							chiếu rạp</a> <a class="dropdown-item"
+							href="/sort?=phim-chinh-kich-drama">Phim chính kịch - Drama</a> <a
+							class="dropdown-item" href="/sort?=phim-co-trang">Phim cổ
+							trang</a> <a class="dropdown-item" href="/sort?=phim-gia-dinh">Phim
+							gia đình</a> <a class="dropdown-item" href="/sort?=phim-hai-huoc">Phim
+							hài hước</a> <a class="dropdown-item" href="/sort?=phim-hanh-dong">Phim
+							hành động</a> <a class="dropdown-item" href="/sort?=phim-hinh-su">Phim
+							hình sự</a> <a class="dropdown-item" href="/sort?=phim-hoat-hinh">Phim
+							hoạt hình</a> <a class="dropdown-item"
+							href="/sort?=phim-hoi-hop-gay-can">Phim hồi hộp-Gây cấn</a> <a
+							class="dropdown-item" href="/sort?=phim-kinh-di">Phim kinh dị</a>
+						<a class="dropdown-item" href="/sort?=phim-phieu-luu">Phim
+							phiêu lưu</a> <a class="dropdown-item" href="/sort?=phim-tai-lieu">Phim
+							tài liệu</a> <a class="dropdown-item" href="/sort?=phim-tam-ly">Phim
+							tâm lý</a> <a class="dropdown-item" href="/sort?=phim-than-thoai">Phim
+							thần thoại</a> <a class="dropdown-item"
+							href="/sort?=phim-the-thao-am-nhac">Phim Thể thao-Âm nhạc</a> <a
+							class="dropdown-item" href="/sort?=phim-thuyet-minh">Phim
+							thuyết minh</a> <a class="dropdown-item"
+							href="/sort?=phim-tinh-cam-lang-man">Phim tình cảm-Lãng mạn</a> <a
+							class="dropdown-item" href="/sort?=phim-vien-tuong">Phim viễn
+							tưởng</a> <a class="dropdown-item" href="/sort?=phim-vo-thuat">Phim
+							võ thuật</a>
 
 					</div></li>
 
@@ -22,9 +45,20 @@
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> QUỐC GIA </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
+						<a class="dropdown-item" href="/sort?country=VN">VIỆT NAM </a> <a
+							class="dropdown-item" href="/sort?country=US">MỸ</a> <a
+							class="dropdown-item" href="/sort?country=JP">NHẬT</a> <a
+							class="dropdown-item" href="/sort?country=IN">ÁN ĐỘ</a> <a
+							class="dropdown-item" href="/sort?country=FR">PHÁP</a> <a
+							class="dropdown-item" href="/sort?country=CA">CANADA</a> <a
+							class="dropdown-item" href="/sort?country=CN">TRUNG QUỐC</a> <a
+							class="dropdown-item" href="/sort?country=HK">HONG KONG</a> <a
+							class="dropdown-item" href="/sort?country=TW">ĐÀI LOAN</a> <a
+							class="dropdown-item" href="/sort?country=AU">ÚC</a> <a
+							class="dropdown-item" href="/sort?country=KR">HÀN </a> <a
+							class="dropdown-item" href="/sort?country=TH">THÁI LAN </a> <a
+							class="dropdown-item" href="/sort?country=UK">ANH</a>
+
 					</div></li>
 
 				<li class="nav-item dropdown"><a
@@ -32,9 +66,15 @@
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> PHIM LẺ</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
+						<a class="dropdown-item" href="/sort?id=phim-le&year=2019">NĂM
+							2019</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2018">NĂM
+							2018</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2017">NĂM
+							2017</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2016">NĂM
+							2016</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2015">NĂM
+							2015</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2014">NĂM
+							2014</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2013">NĂM
+							2013</a>
+
 					</div></li>
 
 				<li class="nav-item dropdown"><a
@@ -42,30 +82,24 @@
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> PHIM BỘ</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
+						<a class="dropdown-item" href="/sort?id=phim-bo&country=KR">HÀN
+							QUỐC</a> <a class="dropdown-item" href="/sort?id=phim-bo&country=HK">HONG
+							KONG</a> <a class="dropdown-item" href="/sort?id=phim-bo&country=CN">TRUNG
+							QUỐC</a> <a class="dropdown-item" href="/sort?id=phim-bo&country=TW">ĐÀI
+							LOAN</a> <a class="dropdown-item" href="/sort?id=phim-bo&country=TH">THÁI
+							LAN</a> <a class="dropdown-item" href="/sort?id=phim-bo&country=US">MỸ</a>
 					</div></li>
 
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> PHIM THUYẾT MINH</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
-					</div></li>
+				<div class="nav-item">
+					<a class="nav-link" href="/sort?id=phim-thuyet-minh" role="button"
+						aria-haspopup="true" aria-expanded="false"> PHIM THUYẾT MINH</a>
+				</div>
 
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> PHIM CHIẾU RẠP</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
-					</div></li>
+				<div class="nav-item">
+					<a class="nav-link" href="/sort?id=phim-chieu-rap" role="button"
+						aria-haspopup="true" aria-expanded="false"> PHIM CHIẾU RẠP</a>
+				</div>
+
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
