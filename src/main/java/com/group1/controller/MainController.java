@@ -65,6 +65,10 @@ public class MainController {
 		List<FILM> film = fimdao.listFILMInfoPageWithInfo(16, mypage, country, cate, year,actor);
 		model.addAttribute("film", film);
 		model.addAttribute("page", mypage);
+		model.addAttribute("country", country);
+		model.addAttribute("cate", cate);
+		model.addAttribute("year", year);
+		
 		model.addAttribute("next_page", "/sort?"+param+"&page="+(mypage+1));
 		model.addAttribute("pre_page", "/sort?"+param+"&page="+(mypage-1));
 		return "show";
