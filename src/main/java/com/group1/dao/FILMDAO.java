@@ -16,6 +16,7 @@ import com.group1.entity.Category;
 import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
+import com.group1.model.CategoryModel;
 import com.group1.model.CountryModel;
 import com.group1.model.FILMModel;
 
