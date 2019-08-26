@@ -5,7 +5,7 @@
 	#movie-1-img {width: 300px; height: 400px}
 	
 /*title moive*/
-	#title-1-movie {text-decoration: none; color: black;}
+	#title-1-movie {text-decoration: none; color: black; font-weight: bold;}
 	#title-2-movie {font-size: 12px}
 /*movie info*/
 	.scroll {
@@ -26,6 +26,12 @@
 					border-color: #E0E0E0;
 					width: 85%;
 					height: 500px;
+					padding: 5px;}
+	.movie {
+					border: 0.5px solid;
+					border-color: #E0E0E0;
+					width: 90%;
+					height: 200px;
 					padding: 5px;}
 	.movie-actor {
 					border: 0.5px solid;
