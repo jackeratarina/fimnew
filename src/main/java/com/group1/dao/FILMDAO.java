@@ -11,12 +11,11 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.group1.entity.Actor;
 import com.group1.entity.Category;
 import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
-
-import com.group1.model.CategoryModel;
 import com.group1.model.CountryModel;
 import com.group1.model.FILMModel;
 
@@ -34,12 +33,24 @@ public class FILMDAO {
 		TypedQuery<FILMModel> q = entityManager.createQuery(sql, FILMModel.class);
 		return q.getSingleResult();
 	}
-	public List<CountryModel> getFilmCountry(String id){
+	public List<Country> getFilmCountry(String id){
 //		String sql = "select new " +CountryModel.class.getName()+"(" +CountryModel.getAllVar()+") from " + Country.class.getName() + " t where where t.id in (select a from "+CountriesOfFilm.class.getClass()+" a where a.id = t.id and a.id_film = '"+id+"')";
-		String sql = "select id, name from Country where id in (Select id_country from CountriesOfFilm where id_film = '"+id+"')";
-		List<CountryModel> data = entityManager.createNativeQuery(sql, Country.class).getResultList();
+		String sql = "select id, name from Country where id in (Select id_country from CountriesOfFilm where id_film = ?1)";
+		List<Country> data = entityManager.createNativeQuery(sql, Country.class).setParameter(1, id).getResultList();
 		return data;
 	}
+	public List<Category> getFilmCategories(String id){
+		String sql = "select * from Category where id in (select id_category from CategoriesOfFilm where id_film = ?1)";
+		List<Category> data = entityManager.createNativeQuery(sql, Category.class).setParameter(1, id).getResultList();
+		return data;
+	}
+	public List<Actor> getFilmActors(String id){
+		String sql = "select * from Actor where id in (select id_actor from ActorInFilm where id_film = ?1)";
+		List<Actor> data = entityManager.createNativeQuery(sql, Actor.class).setParameter(1, id).getResultList();
+		return data;
+	}
+	
+	
 	public List<FILMModel> listFILMInfo() {
 		String sql = "select new "+FILMModel.class.getName()+"("+FILMModel.getAllVar()+") from "+FILM.class.getName()+"";
 		TypedQuery<FILMModel> q = entityManager.createQuery(sql, FILMModel.class);
