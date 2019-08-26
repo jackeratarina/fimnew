@@ -24,6 +24,10 @@ public class CountriesOfFilm {
 
 	
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getId_country() {
 		return id_country;
 	}
@@ -34,6 +38,10 @@ public class CountriesOfFilm {
 
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setId_country(String id_country) {
 		this.id_country = id_country;
 	}

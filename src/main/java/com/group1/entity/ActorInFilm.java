@@ -27,6 +27,10 @@ public class ActorInFilm {
 
 	
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getId_actor() {
 		return id_actor;
 	}
@@ -41,6 +45,10 @@ public class ActorInFilm {
 
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setId_actor(String id_actor) {
 		this.id_actor = id_actor;
 	}

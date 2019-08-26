@@ -24,6 +24,10 @@ public class CategoriesOfFilm {
 
 	
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getId_category() {
 		return id_category;
 	}
@@ -34,6 +38,10 @@ public class CategoriesOfFilm {
 
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setId_category(String id_category) {
 		this.id_category = id_category;
 	}

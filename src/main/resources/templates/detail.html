@@ -31,7 +31,7 @@
 					<div class="col-sm-6">
 						<div id="movie-1-img">
 							<img class="img-thumbnail"
-								src="http://image.phimmoi.net/film/8161/poster.medium.jpg">
+								th:src="${film.getImage()}">
 							<ul style="padding-top: 5px; padding-left: 10px">
 								<a class="btn btn-success">Download</a>
 								<a class="btn btn-primary">Tralier</a>
@@ -50,11 +50,10 @@
 								class="movie-dt">Điểm IMDb:</span> <span class="movie-dd" style="color: #000; padding: 3px; font-size: 12px; font-weight: bold; background: #E3B71E;
 	/* -webkit-border-radius: 3px; */ -moz-border-radius: 3px; border-radius: 3px;" th:text="${film.getIMDB()}"></span>
 							<br> <span
-								class="movie-dt" style="color: #46E1FF;">Đạo diễn:</span> <span class="movie-dd" style="color: #46E1FF;">Guy
-								Ritchie</span> <br> <span class="movie-dt" style="color: #46E1FF;">Quốc gia:</span> <span
-								class="movie-dd" style="color: #46E1FF;">Mỹ</span> <br> <span class="movie-dt" style="color: #46E1FF;">Năm:</span>
-							<span class="movie-dd"><span style="color: #46E1FF;">2019</span></span> <br> <span
-								class="movie-dt">Ngày ra rạp:</span> <span class="movie-dd">22/5/2019</span>
+								class="movie-dt" style="color: #46E1FF;">Đạo diễn:</span> <span class="movie-dd" style="color: #46E1FF;">Chưa cập nhật</span> <br> <span class="movie-dt" style="color: #46E1FF;">Quốc gia:</span> <a
+								class="movie-dd" style="color: #46E1FF;" th:href="${'/sort?country='+c.getId()}" th:each="c: ${countries}" th:text="${c.getName()}+ ','"></a> <br> <span class="movie-dt" style="color: #46E1FF;">Năm:</span>
+							<span class="movie-dd"><span style="color: #46E1FF;" th:text="${#strings.substring(film.getDate(),5,9)}"></span></span> <br> <span
+								class="movie-dt">Ngày ra rạp:</span> <span class="movie-dd" td:text="${film.getDate()}"></span>
 							<br> <span class="movie-dt">Thời lượng:</span> <span
 								class="movie-dd">128 phút</span> <br> <span
 								class="movie-dt">Chất lượng:</span> <span class="movie-dd">Bản

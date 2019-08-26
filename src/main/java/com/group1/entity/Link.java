@@ -30,6 +30,10 @@ public class Link {
 
 	
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getDescribe() {
 		return describe;
 	}
@@ -48,6 +52,10 @@ public class Link {
 
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setDescribe(String describe) {
 		this.describe = describe;
 	}

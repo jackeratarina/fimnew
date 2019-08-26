@@ -27,6 +27,10 @@ public class ListFilm {
 
 	
 	
+	public String getId() {
+		return id;
+	}
+
 	public java.sql.Timestamp getCreated_date() {
 		return created_date;
 	}
@@ -41,6 +45,10 @@ public class ListFilm {
 
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setCreated_date(java.sql.Timestamp created_date) {
 		this.created_date = created_date;
 	}

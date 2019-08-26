@@ -30,6 +30,10 @@ public class User {
 
 	
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -48,6 +52,10 @@ public class User {
 
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}

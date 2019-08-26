@@ -48,6 +48,10 @@ public class FILM {
 
 	
 	
+	public String getId() {
+		return id;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -90,6 +94,10 @@ public class FILM {
 
 
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setDate(String date) {
 		this.date = date;
 	}

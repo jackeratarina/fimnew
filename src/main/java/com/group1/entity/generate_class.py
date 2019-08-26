@@ -142,8 +142,8 @@ for table in tables:
 	mytemp_model = mytemp_model.replace('{all_var}', 'id,'+','.join(col))
 	
 	mytemp = mytemp.replace('{column_generator}',tmp_column)
-	mytemp = mytemp.replace('{get_generator}',getter_column)
-	mytemp = mytemp.replace('{set_generator}',setter_column)
+	mytemp = mytemp.replace('{get_generator}',getter.replace('{column_name_}','Id').replace('{column_name}',"id").replace('{type}',"String")+getter_column)
+	mytemp = mytemp.replace('{set_generator}',setter.replace('{column_name_}','Id').replace('{column_name}',"id").replace('{type}',"String")+setter_column)
 	with open(table+'.java','w+') as f:
 		f.write(mytemp)
 	with open('../model/'+table+'Model.java','w+') as f1:
