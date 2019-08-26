@@ -67,10 +67,12 @@
 						</div>
 					</div>
 				</div>
+				<br>
 				<div class="movie-content">
 					<span class="title-content">NỘI DUNG PHIM</span><br> <span
 						class="content" th:text="${film.getDescribe()}"></span>
 				</div>
+				
 				<div class="container">
 					<div class="fb-comments" th:attr="data-href=${film.getInfo()}" data-width="" data-numposts="10"></div>
 				</div>
