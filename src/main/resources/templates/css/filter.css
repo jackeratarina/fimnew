@@ -1,0 +1,20 @@
+.list-movie-filter {
+    padding: 10px 0px;
+    border: 1px solid #121212;
+    background: #222;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.list-movie-filter .list-movie-filter-main {
+    color: #ddd;
+    display: block;
+}
+.list-movie-filter .list-movie-filter-item {
+    float: left;
+    margin: 0px 6px;
+    width: 126px;
+}
+.list-movie-filter .list-movie-filter-main label {
+    display: block;
+}
