@@ -41,6 +41,8 @@ public class MainController {
 	FILMModel film = fimdao.findById(id);
 	model.addAttribute("film", film);
 	model.addAttribute("countries", fimdao.getFilmCountry(id));
+	model.addAttribute("categories",fimdao.getFilmCategories(id));
+	model.addAttribute("actors",fimdao.getFilmActors(id));
 	
 		return "detail";
 	}

@@ -12,8 +12,12 @@ public class ThymeleafMVCConfig implements  WebMvcConfigurer {
 	 @Override
 	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	        registry.addResourceHandler(
-	                "/dist/**","/css/**")
+	                "/dist/**",
+	                "/css/**",
+	                "/images/**")
 	                .addResourceLocations(
-	                        "classpath:/templates/dist/","classpath:/templates/css/");
+	                        "classpath:/templates/dist/",
+	                        "classpath:/templates/css/",
+	                        "classpath:/templates/images/");
 	    }
 }
