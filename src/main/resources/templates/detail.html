@@ -46,7 +46,7 @@
 							<span><a href="" id="title-1-movie" th:text="${film.getName()}" style="font-size: 30px; color: white"></a></span>
 						</h5>
 						<span id="title-2-movie" th:text="${film.getName2()}" style="font-size: 15px"></span>
-						<div class="scroll">
+						<div class="scroll" style="background-color: #222">
 							<span class="movie-dt">Trạng thái:</span> <span class="movie-dd" style="color: red">Hoàn tất </span> <br> <span
 								class="movie-dt">Điểm IMDb:</span> <span class="movie-dd" style="color: #000; padding: 3px; font-size: 12px; font-weight: bold; background: #E3B71E;
 	/* -webkit-border-radius: 3px; */ -moz-border-radius: 3px; border-radius: 3px;" th:text="${film.getIMDB()}">Chưa cập nhật</span>
@@ -67,13 +67,12 @@
 						</div>
 					</div>
 				</div>
-				<br>
-				<div class="movie-content">
+				<div class="movie-content" style="margin-top: 20px; background-color: #222">
 					<span class="title-content">NỘI DUNG PHIM</span><br> <span
 						class="content" th:text="${film.getDescribe()}"></span>
 				</div>
-				<div class="container">
-					<div class="fb-comments" th:attr="data-href=${film.getInfo()}" data-width="" data-numposts="10"></div>
+				<div>
+					<div class="fb-comments" th:attr="data-href=${film.getInfo()}" data-width="" data-numposts="10" ></div>
 				</div>
 			</div>
 			<style>
@@ -96,7 +95,7 @@
 			</style>
 			<div class="col-sm-4">
 			<h3>Diễn viên</h3>
-				<div class="container border border-dark" style="height: 1000px;overflow: scroll;">
+				<div class="container border border-dark" style="height: 1000px;overflow: scroll; background-color: #222">
 					<a th:href="${'/sort?actor='+ac.getId()}" class="row img-actor border border-dark" th:each="ac : ${actors}">
 					<div class="col-md-6" ><img onerror="this.src='/images/thumb.jpg';" th:src="${'http://image.phimmoi.net/profile/'+#strings.substringAfter(#strings.substringAfter(ac.getId(),'-'),'-')}+'/medium.jpg'"/></div>
 						<div class="col-md-6" ><h5 th:text="${ac.getName()}"></h5></div>
