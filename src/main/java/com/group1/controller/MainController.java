@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.group1.dao.FILMDAO;
 import com.group1.entity.FILM;
+import com.group1.model.CategoryModel;
 import com.group1.model.FILMModel;
 
 
@@ -26,6 +27,8 @@ public class MainController {
 	public String index(Model model) {
 		List<FILMModel> list = fimdao.listFILMInfo();
 		model.addAttribute("film",list);
+        List<CategoryModel> cate = fimdao.listCategory();
+        model.addAttribute("cate",cate);
 		return "index";
 	}
 	@RequestMapping(value = "/show", method = RequestMethod.GET)

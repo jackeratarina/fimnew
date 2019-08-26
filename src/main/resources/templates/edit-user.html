@@ -1,0 +1,196 @@
+
+<html>
+<head>
+<LINK REL="SHORTCUT ICON" HREF="20 - PNG fashion copy.jpg">
+</head>
+<body class="toggled sw-toggled">
+	<title></title>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css-admin/app.min.1.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css-admin/app.min.2.css}" />
+
+	<!-- Custom -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css-admin/style.css}" />
+
+	<header id="header" class="clearfix" data-current-skin="blue">
+		<ul class="header-inner">
+			<li id="menu-trigger" data-trigger="#sidebar">
+				<div class="line-wrap">
+					<div class="line top"></div>
+					<div class="line center"></div>
+					<div class="line bottom"></div>
+				</div>
+			</li>
+
+
+			<li class="logo hidden-xs"><a href="#" id="store-name-id">Trang
+					Quáº£n LÃ½</a></li>
+		</ul>
+	</header>
+
+	<section id="main" data-layout="layout-1">
+
+		<div th:include="~{/sidebar.html :: sidebar}"></div>
+
+		<section id="content">
+			<div class="container">
+
+				<form action="update-user" method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="row">
+
+								<div class="col-md-8"></div>
+
+								<div class="col-md-4 text-right">
+
+									<button type="submit" id="btnUpdateUser"
+										class="btn btn-sm btn-success waves-effect">Hoàn Tất
+									</button>
+								</div>
+
+							</div>
+							<hr>
+						</div>
+
+						<div class="card-body card-padding">
+							<div class="card">
+								<div class="card-header">
+									<h2>Quản lý phim</h2>
+								</div>
+								<div class="card-body card-padding row">
+									<div class="col-md-6">
+										<c:set var="us" value="${requestScope.USERNAMEUSER}" />
+										<input type="hidden" value="74" readonly=""> <input
+											type="hidden" value="0" readonly=""> <input
+											type="hidden" value="1" readonly=""> <input
+											type="hidden" value="1" readonly=""> <input
+											type="hidden" value="0" readonly="">
+										<div class="form-group  row">
+											<label class="control-label col-md-4">Id</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="111" readonly="readonly" required="false">
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group  row">
+											<label class="control-label col-md-4">name</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group  row">
+											<label class="control-label col-md-4">describe</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group  row">
+											<label class="control-label col-md-4">duration</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+										<div class="form-group  row">
+											<label class="control-label col-md-4">status</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+										<div class="form-group  row">
+											<label class="control-label col-md-4">image</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+										<div class="form-group  row">
+											<label class="control-label col-md-4">IMDB</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+										<div class="form-group  row">
+											<label class="control-label col-md-4">date</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+										<div class="form-group  row">
+											<label class="control-label col-md-4">resolution</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+										<div class="form-group  row">
+											<label class="control-label col-md-4">info</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+										<div class="form-group  row">
+											<label class="control-label col-md-4">name2</label>
+											<div class="col-md-8">
+												<div class="fg-line">
+													<input class="form-control seo-source" name=""
+														value="" required="false">
+												</div>
+											</div>
+										</div>
+
+
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+		</section>
+</body>
+</html>
+
