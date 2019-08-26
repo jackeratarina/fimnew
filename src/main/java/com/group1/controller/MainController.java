@@ -37,7 +37,7 @@ public class MainController {
 			return "redirect:";
 		}
 		if(ep == null || ep == "") {
-			ep="0";
+			ep="1";
 		}
 		FILMModel film = fimdao.findById(id);
 		model.addAttribute("film", film);

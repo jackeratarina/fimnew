@@ -16,7 +16,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: gray;">
 	<div th:include="~{/header.html :: header}"></div>
 	<br>
 
@@ -40,8 +40,8 @@
 			<div class="float-left">
 				<h2>PHIM MỚI CẬP NHẬT</h2>
 			</div>
-			<div class="float-right btn btn-outline-primary">
-				<a href="show?page=1">Xem thêm</a>
+			<div class="float-right btn btn-outline-primary" style="background-color: #007bff">
+				<a style="color: white;" href="show?page=1">Xem thêm</a>
 			</div>
 
 		</div>
@@ -53,16 +53,14 @@
 					th:src="${film.getImage()}">
 					<div class="movie-meta">
 						<div class="movie-title-1" th:text="${film.getName() + ' - ' + film.getName2()}"></div>
-						<span class="movie-title-chap" th:text="${film.getDuration() + ' phút'}"></span>
+						<span class="movie-title-chap" style="color: white;" th:text="${film.getDuration() + ' phút'}"></span>
 						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
 					</div>
 				</a>
 			</div>
 
 		</div>
-		<div class="float-right btn btn-outline-primary">
-				<a href="show?page=1">Xem thêm</a>
-			</div>
+		
 	</div>
 	<br>
 	

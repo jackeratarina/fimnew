@@ -27,7 +27,7 @@
   <style>
   </style>
 </head>
-<body>
+<body style="background-color: grey; color: black;">
 
 <div th:include ="~{/header.html :: header}"></div>
 
@@ -63,13 +63,13 @@
 		<iframe style="margin-bot: 30px;" width="100%" height="415" th:src="${links.get(ep-1).getUrl()}" 
 		frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 		allowfullscreen></iframe>
-		<div class="row">
+		<div class="col-md-12">
 			<h5>Tập phim :</h5>
 		</div>
-		<div class="row">
+		<div class="row col-md-12">
 		<form method="GET">
 			<input type="hidden" th:value="${id}" name="id"/>
-			<input type="submit" class="btn btn-outline-info" name="ep" th:each="link,i: ${links}" th:value="${i.index+1}"></input>
+			<input type="submit" class="btn btn-info" name="ep" th:each="link,i: ${links}" th:value="${i.index+1}"></input>
 		</form>
 		</div>
      </div>
@@ -95,7 +95,7 @@
 			</style>
 			<div class="col-sm-4">
 			<h3>Diễn viên</h3>
-				<div class="container border border-dark" style="height: 1000px;overflow: scroll; background-color: #222">
+				<div class="container border border-dark" style="height: 570px;overflow: scroll; background-color: #222">
 					<a th:href="${'/sort?actor='+ac.getId()}" class="row img-actor border border-dark" th:each="ac : ${actors}">
 					<div class="col-md-6" ><img onerror="this.src='/images/thumb.jpg';" th:src="${'http://image.phimmoi.net/profile/'+#strings.substringAfter(#strings.substringAfter(ac.getId(),'-'),'-')}+'/medium.jpg'"/></div>
 						<div class="col-md-6" ><h5 th:text="${ac.getName()}"></h5></div>
