@@ -23,6 +23,11 @@ public class MainController {
 	@Autowired
 	private FILMDAO fimdao;
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model) {
+		return "login";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 		List<FILM> list = fimdao.listFILMInfoPage(16, 0);
