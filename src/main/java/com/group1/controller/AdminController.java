@@ -22,6 +22,6 @@ public class AdminController {
 //		model.addAttribute("film",list);
 //        List<CategoryModel> cate = fimdao.listCategory();
 //        model.addAttribute("cate",cate);
-		return "login";
+		return "edit-user";
 	}
 }

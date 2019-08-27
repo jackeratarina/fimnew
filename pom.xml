@@ -58,6 +58,13 @@
     <artifactId>mssql-jdbc</artifactId>
     <version>6.2.2.jre8</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>4.1.3.RELEASE</version>
+</dependency>
+
 <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 <dependency>
     <groupId>com.google.code.gson</groupId>
