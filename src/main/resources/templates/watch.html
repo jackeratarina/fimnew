@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:text="${'Xem phim: ' + film.getName() }">Insert title here</title>
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/scrollBar.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style1.css}"/>
@@ -13,6 +13,8 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=388345122033999&autoLogAppEvents=1"></script>
 
 </head>
 <!DOCTYPE html>
@@ -71,6 +73,13 @@
 			<input type="hidden" th:value="${id}" name="id"/>
 			<input type="submit" class="btn btn-info" name="ep" th:each="link,i: ${links}" th:value="${i.index+1}"></input>
 		</form>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div>
+					<div class="fb-comments" th:attr="data-href=${film.getInfo()}" data-width="" data-numposts="10" ></div>
+				</div>
+			</div>
 		</div>
      </div>
     </div>
