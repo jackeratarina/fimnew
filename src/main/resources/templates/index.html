@@ -49,7 +49,7 @@
 			
 			<div class="col-md-3 text-center" th:each="film,i: ${film}" th:if="${i.index}<16">
 				<a th:href="'detail?id='+${film.getId()}" style="width: 100% !important; text-decoration: none!important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
+					class="img-thumbnail" width="200px" style="height:260px !important;"
 					th:src="${film.getImage()}">
 					<div class="movie-meta">
 						<div class="movie-title-1" th:text="${film.getName() + ' - ' + film.getName2()}"></div>

@@ -114,7 +114,7 @@
 
 			<div class="col-md-2 text-center" th:each="film : ${film}">
 				<a th:href="'detail?id='+${film.getId()}"  style="width: 100% !important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
+					class="img-thumbnail" width="200px" height="260px" style="height:210px !important;"
 					th:src="${film.getImage()}">
 					<div class="movie-meta">
 						<div class="movie-title-1" th:text="${film.getName() + ' - ' + film.getName2()}"></div>
