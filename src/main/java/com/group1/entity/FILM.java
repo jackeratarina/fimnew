@@ -45,6 +45,12 @@ public class FILM {
 	@Column(name="status", nullable=true)
 	private String status;
 
+	@Column(name="is_active", nullable=true)
+	private String is_active;
+
+	@Column(name="created_date", nullable=true)
+	private java.sql.Timestamp created_date;
+
 
 	
 	
@@ -92,6 +98,14 @@ public class FILM {
 		return status;
 	}
 
+	public String getIs_active() {
+		return is_active;
+	}
+
+	public java.sql.Timestamp getCreated_date() {
+		return created_date;
+	}
+
 
 	
 	public void setId(String id) {
@@ -136,6 +150,14 @@ public class FILM {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
+	}
+
+	public void setCreated_date(java.sql.Timestamp created_date) {
+		this.created_date = created_date;
 	}
 
 

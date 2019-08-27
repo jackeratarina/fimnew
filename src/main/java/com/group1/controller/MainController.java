@@ -44,7 +44,7 @@ public class MainController {
 		if(ep == null || ep == "") {
 			ep="1";
 		}
-		FILMModel film = fimdao.findById(id);
+		FILM film = fimdao.findById(id);
 		model.addAttribute("film", film);
 		model.addAttribute("countries", fimdao.getFilmCountry(id));
 		model.addAttribute("categories",fimdao.getFilmCategories(id));
@@ -91,7 +91,7 @@ public class MainController {
 		if(mypage < 0) {
 			return "redirect:";
 		}
-		List<FILM> film = fimdao.listFILMInfoPageWithInfo(16, mypage, country, cate, year,actor,search);
+		List<FILM> film = fimdao.listFILMInfoPageWithInfo(18, mypage, country, cate, year,actor,search);
 		model.addAttribute("film", film);
 		model.addAttribute("page", mypage);
 		model.addAttribute("country", country);
@@ -112,7 +112,7 @@ public class MainController {
 		if(mypage < 0) {
 			return "redirect:";
 		}
-		List<FILM> film = fimdao.listFILMInfoPage(16, mypage);
+		List<FILM> film = fimdao.listFILMInfoPage(18, mypage);
 		model.addAttribute("film", film);
 		model.addAttribute("page", mypage);
 		model.addAttribute("next_page", "/show?page="+(mypage+1));
@@ -125,7 +125,7 @@ public class MainController {
 	if(id == null || id == "") {
 		return "redirect:";
 	}
-	FILMModel film = fimdao.findById(id);
+	FILM film = fimdao.findById(id);
 	model.addAttribute("film", film);
 	model.addAttribute("countries", fimdao.getFilmCountry(id));
 	model.addAttribute("categories",fimdao.getFilmCategories(id));

@@ -104,8 +104,8 @@
 		<div>
 			<div class="float-left">
 			<h2>Kết quả: </h2>
-			<h4 th:if="${actor != '%'}" th:text="${'Phim của : '+actor}"></h4>
-			<h5 th:if="${search != '%'}" th:text="${'Tìm kiếm : '+search}"></h5>
+			<h4 th:if="${actor != '%' && actor != null}" th:text="${'Phim của : '+actor}"></h4>
+			<h5 th:if="${search != '%' && search != null}" th:text="${'Tìm kiếm : '+search}"></h5>
 			
 			
 			</div>
@@ -131,7 +131,7 @@
 			<ul class="pagination pagination-lg">
 				<li class="page-item" th:if="${page-1!=-1}"><a class="page-link" th:text="${page-1}" th:href="${pre_page}">1</a></li>
 				<li class="page-item"><a class="page-link" th:text="${page}">2</a></li>
-				<li class="page-item" th:if="${(#lists.size(film)==16)}"><a class="page-link" th:text="${page+1}" th:href="${next_page}">3</a></li>
+				<li class="page-item" th:if="${(#lists.size(film)==18)}"><a class="page-link" th:text="${page+1}" th:href="${next_page}">3</a></li>
 			</ul>
 		</nav>
 	</div>

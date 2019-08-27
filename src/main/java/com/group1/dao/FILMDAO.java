@@ -30,10 +30,10 @@ public class FILMDAO {
 
 	}
 	
-	public FILMModel findById(String id) {
-		String sql = "select new "+FILMModel.class.getName()+"("+FILMModel.getAllVar()+") from "+FILM.class.getName()+" t where t.id='"+id+"'";
-		TypedQuery<FILMModel> q = entityManager.createQuery(sql, FILMModel.class);
-		return q.getSingleResult();
+	public FILM findById(String id) {
+		String sql = "select * from FILM  where id = ?1";
+		FILM q = (FILM) entityManager.createNativeQuery(sql, FILM.class).setParameter(1, id).getSingleResult();
+		return q;
 	}
 	public List<Country> getFilmCountry(String id){
 //		String sql = "select new " +CountryModel.class.getName()+"(" +CountryModel.getAllVar()+") from " + Country.class.getName() + " t where where t.id in (select a from "+CountriesOfFilm.class.getClass()+" a where a.id = t.id and a.id_film = '"+id+"')";
@@ -67,7 +67,7 @@ public class FILMDAO {
 		return film;
 	}
 	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor, String search) {
-		String sql = "select top (:mount) * from FILM where id not in (select top (:top) id from FILM) and id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search)";
+		String sql = "select * from FILM where id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter("mount", mount);
 		q.setParameter("top", mount*page);
@@ -81,10 +81,10 @@ public class FILMDAO {
 		return film;
 	}
 	public List<FILM> listFILMInfoPage(int mount, int page) {
-		String sql = "select top (?) * from FILM where id not in (select top (?) id from FILM)";
+		String sql = "select * from FILM  order by created_date OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
-		q.setParameter(1, mount);
-		q.setParameter(2, mount*page);
+		q.setParameter(1, mount*page);
+		q.setParameter(2, mount);
 		List<FILM> film = q.getResultList();
 		return film;
 	}
