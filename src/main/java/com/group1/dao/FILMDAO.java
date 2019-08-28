@@ -88,11 +88,15 @@ public class FILMDAO {
 		List<FILM> film = q.getResultList();
 		return film;
 	}
-    public List<CategoryModel> listCategory() {
-        String sql = "select new "+CategoryModel.class.getName()+"("+CategoryModel.getAllVar()+") from "+Category.class.getName()+"";
-        TypedQuery<CategoryModel> q = entityManager.createQuery(sql, CategoryModel.class);
-        List<CategoryModel> cate = q.getResultList();
-        return cate;
+    public List<Category> listCategory() {
+        String sql = "select * from Category";
+		List<Category> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
+		return q;
     }
-
+    public List<Country> listCountry() {
+        String sql = "select * from Country";
+		List<Country> q = entityManager.createNativeQuery(sql, Country.class).getResultList();
+		return q;
+    }
+    
 }

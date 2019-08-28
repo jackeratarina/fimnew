@@ -9,45 +9,18 @@
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> THỂ LOẠI </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			<a class="dropdown-item" href="/sort?cate=phim-bi-an-sieu-nhien">Phim Bí ẩn-Siêu nhiên</a>
-			<a class="dropdown-item" href="/sort?cate=phim-bo">Phim bộ</a>
-			<a class="dropdown-item" href="/sort?cate=phim-chien-tranh">Phim chiến tranh</a>
-			<a class="dropdown-item" href="/sort?cate=phim-chieu-rap">Phim chiếu rạp</a>
-			<a class="dropdown-item" href="/sort?cate=phim-chinh-kich-drama">Phim chính kịch - Drama</a>
-			<a class="dropdown-item" href="/sort?cate=phim-co-trang">Phim cổ trang</a>
-			<a class="dropdown-item" href="/sort?cate=phim-gia-dinh">Phim gia đình</a>
-			<a class="dropdown-item" href="/sort?cate=phim-hai-huoc">Phim hài hước</a>
-			<a class="dropdown-item" href="/sort?cate=phim-hanh-dong">Phim hành động</a>
-			<a class="dropdown-item" href="/sort?cate=phim-hinh-su">Phim hình sự</a>
-			<a class="dropdown-item" href="/sort?cate=phim-hoat-hinh">Phim hoạt hình</a>
-			<a class="dropdown-item" href="/sort?cate=phim-hoi-hop-gay-can">Phim hồi hộp-Gây cấn</a>
-			<a class="dropdown-item" href="/sort?cate=phim-kinh-di">Phim kinh dị</a>
-			<a class="dropdown-item" href="/sort?cate=phim-le">Phim lẻ</a>
-			<a class="dropdown-item" href="/sort?cate=phim-phieu-luu">Phim phiêu lưu</a>
-			<a class="dropdown-item" href="/sort?cate=phim-tai-lieu">Phim tài liệu</a>
-			<a class="dropdown-item" href="/sort?cate=phim-tam-ly">Phim tâm lý</a>
-			<a class="dropdown-item" href="/sort?cate=phim-than-thoai">Phim thần thoại</a>
-			<a class="dropdown-item" href="/sort?cate=phim-the-thao-am-nhac">Phim Thể thao-Âm nhạc</a>
-			<a class="dropdown-item" href="/sort?cate=phim-thuyet-minh">Phim thuyết minh</a>
-			<a class="dropdown-item" href="/sort?cate=phim-tinh-cam-lang-man">Phim tình cảm-Lãng mạn</a>
-			<a class="dropdown-item" href="/sort?cate=phim-vien-tuong">Phim viễn tưởng</a>
-			<a class="dropdown-item" href="/sort?cate=phim-vo-thuat">Phim võ thuật</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="height: 200px; overflow: auto;">
+			<a class="dropdown-item"  th:each="categoryOfHeader,i: ${categoryOfHeader}" th:text="${categoryOfHeader.getName()}" th:href="'/sort?cate='+${categoryOfHeader.getId()}"></a>
+			
 					</div></li>
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> QUỐC GIA </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/sort?country=VN">VIỆT NAM</a><a
-							class="dropdown-item" href="/sort?country=US">MỸ</a><a							class="dropdown-item" href="/sort?country=JP">NHẬT BẢN</a><a							class="dropdown-item" href="/sort?country=IN">ẤN ĐỘ</a><a							class="dropdown-item" href="/sort?country=FR">Pháp</a><a							class="dropdown-item" href="/sort?country=CA">CANADA</a><a
-							class="dropdown-item" href="/sort?country=CN">TRUNG QUỐC</a><a
-							class="dropdown-item" href="/sort?country=HK">HONG KONG</a><a
-							class="dropdown-item" href="/sort?country=TW">ĐÀI LOAN</a><a
-							class="dropdown-item" href="/sort?country=AU">ÚC</a><a
-							class="dropdown-item" href="/sort?country=KR">HÀN QUỐC</a><a							class="dropdown-item" href="/sort?country=TH">THÁI LAN </a><a
-							class="dropdown-item" href="/sort?country=UK">ANH</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="height: 200px; overflow: auto;">
+						<a th:each="countriesOdHeader,i: ${countriesOdHeader}" class="dropdown-item" th:href="'/sort?country='+${countriesOdHeader.getId()}" th:text="${countriesOdHeader.getName()}"></a>
+
 
 					</div></li>
 
@@ -67,7 +40,7 @@
 
 					</div></li>
 
-				<li class="nav-item dropdown"><a
+				<!-- <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> PHIM BỘ</a>
@@ -75,7 +48,7 @@
 						<a class="dropdown-item" href="/sort?cate=phim-bo&country=KR">HÀN QUỐC</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=HK">HONG
 							KONG</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=CN">TRUNG
 							QUỐC</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=TW">ĐÀI LOAN</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=TH">THÁI LAN</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=US">MỸ</a>
-					</div></li>
+					</div></li> -->
 
 				<div class="nav-item">
 					<a class="nav-link" href="/sort?id=phim-thuyet-minh" role="button"
