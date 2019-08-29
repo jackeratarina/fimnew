@@ -37,7 +37,7 @@ public class FILMDAO {
 	}
 	public List<Country> getFilmCountry(String id){
 //		String sql = "select new " +CountryModel.class.getName()+"(" +CountryModel.getAllVar()+") from " + Country.class.getName() + " t where where t.id in (select a from "+CountriesOfFilm.class.getClass()+" a where a.id = t.id and a.id_film = '"+id+"')";
-		String sql = "select id, name from Country where id in (Select id_country from CountriesOfFilm where id_film = ?1)";
+		String sql = "select * from Country where id in (Select id_country from CountriesOfFilm where id_film = ?1)";
 		List<Country> data = entityManager.createNativeQuery(sql, Country.class).setParameter(1, id).getResultList();
 		return data;
 	}
@@ -81,7 +81,7 @@ public class FILMDAO {
 		return film;
 	}
 	public List<FILM> listFILMInfoPage(int mount, int page) {
-		String sql = "select * from FILM  order by created_date OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
+		String sql = "select * from FILM where is_active = 1 order by created_date OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter(1, mount*page);
 		q.setParameter(2, mount);
@@ -99,4 +99,29 @@ public class FILMDAO {
 		return q;
     }
     
+    public List<Category> getlistCategory() {
+        String sql = "select * from Category";
+		List<Category> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
+		return q;
+    }
+    
+    public void deleteCategory(String id) {
+    	String sql = "update Category set is_active = 0 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    }
+    
+    public Category getCategory(String id) {
+    	String sql = "select * from Category where id = ?1";
+		Category q = (Category) entityManager.createNativeQuery(sql, Category.class).setParameter(1, id).getSingleResult();
+		return q;
+    }
+    
+    public void addCategory(String id, String name) {
+    	String sql = "insert into Category (id,name,is_active) values (?1,?2,?3)";
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, id);
+    	q.setParameter(2, name);
+    	q.setParameter(3, 1);
+    	q.executeUpdate();
+    }
 }
