@@ -12,5 +12,9 @@
   "devDependencies": {
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "sweetalert2": "^8.16.3"
   }
 }

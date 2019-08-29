@@ -7,12 +7,13 @@ public class PlaylistModel {
 		private String id_user;
 		private int is_public;
 		private String name;
+		private String is_active;
 	
 	public PlaylistModel() {
 
 	}
 
-	public PlaylistModel(String id,java.sql.Timestamp created_date,String id_user,int is_public,String name) {
+	public PlaylistModel(String id,java.sql.Timestamp created_date,String id_user,int is_public,String name,String is_active) {
 		super();
 		
 		this.id = id;
@@ -20,6 +21,7 @@ public class PlaylistModel {
 		this.id_user = id_user;
 		this.is_public = is_public;
 		this.name = name;
+		this.is_active = is_active;
 	}
 	
 	public String getId() {
@@ -40,6 +42,10 @@ public class PlaylistModel {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getIs_active() {
+		return is_active;
 	}
 
 	
@@ -63,7 +69,11 @@ public class PlaylistModel {
 		this.name = name;
 	}
 
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
+	}
+
 	public static String getAllVar() {
-		return "id,created_date,id_user,is_public,name";
+		return "id,created_date,id_user,is_public,name,is_active";
 	}
 }

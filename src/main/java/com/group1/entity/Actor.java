@@ -18,6 +18,9 @@ public class Actor {
 	@Column(name="image", nullable=true)
 	private String image;
 
+	@Column(name="is_active", nullable=true)
+	private String is_active;
+
 	@Column(name="name", nullable=true)
 	private String name;
 
@@ -32,6 +35,10 @@ public class Actor {
 		return image;
 	}
 
+	public String getIs_active() {
+		return is_active;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -44,6 +51,10 @@ public class Actor {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
 	}
 
 	public void setName(String name) {

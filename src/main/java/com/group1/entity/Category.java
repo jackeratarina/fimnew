@@ -18,6 +18,9 @@ public class Category {
 	@Column(name="name", nullable=true)
 	private String name;
 
+	@Column(name="is_active", nullable=true)
+	private String is_active;
+
 
 	
 	
@@ -29,6 +32,10 @@ public class Category {
 		return name;
 	}
 
+	public String getIs_active() {
+		return is_active;
+	}
+
 
 	
 	public void setId(String id) {
@@ -37,6 +44,10 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
 	}
 
 
