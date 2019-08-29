@@ -7,12 +7,13 @@ public class LinkModel {
 		private String id_film;
 		private int num;
 		private String url;
+		private String is_active;
 	
 	public LinkModel() {
 
 	}
 
-	public LinkModel(String id,String describe,String id_film,int num,String url) {
+	public LinkModel(String id,String describe,String id_film,int num,String url,String is_active) {
 		super();
 		
 		this.id = id;
@@ -20,6 +21,7 @@ public class LinkModel {
 		this.id_film = id_film;
 		this.num = num;
 		this.url = url;
+		this.is_active = is_active;
 	}
 	
 	public String getId() {
@@ -40,6 +42,10 @@ public class LinkModel {
 
 	public String getUrl() {
 		return url;
+	}
+
+	public String getIs_active() {
+		return is_active;
 	}
 
 	
@@ -63,7 +69,11 @@ public class LinkModel {
 		this.url = url;
 	}
 
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
+	}
+
 	public static String getAllVar() {
-		return "id,describe,id_film,num,url";
+		return "id,describe,id_film,num,url,is_active";
 	}
 }

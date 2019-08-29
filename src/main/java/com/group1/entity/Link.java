@@ -27,6 +27,9 @@ public class Link {
 	@Column(name="url", nullable=true)
 	private String url;
 
+	@Column(name="is_active", nullable=true)
+	private String is_active;
+
 
 	
 	
@@ -50,6 +53,10 @@ public class Link {
 		return url;
 	}
 
+	public String getIs_active() {
+		return is_active;
+	}
+
 
 	
 	public void setId(String id) {
@@ -70,6 +77,10 @@ public class Link {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
 	}
 
 
