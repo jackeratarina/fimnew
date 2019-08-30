@@ -184,22 +184,14 @@
 }
 </style>
 	<div class="row menu">
-		<div class="col-md-3 left-menu">
-			<a href="#xxx" class="row menu-bottom-node">
-				<div class="centering menu-node-inside">Quản lý FILM</div>
-			</a> <a href="#xxx"
-				class="row menu-bottom-node  menu-bottom-node-selected">
-				<div class="centering menu-node-inside">Quản lý thể loại</div>
-			</a> <a href="#xxx" class="row menu-bottom-node">
-				<div class="centering menu-node-inside">Quản lý Diển viên</div>
-			</a> <a href="#xxx" class="row menu-bottom-node">
-				<div class="centering menu-node-inside">Quản lý Quốc gia</div>
-			</a>
+		<div class="col-md-3 left-menu"
+			th:include="~{/sidebar.html :: sidebar}"></div>
 
-		</div>
 		<div class="col-md-6 right-menu" style="margin-top: 35px;">
-			<div class="col-md-12" style="justify-content: flex-end; display: flex;">
-				<a href="/category_manager"><button class="btn btn-success">Quay lại</button></a>
+			<div class="col-md-12"
+				style="justify-content: flex-end; display: flex;">
+				<a href="/category_manager"><button class="btn btn-success">Quay
+						lại</button></a>
 			</div>
 			<form action="/editCategory" method="post">
 				<div class="form-group">
@@ -214,8 +206,12 @@
 				</div>
 				<label for="sel1">Select list (select one):</label> <select
 					class="form-control col-md-4" name="is_active">
-					<option th:attrappend="selected=${cate.getIs_active() == '1'}?selected" value="1">Active</option>
-					<option th:attrappend="selected=${cate.getIs_active() == '0'}?selected" value="0">Disable</option>
+					<option
+						th:attrappend="selected=${cate.getIs_active() == '1'}?selected"
+						value="1">Active</option>
+					<option
+						th:attrappend="selected=${cate.getIs_active() == '0'}?selected"
+						value="0">Disable</option>
 				</select>
 				<div style="justify-content: flex-end; display: flex;">
 					<button type="submit" class="btn btn-primary">Hoàn tất</button>
