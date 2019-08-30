@@ -1,6 +1,7 @@
 package com.group1.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,9 +73,13 @@ public class AdminController {
 		return "edit_category";
 	}
 
+	@Transactional
 	@RequestMapping(value = "/addCategory", method = RequestMethod.POST)
-	public String addCate(@RequestParam String categoryName) {
-		fimdao.addCategory("ssss", categoryName);
+	public String addCate(Model model, String name, String is_active) {
+		UUID uuid = UUID.randomUUID();
+		fimdao.addCategory(uuid.toString(), name, is_active);
+		List<Category> cate = fimdao.getlistCategory();
+		model.addAttribute("categories", cate);
 		return "category_manager";
 	}
 

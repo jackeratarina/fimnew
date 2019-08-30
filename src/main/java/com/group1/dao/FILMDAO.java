@@ -121,12 +121,12 @@ public class FILMDAO {
 		return q;
     }
     
-    public void addCategory(String id, String name) {
+    public void addCategory(String id, String name, String is_active) {
     	String sql = "insert into Category (id,name,is_active) values (?1,?2,?3)";
     	Query q = entityManager.createNativeQuery(sql);
     	q.setParameter(1, id);
     	q.setParameter(2, name);
-    	q.setParameter(3, 1);
+    	q.setParameter(3, is_active);
     	q.executeUpdate();
     }
     

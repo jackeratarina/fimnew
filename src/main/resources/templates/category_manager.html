@@ -88,36 +88,7 @@
 </head>
 
 <body style="background-color: #edfef1">
-	<div class="col-md-12 head-bar">
-		<div class="row">
-			<div class="col-md-12 head-bar-div">
-				<div class="row" style="height: 100%">
-					<div class="col-md-10"></div>
-					<div class="col-md-2 right-head-bar">
-						<div class="row" style="height: 100%">
-							<div class="col-md-9 head-user-name">
-								<p>Dương Mẫn Đạt</p>
-							</div>
-							<div class="col-md-3" style="height: 100%">
-								<div class="fa fa-bars head-menu-bar centering"></div>
-							</div>
-						</div>
-						<a href="#" style="text-decoration: none;">
-							<div class="row menu-node">
-								<div class="col-md-12 centering menu-list">Quản lý tài
-									khoản</div>
-							</div>
-						</a> <a href="#" style="text-decoration: none;">
-							<div class="row menu-node">
-								<div class="col-md-12 centering menu-list">Đăng xuất</div>
-							</div>
-						</a>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="col-md-12 head-bar" th:include="~{/sidebar.html :: headbar}"></div>
 	<style>
 .menu {
 	width: 100%;
@@ -214,7 +185,7 @@
 									<form action="/addCategory" method="post">
 										<div class="form-group">
 											<label for="pwd">Tên thể loại:</label> <input type="text"
-												class="form-control col-md-12" required name="categoryName">
+												class="form-control col-md-12" required name="name">
 										</div>
 										<label for="sel1">Select list (select one):</label> <select
 											class="form-control col-md-4" name="is_active">
@@ -257,8 +228,8 @@
 								<tbody id="myTable">
 									<tr th:each="categories,i: ${categories}">
 										<td style="width: 75px" th:text="${i.count}"></td>
-										<td th:text="${categories.getId()}"></td>
-										<td th:text="${categories.getName()}"></td>
+										<td th:text="${categories.getId()}" style="width: 300px;"></td>
+										<td th:text="${categories.getName()}" style="width: 300px;"></td>
 										<td th:if="${categories.getIs_active() == '1'}"><a
 											th:href="'/setDisable?id='+${categories.getId()}">
 												<div class="btn btn-success btn-xs fa fa-unlock"></div>
