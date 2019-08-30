@@ -21,6 +21,7 @@ import com.group1.model.CategoryModel;
 public class AdminController {
 	@Autowired
 	private FILMDAO fimdao;
+
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String index(Model model) {
 //		List<FILM> list = fimdao.listFILMInfoPage(16, 0);
@@ -29,40 +30,61 @@ public class AdminController {
 //        model.addAttribute("cate",cate);
 		return "admin_";
 	}
-	
+
 	@RequestMapping(value = "/category_manager", method = RequestMethod.GET)
 	public String cateManager(Model model) {
 		List<Category> cate = fimdao.getlistCategory();
 		model.addAttribute("categories", cate);
 		return "category_manager";
 	}
-	
-	@RequestMapping(value = "/deleteCategory")
-	public String deleteCategory(Model model, String id) {
-		fimdao.deleteCategory(id);
+
+	@Transactional
+	@RequestMapping(value = "/setActive")
+	public String setActiveCategory(Model model, String id) {
+		fimdao.activeCategory(id);
 		List<Category> cate = fimdao.getlistCategory();
 		model.addAttribute("categories", cate);
 		return "category_manager";
 	}
 	
-	@RequestMapping(value = "/editCategory", method = RequestMethod.GET)
+	@Transactional
+	@RequestMapping(value = "/setDisable")
+	public String setDisableCategory(Model model, String id) {
+		fimdao.disableCategory(id);
+		List<Category> cate = fimdao.getlistCategory();
+		model.addAttribute("categories", cate);
+		return "category_manager";
+	}
+
+	@RequestMapping(value = "/editCategoryPage", method = RequestMethod.GET)
 	public String editCategory(Model model, String id) {
 		Category cate = fimdao.getCategory(id);
 		model.addAttribute("cate", cate);
 		return "edit_category";
 	}
-	
-	@RequestMapping(value ="/addCategory", method = RequestMethod.POST)
+
+	@Transactional
+	@RequestMapping(value = "/editCategory", method = RequestMethod.POST)
+	public String editCategory(Model model, String id, String name, String is_active) {
+		fimdao.updateCategory(id, name, is_active);
+		Category cate = fimdao.getCategory(id);
+		model.addAttribute("cate", cate);
+		return "edit_category";
+	}
+
+	@RequestMapping(value = "/addCategory", method = RequestMethod.POST)
 	public String addCate(@RequestParam String categoryName) {
 		fimdao.addCategory("ssss", categoryName);
 		return "category_manager";
 	}
+
 	@RequestMapping(value = "/actor_manager", method = RequestMethod.GET)
 	public String actorManager(Model model) {
 		List<Actor> actors = fimdao.getListActor();
 		model.addAttribute("actors", actors);
 		return "actor_manager";
 	}
+
 	@Transactional
 	@RequestMapping(value = "/inactiveActor")
 	public String inactiveActor(Model model, String id) {
@@ -71,6 +93,7 @@ public class AdminController {
 		model.addAttribute("actors", actors);
 		return "actor_manager";
 	}
+
 	@Transactional
 	@RequestMapping(value = "/activeActor")
 	public String activeActor(Model model, String id) {
@@ -79,24 +102,22 @@ public class AdminController {
 		model.addAttribute("actors", actors);
 		return "actor_manager";
 	}
+
 	@RequestMapping(value = "/editActor", method = RequestMethod.GET)
 	public String editActor(Model model, String id) {
 		Actor actor = fimdao.getActor(id);
-		
+
 		model.addAttribute("actor", actor);
 		return "edit_actor";
 	}
+
 	@Transactional
 	@RequestMapping(value = "/editActor123", method = RequestMethod.GET)
 	public String editActor2(Model model, String id,String name) {
 		fimdao.updateActor(id, name);
-		//Actor actor = fimdao.getActor(id);
-		//model.addAttribute("actor", actor);
 		List<Actor> actors = fimdao.getListActor();
 		model.addAttribute("actors", actors);
-		
+
 		return "actor_manager";
 	}
 }
-
-

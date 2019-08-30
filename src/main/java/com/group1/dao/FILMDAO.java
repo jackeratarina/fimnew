@@ -89,7 +89,7 @@ public class FILMDAO {
 		return film;
 	}
     public List<Category> listCategory() {
-        String sql = "select * from Category";
+        String sql = "select * from Category where is_active = '1'";
 		List<Category> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
 		return q;
     }
@@ -103,9 +103,14 @@ public class FILMDAO {
         String sql = "select * from Category";
 		List<Category> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
 		return q;
+    }   
+    
+    public void activeCategory(String id) {
+    	String sql = "update Category set is_active = 1 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
     }
     
-    public void deleteCategory(String id) {
+    public void disableCategory(String id) {
     	String sql = "update Category set is_active = 0 where id = ?1";
     	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
     }
@@ -124,6 +129,16 @@ public class FILMDAO {
     	q.setParameter(3, 1);
     	q.executeUpdate();
     }
+    
+    public void updateCategory(String id,String name, String is_active) {
+    	String sql = "update Category set name = ?1, is_active = ?2 where id = ?3";
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, name);
+    	q.setParameter(2, is_active);
+    	q.setParameter(3, id);
+    	q.executeUpdate();
+    }
+    
     public List<Actor> getListActor() {
     	String sql = "select * from Actor";
     	List<Actor> q = entityManager.createNativeQuery(sql, Category.class).getResultList();

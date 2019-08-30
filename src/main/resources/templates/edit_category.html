@@ -197,17 +197,29 @@
 			</a>
 
 		</div>
-		<div class="col-md-9 right-menu" style="margin-top: 35px;">
-			<form action="/editCate">
+		<div class="col-md-6 right-menu" style="margin-top: 35px;">
+			<div class="col-md-12" style="justify-content: flex-end; display: flex;">
+				<a href="/category_manager"><button class="btn btn-success">Quay lại</button></a>
+			</div>
+			<form action="/editCategory" method="post">
 				<div class="form-group">
-					<label for="uname">Id:</label> 
-					<input type="text" class="form-control col-md-7" readonly="readonly" th:value="${cate.getId()}">
+					<label for="uname">Id:</label> <input type="text"
+						class="form-control col-md-12" readonly="readonly" name="id"
+						th:value="${cate.getId()}">
 				</div>
 				<div class="form-group">
 					<label for="pwd">Tên thể loại:</label> <input type="text"
-						class="form-control col-md-7"  required th:value="${cate.getName()}">
+						class="form-control col-md-12" required name="name"
+						th:value="${cate.getName()}">
 				</div>
-				<button type="submit" class="btn btn-primary">Hoàn tất</button>
+				<label for="sel1">Select list (select one):</label> <select
+					class="form-control col-md-4" name="is_active">
+					<option th:attrappend="selected=${cate.getIs_active() == '1'}?selected" value="1">Active</option>
+					<option th:attrappend="selected=${cate.getIs_active() == '0'}?selected" value="0">Disable</option>
+				</select>
+				<div style="justify-content: flex-end; display: flex;">
+					<button type="submit" class="btn btn-primary">Hoàn tất</button>
+				</div>
 			</form>
 
 		</div>
