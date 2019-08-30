@@ -124,4 +124,33 @@ public class FILMDAO {
     	q.setParameter(3, 1);
     	q.executeUpdate();
     }
+    public List<Actor> getListActor() {
+    	String sql = "select * from Actor";
+    	List<Actor> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
+    	return q;
+    }
+    public void inactiveActor(String id) {
+    	String sql = "update Actor set is_active = 0 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    	
+    }
+    public void activeActor(String id) {
+    	String sql = "update Actor set is_active = 1 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    	
+    }
+    public Actor getActor(String id) {
+    	String sql = "select * from Actor where id = ?1";
+		Actor q = (Actor) entityManager.createNativeQuery(sql, Actor.class).setParameter(1, id).getSingleResult();
+		return q;
+    }
+    public void updateActor(String id,String name) {
+    	String sql = "update Actor set name = ?1 where id = ?2";
+    	//entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, name);
+    	q.setParameter(2, id);
+    	q.executeUpdate();
+    }
+    
 }

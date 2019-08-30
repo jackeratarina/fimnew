@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.group1.dao.FILMDAO;
+import com.group1.entity.Actor;
 import com.group1.entity.Category;
 import com.group1.entity.FILM;
 import com.group1.model.CategoryModel;
@@ -55,4 +57,46 @@ public class AdminController {
 		fimdao.addCategory("ssss", categoryName);
 		return "category_manager";
 	}
+	@RequestMapping(value = "/actor_manager", method = RequestMethod.GET)
+	public String actorManager(Model model) {
+		List<Actor> actors = fimdao.getListActor();
+		model.addAttribute("actors", actors);
+		return "actor_manager";
+	}
+	@Transactional
+	@RequestMapping(value = "/inactiveActor")
+	public String inactiveActor(Model model, String id) {
+		fimdao.inactiveActor(id);
+		List<Actor> actors = fimdao.getListActor();
+		model.addAttribute("actors", actors);
+		return "actor_manager";
+	}
+	@Transactional
+	@RequestMapping(value = "/activeActor")
+	public String activeActor(Model model, String id) {
+		fimdao.activeActor(id);
+		List<Actor> actors = fimdao.getListActor();
+		model.addAttribute("actors", actors);
+		return "actor_manager";
+	}
+	@RequestMapping(value = "/editActor", method = RequestMethod.GET)
+	public String editActor(Model model, String id) {
+		Actor actor = fimdao.getActor(id);
+		
+		model.addAttribute("actor", actor);
+		return "edit_actor";
+	}
+	@Transactional
+	@RequestMapping(value = "/editActor123", method = RequestMethod.GET)
+	public String editActor2(Model model, String id,String name) {
+		fimdao.updateActor(id, name);
+		//Actor actor = fimdao.getActor(id);
+		//model.addAttribute("actor", actor);
+		List<Actor> actors = fimdao.getListActor();
+		model.addAttribute("actors", actors);
+		
+		return "actor_manager";
+	}
 }
+
+
