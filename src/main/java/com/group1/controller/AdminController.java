@@ -67,14 +67,20 @@ public class AdminController {
 		model.addAttribute("cate", cate);
 		return "edit_category";
 	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public void test(Model model, String id) {
+		Category cate = fimdao.getCategory(id);
+		model.addAttribute("cate", cate);
+	}
 
 	@Transactional
 	@RequestMapping(value = "/editCategory", method = RequestMethod.POST)
 	public String editCategory(Model model, String id, String name, String is_active) {
 		fimdao.updateCategory(id, name, is_active);
-		Category cate = fimdao.getCategory(id);
-		model.addAttribute("cate", cate);
-		return "edit_category";
+		List<Category> cate = fimdao.getlistCategory();
+		model.addAttribute("categories", cate);
+		return "category_manager";
 	}
 
 	@Transactional
