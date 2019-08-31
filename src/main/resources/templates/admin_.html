@@ -230,7 +230,8 @@
                                             <option>50</option>
                                         </select>
                                     </div>
-                                    <button class="btn btn-success float-right ml-auto" id="addingFilm"><i class="fa fa-plus"style="margin-right: 5px;"></i>Thêm Film</button>
+                                    <button class="btn btn-success float-right ml-auto" id="addingFilm"><i
+                                            class="fa fa-plus" style="margin-right: 5px;"></i>Thêm Film</button>
                                 </div>
                             </div>
                             <table class="table">
@@ -254,60 +255,30 @@
                                         </th>
                                         <th><input type="text" class="form-control" placeholder="Trạng thái" disabled>
                                         </th>
-                                        <th><input type="text" class="form-control" placeholder="Công cụ"
-                                                disabled>
+                                        <th><input type="text" class="form-control" placeholder="Công cụ" disabled>
                                         </th>
 
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_table">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <div class="btn btn-primary btn-xs fa fa-eye"></div>
-                                        </td>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="btn btn-primary btn-xs fa fa-eye show_pics"
-                                                data-href="https://i.khoahoc.tv/photos/image/2017/10/18/ca-heo.jpg">
-                                            </div>
-                                        </td>
-                                        <td>03/12/2019</td>
-                                        <td>
-                                            <div class="btn btn-default btn-xs fa fa-lock"></div>
-                                            <div class="btn btn-default fa fa-unlock"></div>
-                                        </td>
-                                        <td>
-                                            <div class="btn btn-primary btn-xs fa fa-edit" data-toggle="tooltip"
-                                                title="Chỉnh sửa"></div>
-                                            <!-- <div class="btn btn-success btn-xs fa fa-toggle-off" data-toggle="tooltip" title="Mở FILM"></div></div> -->
-                                            <div class="btn btn-danger btn-xs fa fa-toggle-on" data-toggle="tooltip"
-                                                title="Tắt FILM"></div>
+
+                                </tbody>
+                            </table>
+
                         </div>
-                        <div class="btn btn-danger btn-xs fa fa-remove" data-toggle="tooltip" title="Tắt FILM"></div>
-                    </div>
+                        <div class="row">
+                            <button class="btn btn-outline-success fa fa-step-backward" id="previous_page"></button>
+                            <input class="form-control" style="width: 80px; text-align: center" value="1"
+                                id="pageValue" />
+                            <button class="btn btn-outline-success fa fa-step-forward" id="forward_page"></button>
 
-                    <!-- <div class="btn btn-primary fa fa-eye"></div> -->
-                    </td>
-                    </tr>
-                    </tbody>
-                    </table>
-                    
+                        </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="row">
-                        <button class="btn btn-outline-success fa fa-step-backward" id="previous_page"></button>
-                        <input class="form-control" style="width: 80px; text-align: center" value="1" id="pageValue"/>
-                        <button class="btn btn-outline-success fa fa-step-forward" id="forward_page"></button>
-                        
-                    </div>
-                </form>
             </div>
-        </div>
-    </div>
 
-    </div>
+        </div>
 </body>
 <script src="dist/bundle.js"></script>
 
