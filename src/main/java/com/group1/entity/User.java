@@ -27,6 +27,9 @@ public class User {
 	@Column(name="username", nullable=true)
 	private String username;
 
+	@Column(name="is_active", nullable=true)
+	private String is_active;
+
 
 	
 	
@@ -50,6 +53,10 @@ public class User {
 		return username;
 	}
 
+	public String getIs_active() {
+		return is_active;
+	}
+
 
 	
 	public void setId(String id) {
@@ -70,6 +77,10 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
 	}
 
 

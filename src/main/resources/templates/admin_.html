@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/e963692d4b.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>Admin</title>
+    <style>
+        .head-bar {
+            box-shadow: 0px 1px 5px 0px;
+            z-index: 100;
+        }
+
+        .head-bar-div {
+            height: 60px;
+            background-color: #28a745;
+            cursor: pointer;
+        }
+
+        .right-head-bar {
+
+            background-color: #4cb063;
+            position: relative;
+            box-shadow: 0px 0px 10px 0px;
+            user-select: none;
+            height: 100%;
+
+        }
+
+        .head-user-name {
+            height: 100%;
+            text-align: center;
+            color: white
+        }
+
+        .head-user-name p {
+
+            font-size: 20px;
+            top: 50%;
+            position: relative;
+            transform: translateY(-50%);
+
+        }
+
+        .centering {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .head-menu-bar {
+            height: 50px;
+            width: 50px;
+            /* background-color: black; */
+            border: 1px;
+            border-radius: 20%;
+            position: relative;
+            font-size: 48px;
+            text-align: center;
+            border: 1px solid white;
+            display: block !important;
+        }
+
+        .menu-node {
+            height: 50px;
+            background-color: #4cb063;
+            border: 1px solid white;
+            display: none;
+        }
+
+        .right-head-bar:hover .menu-node {
+            display: block;
+        }
+
+        .menu-list {
+            height: 25px;
+            font-size: 20px;
+            color: white
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-12 head-bar">
+        <div class="row">
+            <div class="col-md-12 head-bar-div">
+                <div class="row" style="height: 100%">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2 right-head-bar">
+                        <div class="row" style="height: 100%">
+                            <div class="col-md-9 head-user-name">
+                                <p>Dương Mẫn Đạt</p>
+                            </div>
+                            <div class="col-md-3" style="height: 100%">
+                                <div class="fa fa-bars head-menu-bar centering">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" style="text-decoration: none;">
+                            <div class="row menu-node">
+                                <div class="col-md-12 centering menu-list">Quản lý tài khoản</div>
+                            </div>
+                        </a>
+                        <a href="#" style="text-decoration: none;">
+                            <div class="row menu-node">
+                                <div class="col-md-12 centering menu-list">Đăng xuất</div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .menu {
+            height: 100vh;
+            width: 100%;
+            margin: 0px;
+            background-color: #edfef1;
+        }
+
+        .left-menu {
+            border-right: 1px solid #28a745;
+
+        }
+
+        .menu-bottom-node {
+            height: 60px;
+            background-color: #9ed9ac;
+            color: #00771c;
+            transition: 0.3s;
+        }
+
+        .menu-bottom-node:hover {
+            background-color: #369b58;
+            color: white;
+            text-decoration: none;
+
+        }
+
+        .menu-bottom-node-selected {
+            background-color: #58a973;
+            color: white;
+            text-decoration: none;
+
+        }
+
+        .menu-node-inside {
+            width: auto;
+            height: 30px;
+            font-size: 20px;
+        }
+
+        .filterable {
+            margin-top: 15px;
+        }
+
+        .filterable .panel-heading .pull-right {
+            margin-top: -20px;
+        }
+
+        .filterable .filters input[disabled] {
+            background-color: transparent;
+            border: none;
+            cursor: auto;
+            box-shadow: none;
+            padding: 0;
+            height: auto;
+        }
+
+        .filterable .filters input[disabled]::-webkit-input-placeholder {
+            color: #333;
+        }
+
+        .filterable .filters input[disabled]::-moz-placeholder {
+            color: #333;
+        }
+
+        .filterable .filters input[disabled]:-ms-input-placeholder {
+            color: #333;
+        }
+    </style>
+    <div class="row menu">
+        <div class="col-md-3 left-menu">
+            <a href="#xxx" class="row menu-bottom-node menu-bottom-node-selected">
+                <div class="centering menu-node-inside">
+                    Quản lý FILM
+                </div>
+            </a>
+            <a href="#xxx" class="row menu-bottom-node">
+                <div class="centering menu-node-inside">
+                    Quản lý thể loại
+                </div>
+            </a>
+            <a href="#xxx" class="row menu-bottom-node">
+                <div class="centering menu-node-inside">
+                    Quản lý Diển viên
+                </div>
+            </a>
+            <a href="#xxx" class="row menu-bottom-node">
+                <div class="centering menu-node-inside">
+                    Quản lý Quốc gia
+                </div>
+            </a>
+
+        </div>
+        <div class="col-md-9 right-menu">
+            <div class="container">
+                <div class="row" style="width: 100%; margin-top: 5%">
+                    <div class="row">
+                        <h3> Quản lý FILM </h3>
+                    </div>
+                    <div class="row">
+                        <div class="panel panel-success filterable">
+                            <div class="panel-heading">
+                                <div class="row" style="width: 100%;">
+                                    <div class="panel-title" style="margin-left:5px;">
+                                        <select class="form-control" id="mountData">
+                                            <option>10</option>
+                                            <option>20</option>
+                                            <option>30</option>
+                                            <option>40</option>
+                                            <option>50</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-success float-right ml-auto" id="addingFilm"><i
+                                            class="fa fa-plus" style="margin-right: 5px;"></i>Thêm Film</button>
+                                </div>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr class="filters">
+                                        <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Tên Tiếng việt"
+                                                disabled>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Tiếng Tiếng anh"
+                                                disabled>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Miêu tả" disabled>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Thời lượng" disabled>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Hình nền" disabled>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Ngày công chiếu"
+                                                disabled>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Trạng thái" disabled>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Công cụ" disabled>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_table">
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-outline-success fa fa-step-backward" id="previous_page"></button>
+                            <input class="form-control" style="width: 80px; text-align: center" value="1"
+                                id="pageValue" />
+                            <button class="btn btn-outline-success fa fa-step-forward" id="forward_page"></button>
+
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</body>
+<script src="dist/bundle.js"></script>
+
+</html>

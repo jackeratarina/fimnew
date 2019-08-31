@@ -16,7 +16,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: gray;">
 	<div th:include="~{/header.html :: header}"></div>
 	<br>
 
@@ -25,9 +25,9 @@
 			<li th:each="film,i: ${film}" th:if="${i.index}<6">
 				<div class="image_title container" style="margin: 10px">
 					<a class="row" th:href="'detail?id='+${film.getId()}" th:text="${film.getName() + ' - ' + film.getName2()}" style="font-size: 25px; margin: 5px"></a>
-					<p class="row" th:text="${film.getDescribe().substring(0,100) + '...'}" style="margin: 5px; color: white"></p>
+					<p class="row" th:text="${film.getDescribe().substring(0,film.getDescribe().length()/2) + '...'}" style="margin: 5px; color: white"></p>
 				</div> <a th:href="'detail?id='+${film.getId()}">
-					<img th:src="${#strings.replace(film.getImage(),'poster','preview')}" />
+					<img th:src="${film.getImage_poster()}" th:attr="url=${film.getImage()}" th:onerror="this.onerror=null;this.src=this.getAttribute('url')"/>
 			</a>
 			</li>
 		</ul>
@@ -40,8 +40,8 @@
 			<div class="float-left">
 				<h2>PHIM MỚI CẬP NHẬT</h2>
 			</div>
-			<div class="float-right btn btn-outline-primary">
-				<a href="#">xem thêm</a>
+			<div class="float-right btn btn-outline-primary" style="background-color: #007bff">
+				<a style="color: white;" href="show?page=1">Xem thêm</a>
 			</div>
 
 		</div>
@@ -49,17 +49,18 @@
 			
 			<div class="col-md-3 text-center" th:each="film,i: ${film}" th:if="${i.index}<16">
 				<a th:href="'detail?id='+${film.getId()}" style="width: 100% !important; text-decoration: none!important;"> <img
-					class="img-thumbnail" width="200px" height="260px"
+					class="img-thumbnail" width="200px" style="height:260px !important;"
 					th:src="${film.getImage()}">
 					<div class="movie-meta">
 						<div class="movie-title-1" th:text="${film.getName() + ' - ' + film.getName2()}"></div>
-						<span class="movie-title-chap" th:text="${film.getDuration() + ' phút'}"></span>
+						<span class="movie-title-chap" style="color: white;" th:text="${film.getDuration() + ' phút'}"></span>
 						<!-- <span class="ribbon">HD-Vietsub+Thuyết minh</span> -->
 					</div>
 				</a>
 			</div>
 
 		</div>
+		
 	</div>
 	<br>
 	

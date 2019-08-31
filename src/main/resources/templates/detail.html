@@ -6,7 +6,8 @@
 <title th:text="${film.getName() + ' - ' + film.getName2()}"></title>
 
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=388345122033999&autoLogAppEvents=1"></script>
+<script async defer crossorigin="anonymous"
+	src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=388345122033999&autoLogAppEvents=1"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style1.css}" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +20,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
+.movie-content {
+	padding: 15px;
+}
 </style>
 </head>
 <body>
@@ -31,74 +35,105 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div id="movie-1-img">
-							<img class="img-thumbnail"
+							<img
+								style="object-fit: contain; height: 100%; width: 100%;"
 								th:src="${film.getImage()}">
 							<ul style="padding-top: 5px; padding-left: 10px">
-								<a class="btn btn-success">Download</a>
-								<a class="btn btn-primary">Tralier</a>
-								<a class="btn btn-danger">Xem phim</a>
+								<a class="btn btn-lg btn-danger" style="width: 100%"
+									th:href="${'watch?id='+id}">Xem phim</a>
 							</ul>
 						</div>
-						
+
 					</div>
 					<div class="col-sm-6">
 						<h5>
-							<span><a href="" id="title-1-movie" th:text="${film.getName()}" style="font-size: 30px; color: white"></a></span>
+							<span><a href="" id="title-1-movie"
+								th:text="${film.getName()}"
+								style="font-size: 30px; color: white"></a></span>
 						</h5>
-						<span id="title-2-movie" th:text="${film.getName2()}" style="font-size: 15px"></span>
+						<span id="title-2-movie" th:text="${film.getName2()}"
+							style="font-size: 15px"></span>
 						<div class="scroll" style="background-color: #222">
-							<span class="movie-dt">Trạng thái:</span> <span class="movie-dd" style="color: red">Hoàn tất </span> <br> <span
-								class="movie-dt">Điểm IMDb:</span> <span class="movie-dd" style="color: #000; padding: 3px; font-size: 12px; font-weight: bold; background: #E3B71E;
-	/* -webkit-border-radius: 3px; */ -moz-border-radius: 3px; border-radius: 3px;" th:text="${film.getIMDB()}">Chưa cập nhật</span>
-							<br> <span
-								class="movie-dt" style="color: #46E1FF;">Đạo diễn:</span> <span class="movie-dd" style="color: #46E1FF;">Chưa cập nhật</span> <br> <span class="movie-dt" style="color: #46E1FF;">Quốc gia:</span> <a
-								class="movie-dd btn btn-outline-info btn-sm" style="color: #46E1FF;" th:href="${'/sort?country='+c.getId()}" th:each="c: ${countries}" th:text="${c.getName()}+ ','"></a> <br> <span class="movie-dt" style="color: #46E1FF;">Năm:</span>
-							<span class="movie-dd"><span style="color: #46E1FF;" th:text="${film.getDate()}"></span></span> <br> <span
-								class="movie-dt">Ngày ra rạp:</span> <span class="movie-dd" th:text="${film.getDate()}"></span>
-							<br> <span class="movie-dt">Thời lượng:</span> <span
-								class="movie-dd" th:text="${film.getDuration() + ' phút'}"></span> <br> <span
+							<span class="movie-dt">Trạng thái:</span> <span class="movie-dd"
+								style="color: red">Hoàn tất </span> <br> <span
+								class="movie-dt">Điểm IMDb:</span> <span class="movie-dd"
+								style="color: #000; padding: 3px; font-size: 12px; font-weight: bold; background: #E3B71E;
+	/* -webkit-border-radius: 3px; */ -moz-border-radius: 3px; border-radius: 3px;"
+								th:text="${film.getIMDB()}">Chưa cập nhật</span> <br> <span
+								class="movie-dt" style="color: #46E1FF;">Đạo diễn:</span> <span
+								class="movie-dd" style="color: #46E1FF;">Chưa cập nhật</span> <br>
+							<span class="movie-dt" style="color: #46E1FF;">Quốc gia:</span> <a
+								class="movie-dd btn btn-outline-info btn-sm"
+								style="color: #46E1FF;" th:href="${'/sort?country='+c.getId()}"
+								th:each="c: ${countries}" th:text="${c.getName()}+ ','"></a> <br>
+							<span class="movie-dt" style="color: #46E1FF;">Năm:</span> <span
+								class="movie-dd"><span style="color: #46E1FF;"
+								th:text="${film.getDate()}"></span></span> <br> <span
+								class="movie-dt">Ngày ra rạp:</span> <span class="movie-dd"
+								th:text="${film.getDate()}"></span> <br> <span
+								class="movie-dt">Thời lượng:</span> <span class="movie-dd"
+								th:text="${film.getDuration() + ' phút'}"></span> <br> <span
 								class="movie-dt">Chất lượng:</span> <span class="movie-dd">Bản
 								đẹp</span> <br> <span class="movie-dt">Độ phân giải:</span> <span
 								class="movie-dd">HD 720p</span> <br> <span class="movie-dt">Ngôn
 								ngữ:</span> <span class="movie-dd">Phụ đề việt + Thuyết minh</span> <br>
-							<span class="movie-dt" style="color: #46E1FF;">Thể loại:</span> <span class="movie-dd">
-								<a class="btn btn-outline-primary btn-sm" th:each="ff: ${categories}") th:href="${'/sort?cate='+ff.getId()}" th:text="${ff.getName()}"></a><br> <span class="movie-dt">Công ty SX:</span> <span
-								class="movie-dd">Chưa cập nhật</span>
+							<span class="movie-dt" style="color: #46E1FF;">Thể loại:</span> <span
+								class="movie-dd"> <a
+								class="btn btn-outline-primary btn-sm"
+								th:each="ff: ${categories}" )
+								th:href="${'/sort?cate='+ff.getId()}" th:text="${ff.getName()}"></a><br>
+								<span class="movie-dt">Công ty SX:</span> <span class="movie-dd">Chưa
+									cập nhật</span>
 						</div>
 					</div>
 				</div>
-				<div class="movie-content" style="margin-top: 20px; background-color: #222">
+				<br>
+				<div class="movie-content"
+					style="margin-top: 20px; background-color: #222">
 					<span class="title-content">NỘI DUNG PHIM</span><br> <span
 						class="content" th:text="${film.getDescribe()}"></span>
 				</div>
 				<div>
-					<div class="fb-comments" th:attr="data-href=${film.getInfo()}" data-width="" data-numposts="10" ></div>
+					<div class="fb-comments" th:attr="data-href=${film.getInfo()}"
+						data-width="" data-numposts="10"></div>
 				</div>
 			</div>
 			<style>
-			.img-actor {
-				padding:5px;
-				margin: 10px
-				}
-				.img-actor img{
-				width:100%;
-					
-				}
-				.img-actor h5{
-				}
-				body {
-				background-color : grey;
-					color : white;
-				}
-				iframe {
-				color:white !important}
-			</style>
+.img-actor {
+	padding: 5px;
+	margin: 10px
+}
+
+.img-actor img {
+	width: 100%;
+}
+
+.img-actor h5 {
+	
+}
+
+body {
+	background-color: grey;
+	color: white;
+}
+
+iframe {
+	color: white !important
+}
+</style>
 			<div class="col-sm-4">
-			<h3>Diễn viên</h3>
-				<div class="container border border-dark" style="height: 1000px;overflow: scroll; background-color: #222">
-					<a th:href="${'/sort?actor='+ac.getId()}" class="row img-actor border border-dark" th:each="ac : ${actors}">
-					<div class="col-md-6" ><img onerror="this.src='/images/thumb.jpg';" th:src="${'http://image.phimmoi.net/profile/'+#strings.substringAfter(#strings.substringAfter(ac.getId(),'-'),'-')}+'/medium.jpg'"/></div>
-						<div class="col-md-6" ><h5 th:text="${ac.getName()}"></h5></div>
+				<h3>Diễn viên</h3>
+				<div class="container border border-dark"
+					style="height: 1000px; overflow: scroll; background-color: #222">
+					<a th:href="${'/sort?actor='+ac.getId()}"
+						class="row img-actor border border-dark" th:each="ac : ${actors}">
+						<div class="col-md-6">
+							<img onerror="this.src='/images/thumb.jpg';"
+								th:src="${'http://image.phimmoi.net/profile/'+#strings.substringAfter(#strings.substringAfter(ac.getId(),'-'),'-')}+'/medium.jpg'" />
+						</div>
+						<div class="col-md-6">
+							<h5 th:text="${ac.getName()}"></h5>
+						</div>
 					</a>
 				</div>
 			</div>

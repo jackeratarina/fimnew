@@ -7,12 +7,13 @@ public class UserModel {
 		private String password;
 		private String role;
 		private String username;
+		private String is_active;
 	
 	public UserModel() {
 
 	}
 
-	public UserModel(String id,String email,String password,String role,String username) {
+	public UserModel(String id,String email,String password,String role,String username,String is_active) {
 		super();
 		
 		this.id = id;
@@ -20,6 +21,7 @@ public class UserModel {
 		this.password = password;
 		this.role = role;
 		this.username = username;
+		this.is_active = is_active;
 	}
 	
 	public String getId() {
@@ -40,6 +42,10 @@ public class UserModel {
 
 	public String getUsername() {
 		return username;
+	}
+
+	public String getIs_active() {
+		return is_active;
 	}
 
 	
@@ -63,7 +69,11 @@ public class UserModel {
 		this.username = username;
 	}
 
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
+	}
+
 	public static String getAllVar() {
-		return "id,email,password,role,username";
+		return "id,email,password,role,username,is_active";
 	}
 }

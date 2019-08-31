@@ -3,28 +3,25 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav col-md-9" id="top">
-				<li class="nav-item active"><a class="nav-link" href="/">TRANG
-						CHỦ </a></li>
+				<li class="nav-item active"><a class="nav-link" href="/">TRANG CHỦ</a></li>
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> THỂ LOẠI </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item"
-							th:href="'filmByCategory?id='+${cate.getId()}"
-							th:each="cate,i: ${cate}" th:text="${cate.getName()}"></a>
-
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="height: 200px; overflow: auto;">
+			<a class="dropdown-item"  th:each="categoryOfHeader,i: ${categoryOfHeader}" th:text="${categoryOfHeader.getName()}" th:href="'/sort?cate='+${categoryOfHeader.getId()}"></a>
+			
 					</div></li>
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> QUỐC GIA </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="height: 200px; overflow: auto;">
+						<a th:each="countriesOdHeader,i: ${countriesOdHeader}" class="dropdown-item" th:href="'/sort?country='+${countriesOdHeader.getId()}" th:text="${countriesOdHeader.getName()}"></a>
+
+
 					</div></li>
 
 				<li class="nav-item dropdown"><a
@@ -32,45 +29,41 @@
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> PHIM LẺ</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
+						<a class="dropdown-item" href="/sort?id=phim-le&year=2019">NĂM
+							2019</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2018">NĂM
+							2018</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2017">NĂM
+							2017</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2016">NĂM
+							2016</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2015">NĂM
+							2015</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2014">NĂM
+							2014</a> <a class="dropdown-item" href="/sort?id=phim-le&year=2013">NĂM
+							2013</a>
+
 					</div></li>
 
-				<li class="nav-item dropdown"><a
+				<!-- <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> PHIM BỘ</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
-					</div></li>
+						<a class="dropdown-item" href="/sort?cate=phim-bo&country=KR">HÀN QUỐC</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=HK">HONG
+							KONG</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=CN">TRUNG
+							QUỐC</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=TW">ĐÀI LOAN</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=TH">THÁI LAN</a> <a class="dropdown-item" href="/sort?cate=phim-bo&country=US">MỸ</a>
+					</div></li> -->
 
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> PHIM THUYẾT MINH</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
-					</div></li>
+				<div class="nav-item">
+					<a class="nav-link" href="/sort?id=phim-thuyet-minh" role="button"
+						aria-haspopup="true" aria-expanded="false"> PHIM THUYẾT MINH</a>
+				</div>
 
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> PHIM CHIẾU RẠP</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">VIỆT NAM/a> <a
-							class="dropdown-item" href="#">NHẬT</a> <a class="dropdown-item"
-							href="#">TRUNG</a>
-					</div></li>
+				<div class="nav-item">
+					<a class="nav-link" href="/sort?id=phim-chieu-rap" role="button"
+						aria-haspopup="true" aria-expanded="false"> PHIM CHIẾU RẠP</a>
+				</div>
+
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			<form class="form-inline my-2 my-lg-0" method="GET" action="sort">
+				<input class="form-control mr-sm-2" type="search" placeholder="TÌM KIẾM" aria-label="Search" name="search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">TÌM KIẾM</button>
 			</form>
 		</div>
 	</nav>
