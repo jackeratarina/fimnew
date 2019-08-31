@@ -88,11 +88,84 @@ public class FILMDAO {
 		List<FILM> film = q.getResultList();
 		return film;
 	}
-    public List<CategoryModel> listCategory() {
-        String sql = "select new "+CategoryModel.class.getName()+"("+CategoryModel.getAllVar()+") from "+Category.class.getName()+"";
-        TypedQuery<CategoryModel> q = entityManager.createQuery(sql, CategoryModel.class);
-        List<CategoryModel> cate = q.getResultList();
-        return cate;
+    public List<Category> listCategory() {
+        String sql = "select * from Category where is_active = '1'";
+		List<Category> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
+		return q;
     }
-
+    public List<Country> listCountry() {
+        String sql = "select * from Country";
+		List<Country> q = entityManager.createNativeQuery(sql, Country.class).getResultList();
+		return q;
+    }
+    
+    public List<Category> getlistCategory() {
+        String sql = "select * from Category";
+		List<Category> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
+		return q;
+    }   
+    
+    public void activeCategory(String id) {
+    	String sql = "update Category set is_active = 1 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    }
+    
+    public void disableCategory(String id) {
+    	String sql = "update Category set is_active = 0 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    }
+    
+    public Category getCategory(String id) {
+    	String sql = "select * from Category where id = ?1";
+		Category q = (Category) entityManager.createNativeQuery(sql, Category.class).setParameter(1, id).getSingleResult();
+		return q;
+    }
+    
+    public void addCategory(String id, String name, String is_active) {
+    	String sql = "insert into Category (id,name,is_active) values (?1,?2,?3)";
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, id);
+    	q.setParameter(2, name);
+    	q.setParameter(3, is_active);
+    	q.executeUpdate();
+    }
+    
+    public void updateCategory(String id,String name, String is_active) {
+    	String sql = "update Category set name = ?1, is_active = ?2 where id = ?3";
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, name);
+    	q.setParameter(2, is_active);
+    	q.setParameter(3, id);
+    	q.executeUpdate();
+    }
+    
+    public List<Actor> getListActor() {
+    	String sql = "select * from Actor";
+    	List<Actor> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
+    	return q;
+    }
+    public void inactiveActor(String id) {
+    	String sql = "update Actor set is_active = 0 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    	
+    }
+    public void activeActor(String id) {
+    	String sql = "update Actor set is_active = 1 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    	
+    }
+    public Actor getActor(String id) {
+    	String sql = "select * from Actor where id = ?1";
+		Actor q = (Actor) entityManager.createNativeQuery(sql, Actor.class).setParameter(1, id).getSingleResult();
+		return q;
+    }
+    public void updateActor(String id,String name) {
+    	String sql = "update Actor set name = ?1 where id = ?2";
+    	//entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, name);
+    	q.setParameter(2, id);
+    	q.executeUpdate();
+    }
+    
 }

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script src="https://use.fontawesome.com/e963692d4b.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<title>Admin</title>
+<style>
+.head-bar {
+	box-shadow: 0px 1px 5px 0px;
+	z-index: 100;
+}
+
+.head-bar-div {
+	height: 60px;
+	background-color: #28a745;
+	cursor: pointer;
+}
+
+.right-head-bar {
+	background-color: #4cb063;
+	position: relative;
+	box-shadow: 0px 0px 10px 0px;
+	user-select: none;
+	height: 100%;
+}
+
+.head-user-name {
+	height: 100%;
+	text-align: center;
+	color: white
+}
+
+.head-user-name p {
+	font-size: 20px;
+	top: 50%;
+	position: relative;
+	transform: translateY(-50%);
+}
+
+.centering {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%)
+}
+
+.head-menu-bar {
+	height: 50px;
+	width: 50px;
+	/* background-color: black; */
+	border: 1px;
+	border-radius: 20%;
+	position: relative;
+	font-size: 48px;
+	text-align: center;
+	border: 1px solid white;
+	display: block !important;
+}
+
+.menu-node {
+	height: 50px;
+	background-color: #4cb063;
+	border: 1px solid white;
+	display: none;
+}
+
+.right-head-bar:hover .menu-node {
+	display: block;
+}
+
+.menu-list {
+	height: 25px;
+	font-size: 20px;
+	color: white
+}
+</style>
+</head>
+
+<body style="background-color: #edfef1">
+	<div class="col-md-12 head-bar">
+		<div class="row">
+			<div class="col-md-12 head-bar-div">
+				<div class="row" style="height: 100%">
+					<div class="col-md-10"></div>
+					<div class="col-md-2 right-head-bar">
+						<div class="row" style="height: 100%">
+							<div class="col-md-9 head-user-name">
+								<p>Dương Mẫn Đạt</p>
+							</div>
+							<div class="col-md-3" style="height: 100%">
+								<div class="fa fa-bars head-menu-bar centering"></div>
+							</div>
+						</div>
+						<a href="#" style="text-decoration: none;">
+							<div class="row menu-node">
+								<div class="col-md-12 centering menu-list">Quản lý tài
+									khoản</div>
+							</div>
+						</a> <a href="#" style="text-decoration: none;">
+							<div class="row menu-node">
+								<div class="col-md-12 centering menu-list">Đăng xuất</div>
+							</div>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<style>
+.menu {
+	width: 100%;
+	margin: 0px;
+	background-color: #edfef1;
+}
+
+.left-menu {
+	border-right: 1px solid #28a745;
+}
+
+.menu-bottom-node {
+	height: 60px;
+	background-color: #9ed9ac;
+	color: #00771c;
+	transition: 0.3s;
+}
+
+.menu-bottom-node:hover {
+	background-color: #369b58;
+	color: white;
+	text-decoration: none;
+}
+
+.menu-bottom-node-selected {
+	background-color: #58a973;
+	color: white;
+	text-decoration: none;
+}
+
+.menu-node-inside {
+	width: auto;
+	height: 30px;
+	font-size: 20px;
+}
+
+.filterable {
+	margin-top: 15px;
+}
+
+.filterable .panel-heading .pull-right {
+	margin-top: -20px;
+}
+
+.filterable .filters input[disabled] {
+	background-color: transparent;
+	border: none;
+	cursor: auto;
+	box-shadow: none;
+	padding: 0;
+	height: auto;
+}
+
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+	color: #333;
+}
+
+.filterable .filters input[disabled]::-moz-placeholder {
+	color: #333;
+}
+
+.filterable .filters input[disabled]:-ms-input-placeholder {
+	color: #333;
+}
+</style>
+	<div class="row menu">
+		<div class="col-md-3 left-menu">
+			<a href="#xxx" class="row menu-bottom-node">
+				<div class="centering menu-node-inside">Quản lý FILM</div>
+			</a> <a href="#xxx"
+				class="row menu-bottom-node  menu-bottom-node">
+				<div class="centering menu-node-inside">Quản lý thể loại</div>
+			</a> <a href="#xxx" class="row menu-bottom-node-selected">
+				<div class="centering menu-node-inside">Quản lý Diển viên</div>
+			</a> <a href="#xxx" class="row menu-bottom-node">
+				<div class="centering menu-node-inside">Quản lý Quốc gia</div>
+			</a>
+
+		</div>
+		<div class="col-md-9 right-menu" style="margin-top: 35px;">
+			<form action="/editActor123" >
+				<div class="form-group">
+					<label for="uname">Id:</label> 
+					<input type="text" class="form-control col-md-7" name="id"    readonly="readonly" th:value="${actor.getId()}">
+				</div>
+				
+				<div class="form-group">
+					<label for="pwd">Tên diễn viên:</label> <input type="text"
+						class="form-control col-md-7"  name = "name" required th:value="${actor.getName()}">
+				</div>
+				<button type="submit" class="btn btn-primary">Hoàn tất</button>
+			</form>
+
+		</div>
+</body>
+
+<script src="dist/bundle.js"></script>
+
+</html>
