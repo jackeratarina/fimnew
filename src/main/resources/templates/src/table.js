@@ -1,9 +1,9 @@
 import $ from "jquery";
 export var importData = function(selector, data=null, append=null){
     if(data!==null){
-        $(selector).html(data);
+        $(selector).html($(data));
     }else if(append !== null){
-        $(selector).append($(data));
+        $(selector).append($(append));
     }
     
 }

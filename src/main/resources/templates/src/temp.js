@@ -4,7 +4,7 @@ export var film_node = function(film, stt){return `<tr>
 <td>${film.name2}</td>
 <td><div class="btn btn-primary btn-xs fa fa-eye show-info" data-info="${film.describe}"></div></td>
 <td>${film.duration} phút</td>
-<td><div class="btn btn-primary btn-xs fa fa-eye show_pics" data-href="${film.image}"></div></td>
+<td><div class="btn btn-primary btn-xs fa fa-eye show_pics" data-href="${film.image}"></div><div class="btn btn-danger btn-xs fa fa-eye show_pics" data-href="${film.image_poster}"></div></td>
 <td>${film.date}</td>
 <td><div class="btn btn-default btn-xs fa fa-${film.is_active=='1'?'unlock':'lock'}"></td>
 <td>
@@ -14,7 +14,7 @@ export var film_node = function(film, stt){return `<tr>
 </td>
 </tr>`;};
 export class Film {
-    constructor(id,date,describe,duration,image,IMDB,info,name,name2,resolution,status,is_active,created_date){
+    constructor(id,date,describe,duration,image,IMDB,info,name,name2,resolution,status,is_active,created_date, image_poster){
         this.id = id;
 		this.date = date;
 		this.describe = describe;
@@ -28,5 +28,6 @@ export class Film {
 		this.status = status;
 		this.is_active = is_active;
 		this.created_date = created_date;
+		this.image_poster = image_poster;
     }
 }

@@ -58,16 +58,16 @@ public class FILMDAO {
 		return q.getResultList();
 	}
 	
-	public List<FILM> listFILMInfo(int mount, int from) {
-		String sql = "select top (?) * from FILM where id not in (select top (?) from FILM)";
-		Query q = entityManager.createNativeQuery(sql, FILM.class);
-		q.setParameter(1, mount);
-		q.setParameter(2, from+from);
-		List<FILM> film = q.getResultList();
-		return film;
-	}
+//	public List<FILM> listFILMInfo(int mount, int from) {
+//		String sql = "select top (?) * from FILM where id not in (select top (?) from FILM)";
+//		Query q = entityManager.createNativeQuery(sql, FILM.class);
+//		q.setParameter(1, mount);
+//		q.setParameter(2, from+from);
+//		List<FILM> film = q.getResultList();
+//		return film;
+//	}
 	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor, String search) {
-		String sql = "select * from FILM where id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
+		String sql = "select * from FILM where id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter("mount", mount);
 		q.setParameter("top", mount*page);
@@ -81,7 +81,7 @@ public class FILMDAO {
 		return film;
 	}
 	public List<FILM> listFILMInfoPage(int mount, int page) {
-		String sql = "select * from FILM where is_active = 1 order by created_date OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
+		String sql = "select * from FILM  order by created_date DESC OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter(1, mount*page);
 		q.setParameter(2, mount);
