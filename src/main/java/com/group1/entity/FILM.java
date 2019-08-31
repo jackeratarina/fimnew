@@ -51,6 +51,9 @@ public class FILM {
 	@Column(name="created_date", nullable=true)
 	private java.sql.Timestamp created_date;
 
+	@Column(name="image_poster", nullable=true)
+	private String image_poster;
+
 
 	
 	
@@ -106,6 +109,10 @@ public class FILM {
 		return created_date;
 	}
 
+	public String getImage_poster() {
+		return image_poster;
+	}
+
 
 	
 	public void setId(String id) {
@@ -158,6 +165,10 @@ public class FILM {
 
 	public void setCreated_date(java.sql.Timestamp created_date) {
 		this.created_date = created_date;
+	}
+
+	public void setImage_poster(String image_poster) {
+		this.image_poster = image_poster;
 	}
 
 

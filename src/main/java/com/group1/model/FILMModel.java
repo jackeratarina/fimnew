@@ -15,12 +15,13 @@ public class FILMModel {
 		private String status;
 		private String is_active;
 		private java.sql.Timestamp created_date;
+		private String image_poster;
 	
 	public FILMModel() {
 
 	}
 
-	public FILMModel(String id,String date,String describe,float duration,String image,String IMDB,String info,String name,String name2,String resolution,String status,String is_active,java.sql.Timestamp created_date) {
+	public FILMModel(String id,String date,String describe,float duration,String image,String IMDB,String info,String name,String name2,String resolution,String status,String is_active,java.sql.Timestamp created_date,String image_poster) {
 		super();
 		
 		this.id = id;
@@ -36,6 +37,7 @@ public class FILMModel {
 		this.status = status;
 		this.is_active = is_active;
 		this.created_date = created_date;
+		this.image_poster = image_poster;
 	}
 	
 	public String getId() {
@@ -88,6 +90,10 @@ public class FILMModel {
 
 	public java.sql.Timestamp getCreated_date() {
 		return created_date;
+	}
+
+	public String getImage_poster() {
+		return image_poster;
 	}
 
 	
@@ -143,7 +149,11 @@ public class FILMModel {
 		this.created_date = created_date;
 	}
 
+	public void setImage_poster(String image_poster) {
+		this.image_poster = image_poster;
+	}
+
 	public static String getAllVar() {
-		return "id,date,describe,duration,image,IMDB,info,name,name2,resolution,status,is_active,created_date";
+		return "id,date,describe,duration,image,IMDB,info,name,name2,resolution,status,is_active,created_date,image_poster";
 	}
 }
