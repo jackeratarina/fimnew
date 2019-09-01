@@ -21,7 +21,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.group1.dao.FILMDAO;
 import com.group1.entity.Actor;
+import com.group1.entity.ActorInFilm;
+import com.group1.entity.CategoriesOfFilm;
 import com.group1.entity.Category;
+import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
 import com.group1.model.CategoryModel;
@@ -187,5 +190,56 @@ public class AdminController {
 		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 		String json = gson.toJson(response);
 		return json;
+	}
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/actor/search", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String actor_search(Model model, String name) {
+		List<Actor> actors = fimdao.searchActorByName(name);
+		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+		String json = gson.toJson(actors);
+		return json;
+	}
+	///admin/actor_film/create
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/actor_film/create", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String actor_add(Model model, ActorInFilm aif) {
+		fimdao.addActorForFilm(aif);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/category_film/create", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String cate_add(Model model, CategoriesOfFilm cof) {
+		fimdao.addCategoryForFilm(cof);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/country_film/create", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String country_add(Model model, CountriesOfFilm countryof) {
+		fimdao.addCountryForFilm(countryof);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/actor_film/remove", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String actor_remove(Model model, ActorInFilm aif) {
+		fimdao.removeActorForFilm(aif);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/category_film/remove", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String cate_remove(Model model, CategoriesOfFilm cof) {
+		fimdao.removeCategoryForFilm(cof);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/country_film/remove", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String country_remove(Model model, CountriesOfFilm countryof) {
+		fimdao.removeCountryForFilm(countryof);
+		return "{}";
 	}
 }

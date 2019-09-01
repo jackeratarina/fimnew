@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.group1.entity.Actor;
+import com.group1.entity.ActorInFilm;
+import com.group1.entity.CategoriesOfFilm;
 import com.group1.entity.Category;
 import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
@@ -72,9 +74,9 @@ public class FILMDAO {
 	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor, String search, boolean main) {
 		String sql = "";
 		if(main) {
-			sql = "select * from FILM where is_active = 1 and id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
+			sql = "select * from FILM where is_active = 1 and id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (LOWER(name) like :search or LOWER(name2) like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
 		}else {
-			sql = "select * from FILM where id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
+			sql = "select * from FILM where id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (LOWER(name) like :search or LOWER(name2) like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
 		}
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter("mount", mount);
@@ -83,7 +85,7 @@ public class FILMDAO {
 		q.setParameter("country", country);
 		q.setParameter("year", "%"+year);
 		q.setParameter("actor", actor);
-		q.setParameter("search", "%"+search.replace(" ", "%")+"%");
+		q.setParameter("search", "%"+search.toLowerCase().replace(" ", "%")+"%");
 		
 		List<FILM> film = q.getResultList();
 		return film;
@@ -182,6 +184,37 @@ public class FILMDAO {
     	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
     	
     }
+    public void addActorForFilm(ActorInFilm aif) {
+    	String sql = "insert into ActorInFilm (id, name_in, id_film, id_actor) values (?1, ?2, ?3, ?4)";
+    	entityManager.createNativeQuery(sql).setParameter(1, aif.getId()).setParameter(2, aif.getName_in()).setParameter(3, aif.getId_film()).setParameter(4, aif.getId_actor()).executeUpdate();
+    }
+    public void addCategoryForFilm(CategoriesOfFilm cof) {
+    	String sql = "insert into CategoriesOfFilm (id, id_film, id_category) values (?1, ?2, ?3)";
+    	entityManager.createNativeQuery(sql).setParameter(1, cof.getId()).setParameter(2, cof.getId_film()).setParameter(3, cof.getId_category()).executeUpdate();
+    }
+    public void addCountryForFilm(CountriesOfFilm cof) {
+    	String sql = "insert into CountriesOfFilm (id, id_film, id_country) values (?1, ?2, ?3)";
+    	entityManager.createNativeQuery(sql).setParameter(1, cof.getId()).setParameter(2, cof.getId_film()).setParameter(3, cof.getId_country()).executeUpdate();
+    }
+    public void removeActorForFilm(ActorInFilm aif) {
+    	String sql = "delete from ActorInFilm where id_film = ?1 and id_actor = ?2";
+    	entityManager.createNativeQuery(sql).setParameter(1, aif.getId_film()).setParameter(2, aif.getId_actor()).executeUpdate();
+    }
+    public void removeCategoryForFilm(CategoriesOfFilm cof) {
+    	String sql = "delete from CategoriesOfFilm where id_film = ?1 and id_category = ?2";
+    	entityManager.createNativeQuery(sql).setParameter(1, cof.getId_film()).setParameter(2, cof.getId_category()).executeUpdate();
+    }
+    public void removeCountryForFilm(CountriesOfFilm cof) {
+    	String sql = "delete from CountriesOfFilm where id_film = ?1 and id_country = ?2";
+    	entityManager.createNativeQuery(sql).setParameter(1, cof.getId_film()).setParameter(2, cof.getId_country()).executeUpdate();
+    }
+    public int removeActorForFilm(String id) {
+		String sql = "delete from FILM where id = ?1";
+		Query q = entityManager.createNativeQuery(sql, FILM.class);
+		q.setParameter(1, id);
+		int i = q.executeUpdate();
+		return i;
+	}
     public Actor getActor(String id) {
     	String sql = "select * from Actor where id = ?1";
 		Actor q = (Actor) entityManager.createNativeQuery(sql, Actor.class).setParameter(1, id).getSingleResult();
@@ -195,5 +228,10 @@ public class FILMDAO {
     	q.setParameter(2, id);
     	q.executeUpdate();
     }
-    
+    public List<Actor> searchActorByName(String name){
+    	String sql = "select * from Actor where LOWER(name) like ?1";
+    	Query q = entityManager.createNativeQuery(sql, Actor.class);
+    	q.setParameter(1, "%" + name.toLowerCase() + "%");
+    	return q.getResultList();
+    }
 }

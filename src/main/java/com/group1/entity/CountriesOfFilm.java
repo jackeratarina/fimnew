@@ -5,19 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 @Entity
 @Table(name="CountriesOfFilm")
-public class CountriesOfFilm {
-	@Id
+public class CountriesOfFilm implements Serializable{
+	
 	@Column(name="id", nullable=false)
 	private String id;
 	
 	
-	@Column(name="id_country", nullable=true)
+	@Id
+	@Column(name="id_country", nullable=false)
 	private String id_country;
 
-	@Column(name="id_film", nullable=true)
+	@Id
+	@Column(name="id_film", nullable=false)
 	private String id_film;
 
 

@@ -5,51 +5,64 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 @Entity
 @Table(name="FILM")
-public class FILM {
+public class FILM implements Serializable{
 	@Id
 	@Column(name="id", nullable=false)
 	private String id;
 	
 	
+	
 	@Column(name="date", nullable=true)
 	private String date;
 
+	
 	@Column(name="describe", nullable=true)
 	private String describe;
 
+	
 	@Column(name="duration", nullable=true)
 	private float duration;
 
+	
 	@Column(name="image", nullable=true)
 	private String image;
 
+	
 	@Column(name="IMDB", nullable=true)
 	private String IMDB;
 
+	
 	@Column(name="info", nullable=true)
 	private String info;
 
+	
 	@Column(name="name", nullable=true)
 	private String name;
 
+	
 	@Column(name="name2", nullable=true)
 	private String name2;
 
+	
 	@Column(name="resolution", nullable=true)
 	private String resolution;
 
+	
 	@Column(name="status", nullable=true)
 	private String status;
 
+	
 	@Column(name="is_active", nullable=true)
 	private String is_active;
 
+	
 	@Column(name="created_date", nullable=true)
 	private java.sql.Timestamp created_date;
 
+	
 	@Column(name="image_poster", nullable=true)
 	private String image_poster;
 

@@ -5,18 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 @Entity
 @Table(name="Country")
-public class Country {
+public class Country implements Serializable{
 	@Id
 	@Column(name="id", nullable=false)
 	private String id;
 	
 	
+	
 	@Column(name="name", nullable=true)
 	private String name;
 
+	
 	@Column(name="is_active", nullable=true)
 	private String is_active;
 

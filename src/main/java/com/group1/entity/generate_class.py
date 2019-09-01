@@ -57,6 +57,7 @@ tables['ListFilm'].append('id_film')
 tables['ListFilm'].append('id_playlist')
 
 column = """
+	{is_id}
 	@Column(name="{column_name}", nullable=true)
 	private {type} {column_name};
 """
@@ -77,10 +78,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 @Entity
 @Table(name="{table_name}")
-public class {table_name} {
+public class {table_name} implements Serializable{
 	@Id
 	@Column(name="id", nullable=false)
 	private String id;
@@ -135,10 +136,12 @@ for table in tables:
 			type = 'int'
 		if(i=='created_date'):
 			type = 'java.sql.Timestamp'
+		if(i.find('id_')!=-1):
+			mytemp = mytemp.replace('@Id','')
 		tmp_listparam += type + ' ' + i + ','
 		tmp_constrct += temp_contr.replace('{column_name}',i)
 		tmp_declare += temp_declare.replace('{column_name}',i).replace('{type}',type)
-		tmp_column += column.replace('{column_name}',i).replace('{type}',type)
+		tmp_column += column.replace('{column_name}',i).replace('{type}',type).replace('{is_id}',['','@Id'][i.find('id_')!=-1]).replace('nullable=true',['nullable=true','nullable=false'][i.find('id_')!=-1])
 		getter_column += getter.replace('{column_name}',i).replace('{type}',type).replace('{column_name_}',i[0].upper()+i[1:])
 		setter_column += setter.replace('{column_name}',i).replace('{type}',type).replace('{column_name_}',i[0].upper()+i[1:])
 	mytemp_model = mytemp_model.replace('{list_declare}', temp_declare.replace('{column_name}',"id").replace('{type}',"String")+tmp_declare)

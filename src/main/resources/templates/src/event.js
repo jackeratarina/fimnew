@@ -156,10 +156,221 @@ var tableFormInit = (data={})=>{
         customDays: ['CH', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
       })
 }
-var initEventAdvanceSettings = ()=>{
+var initEventAdvanceSettings = (film_id, my_node)=>{
     $(advance_node.actor_input).on('change', (e)=>{
-        console.log($(e.target).val());
-    })
+        $.ajax({
+            url : 'http://localhost:8080/admin/actor/search',
+            method: 'GET',
+            data : {name :$(e.target).val()},
+            success:  (e)=>{
+                var select_actor = "";
+                e.forEach((e)=>{
+                    select_actor += `<option value="${e.id}">${e.name}</option>`;
+                });
+                $(advance_node.actor_list).html(`<select class="form-control">${select_actor}</select>`);
+            }
+        });
+    });
+    $(advance_node.add_actor).on('click', (e)=>{
+        var actor_id = $(advance_node.actor_input).val();
+        Swal.fire({
+            title: 'Nhập tên trong phim của diển viên - ' + actor_id,
+            input: 'text',
+            inputAttributes: {
+              autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Thêm diển viên',
+            showLoaderOnConfirm: true
+          }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url : 'http://localhost:8080/admin/actor_film/create',
+                    method: 'POST',
+                    data : {
+                        id : uuidv4(),
+                        id_film : film_id,
+                        id_actor : actor_id,
+                        name_in : result.value
+                    },
+                    success:  (e)=>{
+                        Swal.fire(
+                            'Thêm thành công!',
+                            'Diên viên đã thêm cho film thành công!.',
+                            'success'
+                        );
+                        $(my_node).trigger('click');
+                    },
+                    error: (e)=>{
+                        Swal.fire({title:'Error',text:'Có lỗi xảy ra khi lưu- server-error',type: 'error'});
+                        $(my_node).trigger('click');
+                    }
+                });
+            }
+          })
+    });
+    $(advance_node.add_cate).on('click', (e)=>{
+        var id_category = $(advance_node.category_input).val();
+        $.ajax({
+            url : 'http://localhost:8080/admin/category_film/create',
+            method: 'POST',
+            data : {
+                id : uuidv4(),
+                id_film : film_id,
+                id_category : id_category
+            },
+            success:  (e)=>{
+                Swal.fire(
+                    'Thêm thành công!',
+                    'Thể loại đã thêm cho film thành công!.',
+                    'success'
+                );
+                $(my_node).trigger('click');
+            },
+            error: (e)=>{
+                Swal.fire({title:'Error',text:'Có lỗi xảy ra khi lưu- server-error',type: 'error'});
+                $(my_node).trigger('click');
+            }
+        });
+    });
+    $(advance_node.add_country).on('click', (e)=>{
+        var id_country = $(advance_node.country_input).val();
+        $.ajax({
+            url : 'http://localhost:8080/admin/country_film/create',
+            method: 'POST',
+            data : {
+                id : uuidv4(),
+                id_film : film_id,
+                id_country : id_country
+            },
+            success:  (e)=>{
+                Swal.fire(
+                    'Thêm thành công!',
+                    'Quốc gia đã thêm cho film thành công!.',
+                    'success'
+                );
+                $(my_node).trigger('click');
+            },
+            error: (e)=>{
+                Swal.fire({title:'Error',text:'Có lỗi xảy ra khi lưu- server-error',type: 'error'});
+                $(my_node).trigger('click');
+            }
+        });
+    });
+    $(advance_node.country_remove).each(function () {
+        var node = this;
+        $(node).on('click',function(e){
+            let id_country = this.getAttribute("data-id");
+            Swal.fire({
+                title: 'Bạn có chắc không?',
+                text: "Bạn sẽ không thể hoàn tác khi xóa!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Vâng, xóa đi!'
+              }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url : 'http://localhost:8080/admin/country_film/remove',
+                        method: 'POST',
+                        data : {
+                            id_film : film_id,
+                            id_country : id_country
+                        },
+                        success:  (e)=>{
+                            Swal.fire(
+                                'Deleted!',
+                                'Film đã được xóa thành công.',
+                                'success'
+                              )
+                            $(my_node).trigger('click');
+                        },
+                        error : (e)=>{
+                            Swal.fire({title:'Error',text:'Có lỗi xảy ra khi xóa- server-error',type: 'error'});
+                        }
+                    });
+                  
+                }
+              })
+        });
+    });
+    $(advance_node.cate_remove).each(function () {
+        var node = this;
+        $(node).on('click',function(e){
+            let id_category = this.getAttribute("data-id");
+            Swal.fire({
+                title: 'Bạn có chắc không?',
+                text: "Bạn sẽ không thể hoàn tác khi xóa!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Vâng, xóa đi!'
+              }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url : 'http://localhost:8080/admin/category_film/remove',
+                        method: 'POST',
+                        data : {
+                            id_film : film_id,
+                            id_category : id_category
+                        },
+                        success:  (e)=>{
+                            Swal.fire(
+                                'Deleted!',
+                                'Film đã được xóa thành công.',
+                                'success'
+                              )
+                            $(my_node).trigger('click');
+                        },
+                        error : (e)=>{
+                            Swal.fire({title:'Error',text:'Có lỗi xảy ra khi xóa- server-error',type: 'error'});
+                        }
+                    });
+                  
+                }
+              })
+        });
+    });
+    $(advance_node.actor_remove).each(function () {
+        var node = this;
+        $(node).on('click',function(e){
+            let id_actor = this.getAttribute("data-id");
+            Swal.fire({
+                title: 'Bạn có chắc không?',
+                text: "Bạn sẽ không thể hoàn tác khi xóa!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Vâng, xóa đi!'
+              }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url : 'http://localhost:8080/admin/actor_film/remove',
+                        method: 'POST',
+                        data : {
+                            id_film : film_id,
+                            id_actor : id_actor
+                        },
+                        success:  (e)=>{
+                            Swal.fire(
+                                'Deleted!',
+                                'Film đã được xóa thành công.',
+                                'success'
+                              )
+                            $(my_node).trigger('click');
+                        },
+                        error : (e)=>{
+                            Swal.fire({title:'Error',text:'Có lỗi xảy ra khi xóa- server-error',type: 'error'});
+                        }
+                    });
+                  
+                }
+              })
+        });
+    });
 }
 export var initEventNode = ()=>{
     $(class_pics).each(function () {
@@ -196,7 +407,7 @@ export var initEventNode = ()=>{
                     var advance_f = advance_film(e, film.id);
                     $(modal_var.modal_title).text(film.name + " - " + film.name2);
                     $(modal_var.modal_body).html(advance_f);
-                    initEventAdvanceSettings();
+                    initEventAdvanceSettings(film.id, node);
                     $(modal_var.modal_submit).css('display','none');
                     $(my_modal).slideDown();
                 },

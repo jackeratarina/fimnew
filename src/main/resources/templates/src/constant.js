@@ -20,7 +20,20 @@ export var modal_var = {
     modal_submit: "#modal_submit"
 }
 export var advance_node = {
-    actor_input : '#actor_input'
+    actor_input : '#actor_input',
+    actor_list : '#actor_list',
+    add_country : '#add_country',
+    add_actor : '#add_actor',
+    add_cate : '#add_cate',
+    category_list : '#category_list',
+    country_list : '#country_list',
+    country_input : '#country_input',
+    category_input : '#category_input',
+    actor_remove : '.actor_remove',
+    cate_remove : '.cate_remove',
+    country_remove : '.country_remove',
+    film_info_modal: '#film_info_modal'
+
 }
 export var film_form_var = {
     film_date: "#film_date"

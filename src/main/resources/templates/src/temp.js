@@ -84,15 +84,15 @@ export var advance_film = (e, id)=>{
 	});
 	var actor_list = "";
 	e.filmActors.forEach((e)=>{
-		actor_list += `<div class="btn btn-success btn-sm margin5 actor_remove" data-actor-id="${e.id}">${e.name}</div>`;
+		actor_list += `<div class="btn btn-success btn-sm margin5 actor_remove" data-id="${e.id}">${e.name}</div>`;
 	});
 	var cate_list = "";
 	e.filmCateroies.forEach((e)=>{
-		cate_list += `<div class="btn btn-primary btn-sm margin5 cate_remove" data-cate-id="${e.id}">${e.name}</div>`;
+		cate_list += `<div class="btn btn-primary btn-sm margin5 cate_remove" data-id="${e.id}">${e.name}</div>`;
 	});
 	var country_list = "";
 	e.filmCounties.forEach((e)=>{
-		country_list += `<div class="btn btn-danger btn-sm margin5 country_remove" data-country-id="${e.id}">${e.name}</div>`;
+		country_list += `<div class="btn btn-danger btn-sm margin5 country_remove" data-id="${e.id}">${e.name}</div>`;
 	});
 	
 	return `<div class="form-group">
@@ -102,13 +102,13 @@ export var advance_film = (e, id)=>{
 		<div class="panel panel-info">
 			<div class="panel-heading search_panel">
 				<div class="col-md-8">
-					<input placeholder="Tìm Thể loại ở đây" class="form-control" list="category_list">
+					<input placeholder="Tìm Thể loại ở đây" class="form-control" id="category_input" list="category_list">
 					<datalist id="category_list">
 						${select_cate}
 					</datalist>
 				</div>
 				<div class="col-md-4">
-					<button class="btn btn-primary">Thêm</button>
+					<button class="btn btn-primary" id="add_cate">Thêm</button>
 				</div>
 			</div>
 			<div class="panel-body">
@@ -128,7 +128,7 @@ export var advance_film = (e, id)=>{
 						</datalist>
 					</div>
 					<div class="col-md-4">
-						<button class="btn btn-success">Thêm</button>
+						<button class="btn btn-success" id="add_actor">Thêm</button>
 					</div>
 				</div>
 				<div class="panel-body">
@@ -143,13 +143,13 @@ export var advance_film = (e, id)=>{
 				<div class="panel panel-danger">
 					<div class="panel-heading search_panel">
 						<div class="col-md-8">
-							<input placeholder="Tìm Quốc gia ở đây" class="form-control" list="country_list">
+							<input placeholder="Tìm Quốc gia ở đây" class="form-control" list="country_list" id="country_input">
 							<datalist id="country_list">
 								${select_country}
 							</datalist>
 						</div>
 						<div class="col-md-4">
-							<button class="btn btn-danger">Thêm</button>
+							<button class="btn btn-danger" id="add_country">Thêm</button>
 						</div>
 					</div>
 					<div class="panel-body">
