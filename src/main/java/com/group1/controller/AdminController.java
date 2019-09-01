@@ -151,14 +151,14 @@ public class AdminController {
 		model.addAttribute("listCountry", listCountry);
 	}
 	
-	@RequestMapping(value = "/country", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/country", method = RequestMethod.GET)
 	public String manageCountry(Model model) {
 		showCountry(model);
 		return "manageCountry";
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/country/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/country/delete/{id}", method = RequestMethod.GET)
 	public String deleteCountry(Model model, @PathVariable String id) {
 		fimdao.disableCountry(id);
 		showCountry(model);
@@ -166,7 +166,7 @@ public class AdminController {
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/country/disableCoutry/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/country/disableCoutry/{id}", method = RequestMethod.GET)
 	public String disableCountry(Model model, @PathVariable String id) {
 		fimdao.disableCountry(id);
 		showCountry(model);
@@ -174,14 +174,14 @@ public class AdminController {
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/country/enableCoutry/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/country/enableCoutry/{id}", method = RequestMethod.GET)
 	public String enableCountry(Model model, @PathVariable String id) {
 		fimdao.enableCountry(id);;
 		showCountry(model);
 		return "manageCountry";
 	}
 	
-	@RequestMapping(value = "/country/find/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/country/find/{id}", method = RequestMethod.GET)
 	public String findCountry(Model model, @PathVariable String id) {
 		Country country = fimdao.findCountry(id);
 		model.addAttribute("country", country);
@@ -189,7 +189,7 @@ public class AdminController {
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/country/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/country/update", method = RequestMethod.POST)
 	public String updateCountry(Model model, @ModelAttribute("countrymodel") CountryModel countryModel) {
 		fimdao.updateCountry(countryModel.getId(), countryModel.getName());
 		
