@@ -191,11 +191,16 @@
         .filterable .filters input[disabled]:-ms-input-placeholder {
             color: #333;
         }
-        .margin5{
+
+        .margin5 {
             margin: 3px;
         }
-        .search_panel{
-            position: relative;height: auto; width: auto;display: flex;
+
+        .search_panel {
+            position: relative;
+            height: auto;
+            width: auto;
+            display: flex;
         }
     </style>
     <div class="row menu">
@@ -233,13 +238,16 @@
                             <div class="panel-heading">
                                 <div class="row" style="width: 100%;">
                                     <div class="panel-title" style="margin-left:5px;">
-                                        <select class="form-control" id="mountData">
-                                            <option>10</option>
-                                            <option>20</option>
-                                            <option>30</option>
-                                            <option>40</option>
-                                            <option>50</option>
-                                        </select>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            <select class="form-control" id="mountData">
+                                                <option>10</option>
+                                                <option>20</option>
+                                                <option>30</option>
+                                                <option>40</option>
+                                                <option>50</option>
+                                            </select></div><div class="col-md-8">
+                                            <input class="form-control" placeholder="Tìm kiếm ở đây" id="search_table"></div></div>
                                     </div>
                                     <button class="btn btn-success float-right ml-auto" id="addingFilm"><i
                                             class="fa fa-plus" style="margin-right: 5px;"></i>Thêm Film</button>

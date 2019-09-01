@@ -13,6 +13,8 @@ export var model_title = "#model_title";
 export var my_modal = "#my_modal";
 export var advance_set = ".advance-settings";
 export var data_mapping = "[data-mapping]";
+export var search_table = "#search_table";
+export var host = "http://localhost:8080"
 export var modal_var = {
     modal_close: "#close_modal",
     modal_title: ".modal-title",

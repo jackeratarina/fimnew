@@ -1,4 +1,4 @@
-import {advance_node, advance_set, data_mapping, film_form_var,modal_var,my_modal,loading_icon, edit_film,delete_film,class_pics,set_active,show_info, table_body, page_value,mount_data,adding_film, film_url,forward_page, previous_page} from './constant.js';
+import {search_table ,advance_node, advance_set, data_mapping, film_form_var,modal_var,my_modal,loading_icon, edit_film,delete_film,class_pics,set_active,show_info, table_body, page_value,mount_data,adding_film, film_url,forward_page, previous_page} from './constant.js';
 import $ from "jquery";
 // ES6 Modules or TypeScript
 import {importData} from './table';
@@ -17,7 +17,7 @@ var filmHandler = (filmArr)=>{
     })
     initEventNode();
 }
-var loadFilmTable = (page, mount)=>{
+var loadFilmTable = (page, mount, search="")=>{
     if(page === NaN){
         Swal.fire({
             type: 'error',
@@ -35,14 +35,15 @@ var loadFilmTable = (page, mount)=>{
     $.ajax({
         url : film_url,
         method: 'GET',
-        data : {page : page, mount : mount},
+        data : {page : page, mount : mount, search : search},
         success:  filmHandler
     });
 }
 var updateTablePageAndMount = (e)=>{
     let mount = parseInt($(mount_data).val());
     let page = parseInt($(page_value).val());
-    loadFilmTable(page-1, mount);
+    let search = $(search_table).val();
+    loadFilmTable(page-1, mount,search);
 }
 export var initEventTable = () =>{
     $(document).ready(()=>{
@@ -139,6 +140,9 @@ export var initEventTable = () =>{
             }
         })
     });
+    $(search_table).on('change', ()=>{
+        updateTablePageAndMount();
+    })
 }
 var tableFormInit = (data={})=>{
     $(modal_var.modal_submit).css('display','block');

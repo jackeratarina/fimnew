@@ -138,11 +138,11 @@ public class AdminController {
 	}
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/admin/film", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public @ResponseBody String film(Model model, Integer page, Integer mount) {
+	public @ResponseBody String film(Model model, Integer page, Integer mount, String search) {
 		if(page == null || mount == null) {
 			return null;
 		}
-		List<FILM> list = fimdao.listFILMInfoPage(mount, page, false);
+		List<FILM> list = fimdao.listFILMInfoPageWithInfo(mount, page, "%", "%", "%", "%", search, false);
 		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 		String json = gson.toJson(list);
 		System.out.print(json);
