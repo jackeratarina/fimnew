@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name="CountriesOfFilm")
 public class CountriesOfFilm {
 	@Id
-	@GeneratedValue
 	@Column(name="id", nullable=false)
 	private String id;
 	

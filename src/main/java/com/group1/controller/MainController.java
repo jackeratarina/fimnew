@@ -25,7 +25,7 @@ public class MainController {
 	private FILMDAO fimdao;
 
 	public void header(Model model) {
-
+						
 		List<Category> categoryOfHeader = fimdao.listCategory();
 		model.addAttribute("categoryOfHeader", categoryOfHeader);
 		List<Country> countriesOdHeader = fimdao.listCountry();
@@ -35,7 +35,7 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
-		List<FILM> list = fimdao.listFILMInfoPage(16, 0);
+		List<FILM> list = fimdao.listFILMInfoPage(16, 0, true);
 		model.addAttribute("film", list);
 		header(model);
 		return "index";
@@ -98,7 +98,7 @@ public class MainController {
 		if (mypage < 0) {
 			return "redirect:";
 		}
-		List<FILM> film = fimdao.listFILMInfoPageWithInfo(18, mypage, country, cate, year, actor, search);
+		List<FILM> film = fimdao.listFILMInfoPageWithInfo(18, mypage, country, cate, year, actor, search, true);
 		List<Category> category = fimdao.listCategory();
 		List<Country> countries = fimdao.listCountry();
 
@@ -126,7 +126,7 @@ public class MainController {
 		if (mypage < 0) {
 			return "redirect:";
 		}
-		List<FILM> film = fimdao.listFILMInfoPage(18, mypage);
+		List<FILM> film = fimdao.listFILMInfoPage(18, mypage, true);
 		model.addAttribute("film", film);
 		model.addAttribute("page", mypage);
 		model.addAttribute("next_page", "/show?page=" + (mypage + 1));

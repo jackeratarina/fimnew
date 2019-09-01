@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -66,8 +69,13 @@ public class FILMDAO {
 //		List<FILM> film = q.getResultList();
 //		return film;
 //	}
-	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor, String search) {
-		String sql = "select * from FILM where id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
+	public List<FILM> listFILMInfoPageWithInfo(int mount, int page, String country, String cate, String year, String actor, String search, boolean main) {
+		String sql = "";
+		if(main) {
+			sql = "select * from FILM where is_active = 1 and id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
+		}else {
+			sql = "select * from FILM where id in (select id_film from CategoriesOfFilm where id_category like :cate) and id in (select id_film from CountriesOfFilm where id_country like :country) and id in (select id_film from ActorInFilm where id_actor like :actor) and [date] like :year and (name like :search or name2 like :search) order by created_date DESC OFFSET (:top) ROWS FETCH NEXT (:mount) ROWS ONLY";
+		}
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter("mount", mount);
 		q.setParameter("top", mount*page);
@@ -80,8 +88,28 @@ public class FILMDAO {
 		List<FILM> film = q.getResultList();
 		return film;
 	}
-	public List<FILM> listFILMInfoPage(int mount, int page) {
-		String sql = "select * from FILM  order by created_date DESC OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
+	public FILM updateFilm(FILM film) {
+		FILM status = entityManager.merge(film);
+		return status;
+	}
+	public void saveFilm(FILM film) {
+		entityManager.persist(film);
+	}
+	public int removeFilm(String id) {
+		String sql = "delete from FILM where id = ?1";
+		Query q = entityManager.createNativeQuery(sql, FILM.class);
+		q.setParameter(1, id);
+		int i = q.executeUpdate();
+		return i;
+	}
+	
+	public List<FILM> listFILMInfoPage(int mount, int page, boolean main) {
+		String sql = "";
+		if(main == true) {
+			sql = "select * from FILM where is_active = 1 order by created_date DESC OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
+		}else {
+			sql = "select * from FILM order by created_date DESC OFFSET ?1 ROWS FETCH NEXT ?2 ROWS ONLY";
+		}
 		Query q = entityManager.createNativeQuery(sql, FILM.class);
 		q.setParameter(1, mount*page);
 		q.setParameter(2, mount);

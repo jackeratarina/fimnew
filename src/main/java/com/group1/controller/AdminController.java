@@ -1,14 +1,18 @@
 package com.group1.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +22,7 @@ import com.google.gson.GsonBuilder;
 import com.group1.dao.FILMDAO;
 import com.group1.entity.Actor;
 import com.group1.entity.Category;
+import com.group1.entity.Country;
 import com.group1.entity.FILM;
 import com.group1.model.CategoryModel;
 
@@ -25,7 +30,7 @@ import com.group1.model.CategoryModel;
 public class AdminController {
 	@Autowired
 	private FILMDAO fimdao;
-
+	private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String index(Model model) {
 //		List<FILM> list = fimdao.listFILMInfoPage(16, 0);
@@ -134,10 +139,53 @@ public class AdminController {
 		if(page == null || mount == null) {
 			return null;
 		}
-		List<FILM> list = fimdao.listFILMInfoPage(mount, page);
+		List<FILM> list = fimdao.listFILMInfoPage(mount, page, false);
 		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 		String json = gson.toJson(list);
 		System.out.print(json);
+		return json;
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/film/update", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String film_update(Model model, FILM film) {
+		String json = gson.toJson(film);
+		FILM status = fimdao.updateFilm(film);
+		json = gson.toJson(status);
+		return json;
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/film/add", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String film_add(Model model, FILM film) {
+		String json = gson.toJson(film);
+		fimdao.saveFilm(film);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/film/delete", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String film_remove(Model model, String id) {
+		fimdao.removeFilm(id);
+		return "{}";
+	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/film/getinfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String film_advance(Model model, String id) {
+		List<Category> listCate = fimdao.getlistCategory();
+		List<Country> countries = fimdao.listCountry();
+		List<Category> filmCateroies = fimdao.getFilmCategories(id);
+		List<Country> filmCounties= fimdao.getFilmCountry(id);
+		List<Actor> filmActors = fimdao.getFilmActors(id);
+		Map<String, Object> response = new HashMap<>();
+		response.put("listCate", listCate);
+		response.put("countries", countries);
+		response.put("filmCateroies", filmCateroies);
+		response.put("filmCounties", filmCounties);
+		response.put("filmActors", filmActors);
+		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+		String json = gson.toJson(response);
 		return json;
 	}
 }

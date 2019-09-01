@@ -82,7 +82,6 @@ import javax.persistence.Table;
 @Table(name="{table_name}")
 public class {table_name} {
 	@Id
-	@GeneratedValue
 	@Column(name="id", nullable=false)
 	private String id;
 	

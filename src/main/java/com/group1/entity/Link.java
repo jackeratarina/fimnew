@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name="Link")
 public class Link {
 	@Id
-	@GeneratedValue
 	@Column(name="id", nullable=false)
 	private String id;
 	
