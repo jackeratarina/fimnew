@@ -183,7 +183,7 @@
 									<h4 class="modal-title"></h4>
 								</div>
 								<div class="modal-body">
-									<form action="/addCategory" method="post">
+									<form action="/admin/Category/addCategory" method="post">
 										<div class="form-group">
 											<label for="pwd">Tên thể loại:</label> <input type="text"
 												class="form-control col-md-12" required name="name">
@@ -232,11 +232,11 @@
 										<td th:text="${categories.getId()}" style="width: 300px;"></td>
 										<td th:text="${categories.getName()}" style="width: 300px;"></td>
 										<td th:if="${categories.getIs_active() == '1'}"><a
-											th:href="'/setDisable?id='+${categories.getId()}">
+											th:href="'/admin/Category/setDisable?id='+${categories.getId()}">
 												<div class="btn btn-success btn-xs fa fa-unlock"></div>
 										</a></td>
 										<td th:if="${categories.getIs_active() != '1'}"><a
-											th:href="'/setActive?id='+${categories.getId()}">
+											th:href="'/admin/Category/setActive?id='+${categories.getId()}">
 												<div class="btn btn-danger btn-xs fa fa-lock"></div>
 										</a></td>
 										<td><a>
@@ -283,7 +283,7 @@
 		};
 		xhttp.open(
 						"GET",
-						"http://localhost:8080/editCategoryPage?id=" + cateId,
+						"http://localhost:8080/admin/Category/findById?id=" + cateId,
 						true);
 		xhttp.send();
 	}
