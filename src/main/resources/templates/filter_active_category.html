@@ -1,0 +1,18 @@
+<tr th:each="categories,i: ${categories}">
+	<td style="width: 75px" th:text="${i.count}"></td>
+	<td th:text="${categories.getId()}" style="width: 300px;"></td>
+	<td th:text="${categories.getName()}" style="width: 300px;"></td>
+	<td th:if="${categories.getIs_active() == '1'}"><a
+		th:href="'/admin/Category/setDisable?id='+${categories.getId()}">
+			<div class="btn btn-success btn-xs fa fa-unlock"></div>
+	</a></td>
+	<td th:if="${categories.getIs_active() != '1'}"><a
+		th:href="'/admin/Category/setActive?id='+${categories.getId()}">
+			<div class="btn btn-danger btn-xs fa fa-lock"></div>
+	</a></td>
+	<td><a>
+			<div class="btn btn-primary btn-xs fa fa-edit" data-toggle="modal"
+				data-target="#myModal1" title="Chỉnh sửa" type="button"
+				th:onclick="load([[${categories.getId()}]])"></div>
+	</a></td>
+</tr>

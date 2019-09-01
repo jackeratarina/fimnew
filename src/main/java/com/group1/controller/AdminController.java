@@ -43,6 +43,21 @@ public class AdminController {
 		return "category_manager";
 	}
 
+	
+	@RequestMapping(value = "/admin/Category/filterActive", method = RequestMethod.GET)
+	public String filterActive(Model model, String id) {
+		if(id.contains("2")) {
+			List<Category> cate = fimdao.getlistCategory();
+			model.addAttribute("categories", cate);
+			return "filter_active_category";
+		}
+		else {
+			List<Category> cate = fimdao.filterActiveCategory(id);
+			model.addAttribute("categories", cate);
+			return "filter_active_category";
+		}	
+	}
+	
 	@Transactional
 	@RequestMapping(value = "/admin/Category/setActive")
 	public String setActiveCategory(Model model, String id) {

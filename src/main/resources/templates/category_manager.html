@@ -188,7 +188,7 @@
 											<label for="pwd">Tên thể loại:</label> <input type="text"
 												class="form-control col-md-12" required name="name">
 										</div>
-										<label for="sel1">Select list (select one):</label> <select
+										<label for="sel1">Trạng thái:</label> <select
 											class="form-control col-md-4" name="is_active">
 											<option selected="selected" value="1">Active</option>
 											<option value="0">Disable</option>
@@ -219,8 +219,13 @@
 											placeholder="Id" disabled></th>
 										<th><input type="text" class="form-control"
 											placeholder="Tên thể loại" disabled></th>
-										<th><input type="text" class="form-control"
-											placeholder="Active" disabled></th>
+										<th class="row"><input type="text" class="form-control" style="width: 35%; margin-left: 10px"
+											placeholder="Trạng thái" disabled> <select id="mySelect" class="form-control" style="width: 40%"
+											onchange="myFunction()">
+												<option value="2">Tất cả</option>
+												<option value="1">Active</option>
+												<option value="0">Disable</option>
+										</select></th>
 										<th><input type="text" class="form-control"
 											placeholder="Chỉnh sửa" disabled></th>
 
@@ -242,7 +247,8 @@
 										<td><a>
 												<div class="btn btn-primary btn-xs fa fa-edit"
 													data-toggle="modal" data-target="#myModal1"
-													title="Chỉnh sửa" type="button" th:onclick="load([[${categories.getId()}]])"></div>
+													title="Chỉnh sửa" type="button"
+													th:onclick="load([[${categories.getId()}]])"></div>
 										</a></td>
 									</tr>
 								</tbody>
@@ -259,7 +265,7 @@
 										<h4 class="modal-title"></h4>
 									</div>
 									<div class="modal-body" id="demo"></div>
-									
+
 								</div>
 
 							</div>
@@ -281,10 +287,23 @@
 				document.getElementById("demo").innerHTML = this.responseText;
 			}
 		};
-		xhttp.open(
-						"GET",
-						"http://localhost:8080/admin/Category/findById?id=" + cateId,
-						true);
+		xhttp.open("GET", "http://localhost:8080/admin/Category/findById?id="
+				+ cateId, true);
+		xhttp.send();
+	}
+</script>
+<script>
+	function myFunction() {
+		var xhttp = new XMLHttpRequest();
+		var x = document.getElementById("mySelect").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("myTable").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET",
+				"http://localhost:8080/admin/Category/filterActive?id="
+						+ x, true);
 		xhttp.send();
 	}
 </script>

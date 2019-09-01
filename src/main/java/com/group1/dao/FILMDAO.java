@@ -139,6 +139,11 @@ public class FILMDAO {
     	q.executeUpdate();
     }
     
+    public List<Category> filterActiveCategory(String id) {
+        String sql = "select * from Category where is_active = ?1";
+		List<Category> q = entityManager.createNativeQuery(sql, Category.class).setParameter(1, id).getResultList();
+		return q;
+    }
     public List<Actor> getListActor() {
     	String sql = "select * from Actor";
     	List<Actor> q = entityManager.createNativeQuery(sql, Category.class).getResultList();

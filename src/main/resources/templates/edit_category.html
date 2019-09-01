@@ -9,7 +9,7 @@
 			class="form-control col-md-12" required name="name"
 			th:value="${cate.getName()}">
 	</div>
-	<label for="sel1">Select list (select one):</label> <select
+	<label for="sel1">Trạng thái:</label> <select
 		class="form-control col-md-4" name="is_active">
 		<option
 			th:attrappend="selected=${cate.getIs_active() == '1'}?selected"
