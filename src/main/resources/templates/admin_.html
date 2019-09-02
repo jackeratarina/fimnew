@@ -202,6 +202,25 @@
             width: auto;
             display: flex;
         }
+        /* width */
+        ::-webkit-scrollbar {
+        width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #888; 
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+        }
     </style>
     <div class="row menu">
         <div class="col-md-3 left-menu">
@@ -257,6 +276,7 @@
                                 <thead>
                                     <tr class="filters">
                                         <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Link" disabled></th>
                                         <th><input type="text" class="form-control" placeholder="Tên Tiếng việt"
                                                 disabled>
                                         </th>
@@ -308,7 +328,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title">THIS IS TITLE</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body">    
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" id="close_modal">Thoát</button>

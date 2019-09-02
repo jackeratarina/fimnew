@@ -1,6 +1,7 @@
 var base64 = require('base-64');
 export var film_node = function(film, stt){return `<tr>
 <td>${stt}</td>
+<td><div class="btn btn-primary btn-xs fa fa-link show-link" data-id="${film.id}"></div></td>
 <td>${film.name}</td>
 <td>${film.name2}</td>
 <td><div class="btn btn-primary btn-xs fa fa-eye show-info" data-info="${film.describe}"></div></td>
@@ -84,15 +85,15 @@ export var advance_film = (e, id)=>{
 	});
 	var actor_list = "";
 	e.filmActors.forEach((e)=>{
-		actor_list += `<div class="btn btn-success btn-sm margin5 actor_remove" data-id="${e.id}">${e.name}</div>`;
+		actor_list += `<div class="btn btn-success btn-sm margin5 actor_remove" data-id="${e.id}"><div class="fa fa-remove" style="margin-right: 5px"></div>${e.name}</div>`;
 	});
 	var cate_list = "";
 	e.filmCateroies.forEach((e)=>{
-		cate_list += `<div class="btn btn-primary btn-sm margin5 cate_remove" data-id="${e.id}">${e.name}</div>`;
+		cate_list += `<div class="btn btn-primary btn-sm margin5 cate_remove" data-id="${e.id}"><div class="fa fa-remove" style="margin-right: 5px"></div>${e.name}</div>`;
 	});
 	var country_list = "";
 	e.filmCounties.forEach((e)=>{
-		country_list += `<div class="btn btn-danger btn-sm margin5 country_remove" data-id="${e.id}">${e.name}</div>`;
+		country_list += `<div class="btn btn-danger btn-sm margin5 country_remove" data-id="${e.id}"><div class="fa fa-remove" style="margin-right: 5px"></div>${e.name}</div>`;
 	});
 	
 	return `<div class="form-group">
@@ -159,3 +160,35 @@ export var advance_film = (e, id)=>{
 			</div>
 		</div>`;
 }
+
+export var film_eps = (e)=>{
+	let eps_ = "";
+	e.forEach((v,i)=>{
+		let selected = i == 0? 'danger':'primary'
+		eps_ += `<div class="btn btn-${selected} margin5 eps_click" data-info="${base64.encode(escape(JSON.stringify(v)))}">${v.num}</div>`;
+	})
+	
+	return `<div class="col-md-12" style="max-height: 100px;overflow: scroll;" id="id_eps">
+	${eps_}
+	<div class="btn btn-success margin5 btn-xs fa fa-plus" id="add_link_click"></div>
+</div>
+<div class="col-md-12">
+	<div class="form-group">
+		<div class="form-group">
+			<label for="film_name">Link film :</label>
+			<input type="text" class="form-control" id="id_cur_link" value="${e[0] && e[0].url || ''}" placeholder="Nhập link bạn ở đây...">
+		</div>
+		<div class="form-group">
+			<label for="film_name">Tên tập film (STT) :</label>
+			<input type="text" class="form-control" id="id_name_film" value="${e[0] && e[0].num || ''}" placeholder="Tên tập film ở đây...">
+		</div>
+	</div>
+</div>
+<div class="col-md-12">
+	<div class="float-right margin5 btn btn-primary" id="id_update_film">Cập nhật</div>
+	<div class="float-right margin5 btn btn-danger" id="id_delete_film">Xóa link</div>
+</div>
+<h4>Review</h4>
+<div class="col-md-12 margin5">
+	<iframe style="width: 100%;height: 300px;" id="id_review_iframe" src="${e[0] && e[0].url || ''}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>`};

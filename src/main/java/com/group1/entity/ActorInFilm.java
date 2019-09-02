@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="ActorInFilm")
 public class ActorInFilm implements Serializable{
-
+	
 	@Column(name="id", nullable=false)
 	private String id;
 	

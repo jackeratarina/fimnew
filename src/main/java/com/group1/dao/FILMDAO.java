@@ -90,10 +90,36 @@ public class FILMDAO {
 		List<FILM> film = q.getResultList();
 		return film;
 	}
+	public List<FILM> listFILMWithSearch(int mount, int page, String search) {
+		String sql = "select * from FILM where (LOWER(name) like :search or LOWER(name2) like :search) order by created_date DESC OFFSET :top ROWS FETCH NEXT :mount ROWS ONLY";
+		Query q = entityManager.createNativeQuery(sql, FILM.class);
+		q.setParameter("mount", mount);
+		q.setParameter("top", mount*page);
+		q.setParameter("search", "%"+search.toLowerCase().replace(" ", "%")+"%");
+		
+		List<FILM> film = q.getResultList();
+		return film;
+	}
+	
 	public FILM updateFilm(FILM film) {
 		FILM status = entityManager.merge(film);
 		return status;
 	}
+	public Link updateLink(Link link) {
+		Link status = entityManager.merge(link);
+		return status;
+	}
+	public void addLink(Link link) {
+		entityManager.persist(link);
+	}
+	public int deleteLink(String id_link) {
+		String sql = "delete from Link where id = ?1";
+		Query q = entityManager.createNativeQuery(sql, FILM.class);
+		q.setParameter(1, id_link);
+		int i = q.executeUpdate();
+		return i;
+	}
+	
 	public void saveFilm(FILM film) {
 		entityManager.persist(film);
 	}

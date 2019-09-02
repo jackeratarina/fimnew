@@ -75,7 +75,7 @@
 		<div class="row col-md-12">
 		<form method="GET">
 			<input type="hidden" th:value="${id}" name="id"/>
-			<input type="submit" class="btn btn-info" name="ep" th:each="link,i: ${links}" th:value="${i.index+1}"></input>
+			<input type="submit" class="btn btn-info" name="ep" th:each="link,i: ${links}" th:value="${link.num}"></input>
 		</form>
 		</div>
 		<div class="container">

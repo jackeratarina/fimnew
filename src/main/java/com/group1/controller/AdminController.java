@@ -27,6 +27,7 @@ import com.group1.entity.Category;
 import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
+import com.group1.entity.Link;
 import com.group1.model.CategoryModel;
 
 @Controller
@@ -142,7 +143,10 @@ public class AdminController {
 		if(page == null || mount == null) {
 			return null;
 		}
-		List<FILM> list = fimdao.listFILMInfoPageWithInfo(mount, page, "%", "%", "%", "%", search, false);
+		if(search == null) {
+			search = "%";
+		}
+		List<FILM> list = fimdao.listFILMWithSearch(mount, page, search);
 		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 		String json = gson.toJson(list);
 		System.out.print(json);
@@ -195,7 +199,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/actor/search", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	public @ResponseBody String actor_search(Model model, String name) {
 		List<Actor> actors = fimdao.searchActorByName(name);
-		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+		gson = new GsonBuilder().disableHtmlEscaping().create();
 		String json = gson.toJson(actors);
 		return json;
 	}
@@ -242,4 +246,34 @@ public class AdminController {
 		fimdao.removeCountryForFilm(countryof);
 		return "{}";
 	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/link", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String link_film(Model model, String id_film) {
+		List<Link> list = fimdao.getLinkOfFilm(id_film);
+		String json = gson.toJson(list);
+		return json;
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/link/update", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String link_film(Model model, Link link) {
+		fimdao.updateLink(link);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/link/add", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String link_film_add(Model model, Link link) {
+		fimdao.addLink(link);
+		return "{}";
+	}
+	@Transactional
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin/link/delete", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String link_film_delete(Model model, String id_link) {
+		fimdao.deleteLink(id_link);
+		return "{}";
+	}
+	
 }

@@ -5,7 +5,7 @@ public class LinkModel {
 		private String id;
 		private String describe;
 		private String id_film;
-		private int num;
+		private String num;
 		private String url;
 		private String is_active;
 	
@@ -13,7 +13,7 @@ public class LinkModel {
 
 	}
 
-	public LinkModel(String id,String describe,String id_film,int num,String url,String is_active) {
+	public LinkModel(String id,String describe,String id_film,String num,String url,String is_active) {
 		super();
 		
 		this.id = id;
@@ -36,7 +36,7 @@ public class LinkModel {
 		return id_film;
 	}
 
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
 
@@ -61,7 +61,7 @@ public class LinkModel {
 		this.id_film = id_film;
 	}
 
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 

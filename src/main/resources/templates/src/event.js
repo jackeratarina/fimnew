@@ -1,9 +1,9 @@
-import {search_table ,advance_node, advance_set, data_mapping, film_form_var,modal_var,my_modal,loading_icon, edit_film,delete_film,class_pics,set_active,show_info, table_body, page_value,mount_data,adding_film, film_url,forward_page, previous_page} from './constant.js';
+import {link_var, search_table ,advance_node, advance_set, data_mapping, film_form_var,modal_var,my_modal,loading_icon, edit_film,delete_film,class_pics,set_active,show_info, table_body, page_value,mount_data,adding_film, film_url,forward_page, previous_page} from './constant.js';
 import $ from "jquery";
 // ES6 Modules or TypeScript
 import {importData} from './table';
 import Swal from 'sweetalert2';
-import {Film, film_node, film_form,advance_film} from './temp.js';
+import {Film, film_node, film_form,advance_film,film_eps} from './temp.js';
 import datepicker from 'js-datepicker';
 const uuidv4 = require('uuid/v4');
 var base64 = require('base-64');
@@ -80,7 +80,7 @@ export var initEventTable = () =>{
                     location.reload();  
                 }
                 $(page_value).val(page);
-                loadFilmTable(page, mount);
+                loadFilmTable(page-1, mount);
             }
         });
         $(adding_film).on('click', (e)=>{
@@ -376,6 +376,137 @@ var initEventAdvanceSettings = (film_id, my_node)=>{
         });
     });
 }
+var initEventLink = (e, id_film,node_)=>{
+    $(link_var.add_link_click).on('click',()=>{
+        $(link_var.id_eps).find('*').removeClass('btn-danger').addClass('btn-primary');
+        $(link_var.id_eps).prepend($(`<div class="btn btn-danger margin5 eps_click" data-new="1">[Empty]</div>`));
+        $(link_var.id_name_film).val('');
+        $(link_var.id_cur_link).val('');
+        
+    })
+    $(link_var.id_name_film).on('keydown click change',()=>{
+        $(link_var.id_eps).find('.btn-danger').text($(link_var.id_name_film).val());
+    })
+    $(link_var.id_cur_link).on('keydown click change',()=>{
+        
+    });
+    $(link_var.id_update_film).on('click',()=>{
+        console.log('here');
+        var selected_ep = $(link_var.id_eps).find('.btn-danger');
+        var name_film = $(link_var.id_name_film).val();
+        var film_url = $(link_var.id_cur_link).val();
+        if(selected_ep.attr('data-info')){
+            // update
+            console.log('update');
+            var link_info = JSON.parse(unescape(base64.decode(selected_ep.attr('data-info'))));
+            link_info.num = name_film;
+            link_info.url = film_url;
+            $.ajax({
+                url : 'http://localhost:8080/admin/link/update',
+                method: 'POST',
+                data : link_info,
+                success:  (e)=>{
+                    Swal.fire(
+                        'Đã hoàn tất!',
+                        'Link của Film đã được cập nhật thành công.',
+                        'success'
+                      )
+                    $(node_).trigger('click');
+                },
+                error : (e)=>{
+                    Swal.fire({title:'Error',text:'Có lỗi xảy ra khi xóa- server-error',type: 'error'});
+                }
+            });
+        }else{
+            var link_id = selected_ep.attr('data-id');
+            var link_info = {
+                id: uuidv4(),
+                id_film: id_film,
+                num: name_film,
+                url: film_url,
+                is_active: "1"
+            }
+            $.ajax({
+                url : 'http://localhost:8080/admin/link/add',
+                method: 'POST',
+                data : link_info,
+                success:  (e)=>{
+                    Swal.fire(
+                        'Đã hoàn tất!',
+                        'Link của Film đã được thêm thành công.',
+                        'success'
+                      )
+                    $(node_).trigger('click');
+                },
+                error : (e)=>{
+                    Swal.fire({title:'Error',text:'Có lỗi xảy ra khi xóa- server-error',type: 'error'});
+                }
+            });
+        }
+    });
+    $(link_var.eps_click).each(function(){
+        var node = this;
+        $(node).on('click',function(e){
+            $(link_var.id_eps).find('*').removeClass('btn-danger').addClass('btn-primary');
+            if($(link_var.id_eps).find(link_var.eps_click+ '[data-new]')!=0){
+                $('#id_eps').find('.eps_click[data-new]').remove();
+            }
+            $(this).addClass('btn-danger');
+            var selected_ep = $(link_var.id_eps).find('.btn-danger');
+            if(selected_ep.attr('data-info')){
+                var link_info = JSON.parse(unescape(base64.decode(selected_ep.attr('data-info'))));
+                $(link_var.id_name_film).val(link_info.num);
+                $(link_var.id_cur_link).val(link_info.url);
+                $(link_var.id_review_iframe).attr('src',link_info.url)
+            }else{
+                $(link_var.id_name_film).val('');
+                $(link_var.id_cur_link).val('');
+                return;
+            }
+            
+        });
+    });
+    $(link_var.id_delete_film).on('click',function(e){
+        var selected_ep = $(link_var.id_eps).find('.btn-danger');
+        if(!selected_ep.attr('data-new')){
+            var link_info = JSON.parse(unescape(base64.decode(selected_ep.attr('data-info'))));
+            Swal.fire({
+                title: 'Bạn có chắc không?',
+                text: "Bạn sẽ không thể hoàn tác khi xóa!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Vâng, xóa đi!'
+              }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url : 'http://localhost:8080/admin/link/delete',
+                        method: 'POST',
+                        data : {id_link:link_info.id},
+                        success:  (e)=>{
+                            Swal.fire(
+                                'Deleted!',
+                                'Link đã được xóa thành công.',
+                                'success'
+                              )
+                            $(node_).trigger('click');
+                        },
+                        error : (e)=>{
+                            Swal.fire({title:'Error',text:'Có lỗi xảy ra khi xóa- server-error',type: 'error'});
+                        }
+                    });
+                  
+                }
+              })
+        }else{
+            $(link_var.id_eps).find('[data-info]')[0].click();
+        }
+        
+        
+    });
+    
+}
 export var initEventNode = ()=>{
     $(class_pics).each(function () {
         var node = this;
@@ -472,5 +603,26 @@ export var initEventNode = ()=>{
                 html:'<p>'+data+'</p>'
             });
         });
-    })
+    });
+    $(link_var.show_link).each(function () {
+        var node = this;
+        $(node).on('click',function(e){
+            let id_film = this.getAttribute("data-id");
+            $(modal_var.modal_title).text('Link film - ' + id_film);
+            $.ajax({
+                url : 'http://localhost:8080/admin/link',
+                method: 'GET',
+                data : {id_film : id_film},
+                success:  (e)=>{
+                    $(modal_var.modal_body).html(film_eps(e));
+                    $(modal_var.modal_submit).css('display','none');
+                    initEventLink(e, id_film,node);
+                    $(my_modal).slideDown();
+                },
+                error : (e)=>{
+                    Swal.fire({title:'Error',text:'Có lỗi xảy ra khi load dử liệu của video - server-error',type: 'error'});
+                }
+            });
+        });
+    });
 }

@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="Link")
 public class Link implements Serializable{
-	
+	@Id
 	@Column(name="id", nullable=false)
 	private String id;
 	
@@ -18,13 +18,13 @@ public class Link implements Serializable{
 	@Column(name="describe", nullable=true)
 	private String describe;
 
-	@Id
+	
 	@Column(name="id_film", nullable=false)
 	private String id_film;
 
 	
 	@Column(name="num", nullable=true)
-	private int num;
+	private String num;
 
 	
 	@Column(name="url", nullable=true)
@@ -49,7 +49,7 @@ public class Link implements Serializable{
 		return id_film;
 	}
 
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
 
@@ -75,7 +75,7 @@ public class Link implements Serializable{
 		this.id_film = id_film;
 	}
 
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 

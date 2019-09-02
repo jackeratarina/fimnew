@@ -132,7 +132,7 @@ for table in tables:
 		type="String"
 		if(i=='duration'):
 			type = 'float'
-		if(i=='num' or i == 'is_public'):
+		if(i == 'is_public'):
 			type = 'int'
 		if(i=='created_date'):
 			type = 'java.sql.Timestamp'

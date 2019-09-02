@@ -21,6 +21,17 @@ export var modal_var = {
     modal_body: ".modal-body",
     modal_submit: "#modal_submit"
 }
+export var link_var = {
+    show_link : '.show-link',
+    id_cur_link : '#id_cur_link',
+    id_name_film : '#id_name_film',
+    id_update_film : '#id_update_film',
+    id_delete_film : '#id_delete_film',
+    id_review_iframe : '#id_review_iframe',
+    id_eps : '#id_eps',
+    eps_click : '.eps_click',
+    add_link_click : '#add_link_click'
+}
 export var advance_node = {
     actor_input : '#actor_input',
     actor_list : '#actor_list',
