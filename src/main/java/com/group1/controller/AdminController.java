@@ -102,7 +102,7 @@ public class AdminController {
 		return "category_manager";
 	}
 
-	@RequestMapping(value = "/actor_manager", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/actor", method = RequestMethod.GET)
 	public String actorManager(Model model) {
 		List<Actor> actors = fimdao.getListActor();
 		model.addAttribute("actors", actors);
@@ -110,7 +110,7 @@ public class AdminController {
 	}
 
 	@Transactional
-	@RequestMapping(value = "/inactiveActor")
+	@RequestMapping(value = "/admin/actor/inactiveActor")
 	public String inactiveActor(Model model, String id) {
 		fimdao.inactiveActor(id);
 		List<Actor> actors = fimdao.getListActor();
@@ -119,7 +119,7 @@ public class AdminController {
 	}
 
 	@Transactional
-	@RequestMapping(value = "/activeActor")
+	@RequestMapping(value = "/admin/actor/activeActor")
 	public String activeActor(Model model, String id) {
 		fimdao.activeActor(id);
 		List<Actor> actors = fimdao.getListActor();
@@ -127,16 +127,34 @@ public class AdminController {
 		return "actor_manager";
 	}
 
-	@RequestMapping(value = "/editActor", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/actor/editActor", method = RequestMethod.GET)
 	public String editActor(Model model, String id) {
 		Actor actor = fimdao.getActor(id);
-
 		model.addAttribute("actor", actor);
 		return "edit_actor";
 	}
-
+	@RequestMapping(value = "/admin/actor/create", method = RequestMethod.GET)
+	public String create(Model model) {		
+		return "create_actor";
+	}
+	@RequestMapping(value = "/admin/actor/findByName", method = RequestMethod.GET)
+	public String findByName(Model model,String name) {	
+		List<Actor> actors = fimdao.findByName(name);
+		model.addAttribute("actors", actors);
+		return "actor_manager";
+		
+	}
 	@Transactional
-	@RequestMapping(value = "/editActor123", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/actor/createActor", method = RequestMethod.GET)
+	public String editActor(Model model, String id,String name,String is_active) {
+		fimdao.createActor(id, name, is_active);
+		List<Actor> actors = fimdao.getListActor();
+		model.addAttribute("actors", actors);
+
+		return "actor_manager";
+	}
+	@Transactional
+	@RequestMapping(value = "/admin/actor/updateActor", method = RequestMethod.GET)
 	public String editActor2(Model model, String id,String name) {
 		fimdao.updateActor(id, name);
 		List<Actor> actors = fimdao.getListActor();
