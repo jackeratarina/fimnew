@@ -88,7 +88,8 @@
 </head>
 
 <body style="background-color: #edfef1">
-	<div class="col-md-12 head-bar" th:include="~{/sidebar.html :: headbar}"></div>
+	<div class="col-md-12 head-bar"
+		th:include="~{/sidebar.html :: headbar}"></div>
 	<style>
 .menu {
 	width: 100%;
@@ -182,12 +183,12 @@
 									<h4 class="modal-title"></h4>
 								</div>
 								<div class="modal-body">
-									<form action="/addCategory" method="post">
+									<form action="/admin/Category/addCategory" method="post">
 										<div class="form-group">
 											<label for="pwd">Tên thể loại:</label> <input type="text"
 												class="form-control col-md-12" required name="name">
 										</div>
-										<label for="sel1">Select list (select one):</label> <select
+										<label for="sel1">Trạng thái:</label> <select
 											class="form-control col-md-4" name="is_active">
 											<option selected="selected" value="1">Active</option>
 											<option value="0">Disable</option>
@@ -218,8 +219,13 @@
 											placeholder="Id" disabled></th>
 										<th><input type="text" class="form-control"
 											placeholder="Tên thể loại" disabled></th>
-										<th><input type="text" class="form-control"
-											placeholder="Active" disabled></th>
+										<th class="row"><input type="text" class="form-control" style="width: 35%; margin-left: 10px"
+											placeholder="Trạng thái" disabled> <select id="mySelect" class="form-control" style="width: 40%"
+											onchange="myFunction()">
+												<option value="2">Tất cả</option>
+												<option value="1">Active</option>
+												<option value="0">Disable</option>
+										</select></th>
 										<th><input type="text" class="form-control"
 											placeholder="Chỉnh sửa" disabled></th>
 
@@ -231,23 +237,39 @@
 										<td th:text="${categories.getId()}" style="width: 300px;"></td>
 										<td th:text="${categories.getName()}" style="width: 300px;"></td>
 										<td th:if="${categories.getIs_active() == '1'}"><a
-											th:href="'/setDisable?id='+${categories.getId()}">
+											th:href="'/admin/Category/setDisable?id='+${categories.getId()}">
 												<div class="btn btn-success btn-xs fa fa-unlock"></div>
 										</a></td>
 										<td th:if="${categories.getIs_active() != '1'}"><a
-											th:href="'/setActive?id='+${categories.getId()}">
+											th:href="'/admin/Category/setActive?id='+${categories.getId()}">
 												<div class="btn btn-danger btn-xs fa fa-lock"></div>
 										</a></td>
-										<td><a
-											th:href="'/editCategoryPage?id='+${categories.getId()}">
+										<td><a>
 												<div class="btn btn-primary btn-xs fa fa-edit"
-													data-toggle="tooltip" title="Chỉnh sửa"></div>
+													data-toggle="modal" data-target="#myModal1"
+													title="Chỉnh sửa" type="button"
+													th:onclick="load([[${categories.getId()}]])"></div>
 										</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal1" role="dialog">
+							<div class="modal-dialog">
 
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title"></h4>
+									</div>
+									<div class="modal-body" id="demo"></div>
+
+								</div>
+
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -257,6 +279,34 @@
 </body>
 
 <script src="dist/bundle.js"></script>
+<script>
+	function load(cateId) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("demo").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET", "http://localhost:8080/admin/Category/findById?id="
+				+ cateId, true);
+		xhttp.send();
+	}
+</script>
+<script>
+	function myFunction() {
+		var xhttp = new XMLHttpRequest();
+		var x = document.getElementById("mySelect").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("myTable").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET",
+				"http://localhost:8080/admin/Category/filterActive?id="
+						+ x, true);
+		xhttp.send();
+	}
+</script>
 <script>
 	$(document).ready(
 			function() {

@@ -44,15 +44,30 @@ public class AdminController {
 		return "admin_";
 	}
 
-	@RequestMapping(value = "/category_manager", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/Category/load", method = RequestMethod.GET)
 	public String cateManager(Model model) {
 		List<Category> cate = fimdao.getlistCategory();
 		model.addAttribute("categories", cate);
 		return "category_manager";
 	}
 
+	
+	@RequestMapping(value = "/admin/Category/filterActive", method = RequestMethod.GET)
+	public String filterActive(Model model, String id) {
+		if(id.contains("2")) {
+			List<Category> cate = fimdao.getlistCategory();
+			model.addAttribute("categories", cate);
+			return "filter_active_category";
+		}
+		else {
+			List<Category> cate = fimdao.filterActiveCategory(id);
+			model.addAttribute("categories", cate);
+			return "filter_active_category";
+		}	
+	}
+	
 	@Transactional
-	@RequestMapping(value = "/setActive")
+	@RequestMapping(value = "/admin/Category/setActive")
 	public String setActiveCategory(Model model, String id) {
 		fimdao.activeCategory(id);
 		List<Category> cate = fimdao.getlistCategory();
@@ -61,7 +76,7 @@ public class AdminController {
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/setDisable")
+	@RequestMapping(value = "/admin/Category/setDisable")
 	public String setDisableCategory(Model model, String id) {
 		fimdao.disableCategory(id);
 		List<Category> cate = fimdao.getlistCategory();
@@ -69,7 +84,7 @@ public class AdminController {
 		return "category_manager";
 	}
 
-	@RequestMapping(value = "/editCategoryPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/Category/findById", method = RequestMethod.GET)
 	public String editCategory(Model model, String id) {
 		Category cate = fimdao.getCategory(id);
 		model.addAttribute("cate", cate);
@@ -77,16 +92,16 @@ public class AdminController {
 	}
 
 	@Transactional
-	@RequestMapping(value = "/editCategory", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/Category/editCategory", method = RequestMethod.POST)
 	public String editCategory(Model model, String id, String name, String is_active) {
 		fimdao.updateCategory(id, name, is_active);
-		Category cate = fimdao.getCategory(id);
-		model.addAttribute("cate", cate);
-		return "edit_category";
+		List<Category> cate = fimdao.getlistCategory();
+		model.addAttribute("categories", cate);
+		return "category_manager";
 	}
 
 	@Transactional
-	@RequestMapping(value = "/addCategory", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/Category/addCategory", method = RequestMethod.POST)
 	public String addCate(Model model, String name, String is_active) {
 		UUID uuid = UUID.randomUUID();
 		fimdao.addCategory(uuid.toString(), name, is_active);
