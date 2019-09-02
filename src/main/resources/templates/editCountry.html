@@ -86,37 +86,8 @@
 </head>
 
 <body>
-    <div class="col-md-12 head-bar">
-        <div class="row">
-            <div class="col-md-12 head-bar-div">
-                <div class="row" style="height: 100%">
-                    <div class="col-md-10"></div>
-                    <div class="col-md-2 right-head-bar">
-                        <div class="row" style="height: 100%">
-                            <div class="col-md-9 head-user-name">
-                                <p>Dương Mẫn Đạt</p>
-                            </div>
-                            <div class="col-md-3" style="height: 100%">
-                                <div class="fa fa-bars head-menu-bar centering">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" style="text-decoration: none;">
-                            <div class="row menu-node">
-                                <div class="col-md-12 centering menu-list">Quản lý tài khoản</div>
-                            </div>
-                        </a>
-                        <a href="#" style="text-decoration: none;">
-                            <div class="row menu-node">
-                                <div class="col-md-12 centering menu-list">Đăng xuất</div>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="col-md-12 head-bar"
+		th:include="~{/sidebar.html :: headbar}"></div>
     <style>
         .menu {
             height: 100vh;
@@ -191,29 +162,8 @@
         			height: 100%;}
     </style>
     <div class="row menu">
-        <div class="col-md-3 left-menu">
-            <a href="#xxx" class="row menu-bottom-node menu-bottom-node-selected">
-                <div class="centering menu-node-inside">
-                    Quản lý FILM
-                </div>
-            </a>
-            <a href="#xxx" class="row menu-bottom-node">
-                <div class="centering menu-node-inside">
-                    Quản lý thể loại
-                </div>
-            </a>
-            <a href="#xxx" class="row menu-bottom-node">
-                <div class="centering menu-node-inside">
-                    Quản lý Diển viên
-                </div>
-            </a>
-            <a href="#xxx" class="row menu-bottom-node">
-                <div class="centering menu-node-inside">
-                    Quản lý Quốc gia
-                </div>
-            </a>
-
-        </div>
+        <div class="col-md-3 left-menu"
+			th:include="~{/sidebar.html :: sidebar}"></div>
         <div class="col-md-9 right-menu">
             <div class="container">
                 <div class="row" style="width: 100%; margin-top: 5%">

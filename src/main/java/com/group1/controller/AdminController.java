@@ -48,6 +48,11 @@ public class AdminController {
 		return "admin_";
 	}
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model) {
+		return "login";
+	}
+	
 	@RequestMapping(value = "/admin/Category/load", method = RequestMethod.GET)
 	public String cateManager(Model model) {
 		List<Category> cate = fimdao.getlistCategory();

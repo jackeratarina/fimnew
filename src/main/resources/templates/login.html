@@ -1,54 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Quản Lý</title>
-    <link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css-admin/app.min.1.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css-admin/app.min.2.css}" />
-
-	<!-- Custom -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css-admin/style.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css-admin/loginpage.css}" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="logo-container">
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+			<!-- Tabs Titles -->
 
-    </div>
+			<!-- Icon -->
+			<div class="fadeIn first">
+				<img src="https://image.flaticon.com/icons/svg/1828/1828503.svg" id="icon"
+					alt="User Icon" />
+			</div>
 
-    <div class="login-panel">
-        <form action="login" method="post">
-            <input name="__RequestVerificationToken" type="hidden" value="J7Y3lySQmOoZutINDBHouSybfvv7uYliiZL-0Ov0XIpdmfXnPc81J6jI5NZy_soVKOVGg3FumLCKFyOdKJfGJoktl_p8NqpQwvSFJT7dFEg1">
+			<!-- Login Form -->
+			<form action="/admin" method="get">
+				<input type="text" id="login" class="fadeIn second" name="login"
+					placeholder="login"> <input type="text" id="password"
+					class="fadeIn third" name="login" placeholder="password"> <input
+					type="submit" class="fadeIn fourth" value="Log In">
+			</form>
 
-            <fieldset>
-                <div class="input-box">
-                    <input class="login-input" data-val="true" data-val-required="The Username field is required." id="username" name="username" placeholder="" required="required" type="text" value="">
-                    <span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
-                </div>
-                <div class="input-box">
-                    <input class="login-input" data-val="true" data-val-required="The Password field is required." id="password" name="password" placeholder="" required="required" type="password" value="">
-                    <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
-                </div>
-                <div class="input-box">
-                    <input type="submit" value="Đăng Nhập" class="login-btn">
-                </div>
-            </fieldset>
-        </form>
-    </div>
-    <div class="bottom-bg"></div>
+			
+
+		</div>
+	</div>
 
 
-
-    
 </body>
 </html>
