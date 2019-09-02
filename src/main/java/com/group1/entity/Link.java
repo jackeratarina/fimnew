@@ -5,28 +5,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 @Entity
 @Table(name="Link")
-public class Link {
-	@Id
-	@GeneratedValue
+public class Link implements Serializable{
+	
 	@Column(name="id", nullable=false)
 	private String id;
+	
 	
 	
 	@Column(name="describe", nullable=true)
 	private String describe;
 
-	@Column(name="id_film", nullable=true)
+	@Id
+	@Column(name="id_film", nullable=false)
 	private String id_film;
 
+	
 	@Column(name="num", nullable=true)
 	private int num;
 
+	
 	@Column(name="url", nullable=true)
 	private String url;
 
+	
 	@Column(name="is_active", nullable=true)
 	private String is_active;
 

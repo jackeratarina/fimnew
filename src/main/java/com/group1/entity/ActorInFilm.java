@@ -5,22 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 @Entity
 @Table(name="ActorInFilm")
-public class ActorInFilm {
-	@Id
-	@GeneratedValue
+public class ActorInFilm implements Serializable{
+
 	@Column(name="id", nullable=false)
 	private String id;
 	
 	
-	@Column(name="id_actor", nullable=true)
+	@Id
+	@Column(name="id_actor", nullable=false)
 	private String id_actor;
 
-	@Column(name="id_film", nullable=true)
+	@Id
+	@Column(name="id_film", nullable=false)
 	private String id_film;
 
+	
 	@Column(name="name_in", nullable=true)
 	private String name_in;
 

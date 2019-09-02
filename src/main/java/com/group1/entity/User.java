@@ -5,28 +5,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 @Entity
 @Table(name="User")
-public class User {
+public class User implements Serializable{
 	@Id
-	@GeneratedValue
 	@Column(name="id", nullable=false)
 	private String id;
+	
 	
 	
 	@Column(name="email", nullable=true)
 	private String email;
 
+	
 	@Column(name="password", nullable=true)
 	private String password;
 
+	
 	@Column(name="role", nullable=true)
 	private String role;
 
+	
 	@Column(name="username", nullable=true)
 	private String username;
 
+	
 	@Column(name="is_active", nullable=true)
 	private String is_active;
 
