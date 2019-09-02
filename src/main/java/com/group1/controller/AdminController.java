@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +31,7 @@ import com.group1.entity.Country;
 import com.group1.entity.FILM;
 import com.group1.entity.Link;
 import com.group1.model.CategoryModel;
-
+import com.group1.model.CountryModel;
 @Controller
 public class AdminController {
 	@Autowired
@@ -291,4 +293,55 @@ public class AdminController {
 		return "{}";
 	}
 	
+
+	public void showCountry(Model model) {
+		List<Country> listCountry = fimdao.listAllCountry();
+		model.addAttribute("listCountry", listCountry);
+	}
+	
+	@RequestMapping(value = "/admin/country", method = RequestMethod.GET)
+	public String manageCountry(Model model) {
+		showCountry(model);
+		return "manageCountry";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/country/delete/{id}", method = RequestMethod.GET)
+	public String deleteCountry(Model model, @PathVariable String id) {
+		fimdao.disableCountry(id);
+		showCountry(model);
+		return "manageCountry";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/country/disableCoutry/{id}", method = RequestMethod.GET)
+	public String disableCountry(Model model, @PathVariable String id) {
+		fimdao.disableCountry(id);
+		showCountry(model);
+		return "manageCountry";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/country/enableCoutry/{id}", method = RequestMethod.GET)
+	public String enableCountry(Model model, @PathVariable String id) {
+		fimdao.enableCountry(id);;
+		showCountry(model);
+		return "manageCountry";
+	}
+	
+	@RequestMapping(value = "/admin/country/find/{id}", method = RequestMethod.GET)
+	public String findCountry(Model model, @PathVariable String id) {
+		Country country = fimdao.findCountry(id);
+		model.addAttribute("country", country);
+		return "editCountry";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/country/update", method = RequestMethod.POST)
+	public String updateCountry(Model model, @ModelAttribute("countrymodel") CountryModel countryModel) {
+		fimdao.updateCountry(countryModel.getId(), countryModel.getName());
+		
+		showCountry(model);
+		return "manageCountry";
+	}
 }
