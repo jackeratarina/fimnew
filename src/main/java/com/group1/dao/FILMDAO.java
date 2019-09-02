@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
+import javax.persistence.NoResultException;
 import javax.persistence.OneToMany;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -266,4 +267,57 @@ public class FILMDAO {
     	q.setParameter(1, "%" + name.toLowerCase() + "%");
     	return q.getResultList();
     }
+    public List<Country> listAllCountry() {
+		String sql = "select * from Country";
+		Query c = entityManager.createNativeQuery(sql, Country.class);
+		List<Country> list = c.getResultList();
+		return list;
+	}
+    
+    @Transactional
+    public void disableCountry(String id) {
+    	String sql = "update Country set is_active = 0 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    }
+    
+    @Transactional
+    public void enableCountry(String id) {
+    	String sql = "update Country set is_active = 1 where id = ?1";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
+    }
+    
+    @Transactional
+    public void updateCountry(String id, String name) {
+    	String sql = "update Country set name = ?2 where id = ?1";
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, id);
+    	q.setParameter(2, name);
+    	q.executeUpdate();
+    }
+    
+
+    public void addCountry(String id, String name, String is_active) {
+    	String sql = "insert into Country (id, name, is_active) values (?1, ?2, ?3)";
+    	entityManager.createNativeQuery(sql).setParameter(1, id).setParameter(2, name).setParameter(3, is_active).executeUpdate();
+    }
+    
+    public Country findCountry(String id) {
+    	String sql = "select * from Country where id = ?1";
+    	Country country = (Country) entityManager.createNativeQuery(sql, Country.class).setParameter(1, id).getSingleResult();
+		return country;
+	}
+    
+    public Country checkIdCountry(String id) {
+    	Country country;
+		
+		try {
+			country = (Country) entityManager.createQuery("from Country where id = ?1")
+					.setParameter(1, id)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			country = null;
+		}
+		
+		return country;
+	}
 }

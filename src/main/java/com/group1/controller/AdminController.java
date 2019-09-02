@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -343,5 +345,24 @@ public class AdminController {
 		
 		showCountry(model);
 		return "manageCountry";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/country/addCountry", method = RequestMethod.POST)
+	public String addCountry(Model model, String id, String name, String is_active) {
+		
+		String noti = "";
+		if(fimdao.checkIdCountry(id) == null) {
+			noti = "Thêm thành công";
+			fimdao.addCountry(id, name, is_active);
+			showCountry(model);
+			return "manageCountry";
+		} else {
+			showCountry(model);
+			noti = "Thêm thất bại. ID đã tồn tại!";
+			model.addAttribute("noti", noti);
+			return "manageCountry";
+		}
+		
 	}
 }
