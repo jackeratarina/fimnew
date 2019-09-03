@@ -203,7 +203,7 @@ public class FILMDAO {
 		return q;
     }
     public List<Actor> getListActor() {
-    	String sql = "select * from Actor";
+    	String sql = "select top 20 * from Actor";
     	List<Actor> q = entityManager.createNativeQuery(sql, Category.class).getResultList();
     	return q;
     }
@@ -253,6 +253,11 @@ public class FILMDAO {
 		Actor q = (Actor) entityManager.createNativeQuery(sql, Actor.class).setParameter(1, id).getSingleResult();
 		return q;
     }
+    public List<Actor> findByName(String name){
+    	String sql = "select * from Actor where name like ?1";
+    	List<Actor> q = entityManager.createNativeQuery(sql, Actor.class).setParameter(1, "%" + name + "%").getResultList();
+		return q;
+    }
     public void updateActor(String id,String name) {
     	String sql = "update Actor set name = ?1 where id = ?2";
     	//entityManager.createNativeQuery(sql).setParameter(1, id).executeUpdate();
@@ -273,6 +278,15 @@ public class FILMDAO {
 		List<Country> list = c.getResultList();
 		return list;
 	}
+    public void createActor(String id, String name, String is_active) {
+    	String sql ="INSERT INTO Actor(id,name,is_active)" + 
+    			"VALUES (?1, ?2, ?3);";
+    	Query q = entityManager.createNativeQuery(sql);
+    	q.setParameter(1, id);
+    	q.setParameter(2, name);
+    	q.setParameter(3, is_active);
+    	q.executeUpdate();
+    }
     
     @Transactional
     public void disableCountry(String id) {

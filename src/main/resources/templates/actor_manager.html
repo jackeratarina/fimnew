@@ -182,6 +182,13 @@
                                     <button class="btn btn-success">Filter</button>
                                 </div>-->
                             </div>
+                            <a href="/admin/actor/create">
+                            	<div class="btn btn-success btn-xs fa fa-plus" data-toggle="tooltip" title="Create Actor"> Create Actor</div><br>	
+                            </a>
+                            <form action="/admin/actor/findByName">
+                            <input type="text" name="name">
+                            <button type="submit" value="Submit">Submit</button>
+                            </form>
                             <table class="table">
                                 <thead>
                                     <tr class="filters">
@@ -204,25 +211,30 @@
                                         <td th:text="${state.count}">1</td>
                                         <td th:text="${actors.getId()}">Mark</td>
                                         <td th:text="${actors.getName()}">Otto</td>
-                                        <td><div class="btn btn-primary btn-xs fa fa-eye"></div></td>
+                                        <td>
+                                        	
+                                        	<img alt="" id="ava" th:with="var=${#strings.substringAfter(actors.getId(),'-')}"  th:src="'http://image.phimmoi.net/profile/'+${#strings.substringAfter(var,'-')}+'/medium.jpg'">
+                                        </td>
                                         
-                                        <td th:if="${actors.getIs_active() == '1'}">
-											<div class="btn btn-default fa fa-unlock"></div>
-										</td>
-										<td th:if="${actors.getIs_active() != '1'}">
-											<div class="btn btn-default btn-xs fa fa-lock"></div>
+                                        
+                                        
+                                        
+                                       <td th:if="${actors.getIs_active() == '1'}"><a
+											th:href="'/admin/actor/inactiveActor?id='+${actors.getId()}">
+												<div class="btn btn-success btn-xs fa fa-unlock"
+													data-toggle="tooltip" title="Inactive"></div>
+										</a></td>
+										<td th:if="${actors.getIs_active() != '1'}"><a
+											th:href="'/admin/actor/activeActor?id='+${actors.getId()}">
+												<div class="btn btn-danger btn-xs fa fa-lock"
+													data-toggle="tooltip" title="active"></div>
+										</a></td>
                                         
                                          <td><a
-											th:href="'/editActor?id='+${actors.getId()}">
+											th:href="'/admin/actor/editActor?id='+${actors.getId()}">
 												<div class="btn btn-primary btn-xs fa fa-edit"
 													data-toggle="tooltip" title="Chỉnh sửa"></div>
-										</a> <a th:href="'/inactiveActor?id='+${actors.getId()}">
-												<div class="btn btn-danger btn-xs fa fa-remove"
-													data-toggle="tooltip" title="Inactive"></div>
-										</a><a th:href="'/activeActor?id='+${actors.getId()}">
-												<div class="btn btn-success btn-xs fa fa-check"
-													data-toggle="tooltip" title="Active"></div>
-										</a>
+										</a> 
 										</td>
                                         
                                         
