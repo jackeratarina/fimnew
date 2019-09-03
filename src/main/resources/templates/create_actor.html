@@ -182,23 +182,28 @@
 .filterable .filters input[disabled]:-ms-input-placeholder {
 	color: #333;
 }
+#creater{
+	margin-top: 10px;
+	margin-left: 100px;
+}
 </style>
 	<div class="row menu">
 		<div class="col-md-3 left-menu"
 			th:include="~{/sidebar.html :: sidebar}"></div>
         <div class="col-md-9 right-menu">
-		<div class="col-md-9 right-menu" style="margin-top: 35px;">
-			<form action="/admin/updateActor" >
-				<div class="form-group">
-					<label for="uname">Id:</label> 
-					<input type="text" class="form-control col-md-7" name="id"    readonly="readonly" th:value="${actor.getId()}">
-				</div>
+		<div id="creater" >
+			<form action="/admin/actor/createActor" >
+				   <label>id</label><br>
+				<input type="text" name="id"><br>
+				   <label>name</label><br>
+				<input type="text" name="name"><br><br>
+				   <label>is active</label>
 				
-				<div class="form-group">
-					<label for="pwd">Tên diễn viên:</label> <input type="text"
-						class="form-control col-md-7"  name = "name" required th:value="${actor.getName()}">
-				</div>
-				<button type="submit" class="btn btn-primary">Hoàn tất</button>
+				<select name="is_active">
+					<option value="0">0</option>
+    				<option value="1">1</option>
+				</select><br><br>
+				<button type="submit" value="Submit">Submit</button> 
 			</form>
 
 		</div>
