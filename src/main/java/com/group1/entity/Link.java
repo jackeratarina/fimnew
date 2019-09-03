@@ -86,6 +86,10 @@ public class Link implements Serializable{
 	public void setIs_active(String is_active) {
 		this.is_active = is_active;
 	}
-
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return this.id == ((String) obj);
+	}
 
 }

@@ -66,17 +66,14 @@
   		Trình duyệt của bạn không hỗ trợ HTML5.
 		</video>*/ -->
 		
-		<iframe style="margin-bot: 30px;" width="100%" height="415" th:src="${links.get(ep-1).getUrl()}" 
+		<iframe style="margin-bot: 30px;" width="100%" height="415" th:src="${links.get(ep).getUrl()}" 
 		frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 		allowfullscreen></iframe>
 		<div class="col-md-12">
 			<h5>Tập phim :</h5>
 		</div>
 		<div class="row col-md-12">
-		<form method="GET">
-			<input type="hidden" th:value="${id}" name="id"/>
-			<input type="submit" class="btn btn-info" name="ep" th:each="link,i: ${links}" th:value="${link.num}"></input>
-		</form>
+		<a th:class="${'btn btn-' + ((#strings.equals(ep, #strings.toString(i.index)))?'danger':'info')}" name="ep" th:href="${'/watch?id='+id+'&ep=' + i.index}" th:each="link,i: ${links}" th:text="${link.getNum()}"></a>
 		</div>
 		<div class="container">
 			<div class="row">
