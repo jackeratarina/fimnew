@@ -39,7 +39,7 @@ public class AdminController {
 	@Autowired
 	private FILMDAO fimdao;
 	private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index(Model model) {
 //		List<FILM> list = fimdao.listFILMInfoPage(16, 0);
 //		model.addAttribute("film",list);
