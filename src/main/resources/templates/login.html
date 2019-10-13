@@ -1,39 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-	<div class="wrapper fadeInDown">
-		<div id="formContent">
-			<!-- Tabs Titles -->
+    <head>
+        <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+        <script
+        src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <style>
+            input[type=password] {
+                background-color: #f6f6f6;
+                border: none;
+                color: #0d0d0d;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 5px;
+                width: 85%;
+                border: 2px solid #f6f6f6;
+                -webkit-transition: all 0.5s ease-in-out;
+                -moz-transition: all 0.5s ease-in-out;
+                -ms-transition: all 0.5s ease-in-out;
+                -o-transition: all 0.5s ease-in-out;
+                transition: all 0.5s ease-in-out;
+                -webkit-border-radius: 5px 5px 5px 5px;
+                border-radius: 5px 5px 5px 5px;
+            }
 
-			<!-- Icon -->
-			<div class="fadeIn first">
-				<img src="https://image.flaticon.com/icons/svg/1828/1828503.svg" id="icon"
-					alt="User Icon" />
-			</div>
+            input[type=password]:focus{
+                background-color: #fff;
+                border-bottom: 2px solid #5fbae9;
+            }
 
-			<!-- Login Form -->
-			<form action="/admin" method="POST">
-				<input type="text" id="login" class="fadeIn second" name="login"
-					placeholder="login"> <input type="text" id="password"
-					class="fadeIn third" name="login" placeholder="password"> <input
-					type="submit" class="fadeIn fourth" value="Log In">
-			</form>
+            input[type=password]:placeholder{
+                color: #cccccc;
+            }
+        </style>
+    </head>
 
-			
+    <body>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
 
-		</div>
-	</div>
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="https://image.flaticon.com/icons/svg/1828/1828503.svg" id="icon"
+                         alt="User Icon" />
+                </div>
+
+                <!-- Login Form -->
+                <form action="/login" method="POST">
+                    <input type="text" id="username" class="fadeIn second" name="username"
+                           placeholder="login"> <input type="password" id="password"
+                           class="fadeIn third" name="password" placeholder="password"> <input
+                           type="submit" class="fadeIn fourth" value="Log In">
+                </form>
 
 
-</body>
+
+            </div>
+        </div>
+
+
+    </body>
 </html>

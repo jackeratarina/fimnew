@@ -32,8 +32,11 @@ import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
 import com.group1.entity.Link;
+import com.group1.entity.User;
 import com.group1.model.CategoryModel;
 import com.group1.model.CountryModel;
+import com.group1.model.Login;
+import java.io.Console;
 @Controller
 public class AdminController {
 	@Autowired
@@ -52,6 +55,22 @@ public class AdminController {
 	public String login(Model model) {
 		return "login";
 	}
+        @RequestMapping(value = "/login" ,method = RequestMethod.POST)
+        public String postLogin(Model model,@RequestParam(value = "username",required = false) String username ,
+                @RequestParam(value = "password",required = false) String password){
+            Login l = new Login();
+            System.out.println(username);
+            System.out.println(password);
+            l.setUsername(username);
+            l.setPassword(password);
+            User user = fimdao.Login(l);
+            if(user != null){
+                return "admin_";
+            }else{
+                return "login";
+            }
+            
+        }
 	
 	@RequestMapping(value = "/admin/Category/load", method = RequestMethod.GET)
 	public String cateManager(Model model) {

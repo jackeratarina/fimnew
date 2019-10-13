@@ -24,9 +24,11 @@ import com.group1.entity.CountriesOfFilm;
 import com.group1.entity.Country;
 import com.group1.entity.FILM;
 import com.group1.entity.Link;
+import com.group1.entity.User;
 import com.group1.model.CategoryModel;
 import com.group1.model.CountryModel;
 import com.group1.model.FILMModel;
+import com.group1.model.Login;
 
 @Repository
 public class FILMDAO {
@@ -107,6 +109,19 @@ public class FILMDAO {
 		FILM status = entityManager.merge(film);
 		return status;
 	}
+        public User Login(Login l){
+            String sql="select * from [User] where username = ?1 and password = ?2 ";
+		Query q = entityManager.createNativeQuery(sql, User.class);
+		q.setParameter(1, l.getUsername());
+		q.setParameter(2, l.getPassword());
+		List<User> users = q.getResultList();
+                if(users.size() > 0){
+                     return  users.get(0);
+                }else{
+                    return null;
+                }
+             
+        }
 	public Link updateLink(Link link) {
 		Link status = entityManager.merge(link);
 		return status;
